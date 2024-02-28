@@ -1,1 +1,88 @@
-Hello!
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auth0 SPA Example</title>
+</head>
+<body>
+    <h1>Auth0 SPA Example</h1>
+    <form id="auth0-form">
+        <label for="domain">Auth0 Domain:</label>
+        <input type="text" id="domain" name="domain" required>
+        <br>
+        <label for="clientId">Client ID:</label>
+        <input type="text" id="clientId" name="clientId" required>
+        <br>
+        <button type="submit">Initialize Auth0 Client</button>
+    </form>
+
+    <button id="login" style="display: none;">Log In</button>
+    <button id="logout" style="display: none;">Log Out</button>
+    <div id="profile" style="display: none;">
+        <h2>User Profile</h2>
+        <p id="user-info"></p>
+        <h2>Tokens</h2>
+        <p><strong>ID Token:</strong> <span id="id-token"></span></p>
+        <p><strong>Access Token:</strong> <span id="access-token"></span></p>
+        <p><strong>Refresh Token:</strong> <span id="refresh-token"></span></p>
+    </div>
+
+    <script src="https://cdn.auth0.com/js/auth0-spa-js/1.21/auth0-spa-js.production.js"></script>
+    <script>
+        const auth0Form = document.getElementById('auth0-form');
+        const loginButton = document.getElementById('login');
+        const logoutButton = document.getElementById('logout');
+        const profileDiv = document.getElementById('profile');
+        const userInfoParagraph = document.getElementById('user-info');
+        const idTokenSpan = document.getElementById('id-token');
+        const accessTokenSpan = document.getElementById('access-token');
+        const refreshTokenSpan = document.getElementById('refresh-token');
+
+        auth0Form.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const domain = document.getElementById('domain').value;
+            const clientId = document.getElementById('clientId').value;
+            initializeAuth0Client(domain, clientId);
+        });
+
+        async function initializeAuth0Client(domain, clientId) {
+            const auth0 = new Auth0Client({
+                domain: domain,
+                client_id: clientId,
+                redirect_uri: window.location.origin
+            });
+
+            loginButton.style.display = 'inline-block';
+            loginButton.addEventListener('click', async () => {
+                await auth0.loginWithRedirect();
+            });
+
+            logoutButton.addEventListener('click', async () => {
+                await auth0.logout();
+            });
+
+            async function handleRedirectCallback() {
+                const isAuthenticated = await auth0.isAuthenticated();
+                if (isAuthenticated) {
+                    logoutButton.style.display = 'inline-block';
+                    profileDiv.style.display = 'block';
+                    const user = await auth0.getUser();
+                    const idToken = await auth0.getIdTokenClaims();
+                    const accessToken = await auth0.getTokenSilently();
+                    const refreshToken = await auth0.getTokenWithPopup({ audience: `https://${domain}/api/v2/` });
+
+                    userInfoParagraph.textContent = JSON.stringify(user, null, 2);
+                    idTokenSpan.textContent = idToken.__raw;
+                    accessTokenSpan.textContent = accessToken;
+                    refreshTokenSpan.textContent = refreshToken.refresh_token;
+                } else {
+                    loginButton.style.display = 'inline-block';
+                }
+            }
+
+            handleRedirectCallback();
+        }
+    </script>
+</body>
+</html>
