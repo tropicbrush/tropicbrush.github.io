@@ -66,8 +66,8 @@ const updateUI = async () => {
       const id_token = claims.__raw;
       const accessToken = await auth0Client.getTokenSilently();
 
-      const decodedIDToken = jwt_decode(id_token);
-      const decodedAccessToken = jwt_decode(accessToken);
+      const decodedIDToken = jwtDecode(id_token);
+      const decodedAccessToken = jwtDecode(accessToken);
       
       document.getElementById("idToken-data").innerText = JSON.stringify(
         id_token,
