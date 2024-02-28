@@ -62,6 +62,23 @@ const updateUI = async () => {
 
     if (isAuthenticated) {
       const user = await auth0Client.getUser();
+      const claims = await auth0.getIdTokenClaims();
+      const id_token = claims.__raw;
+      const accessToken = await auth0.getTokenSilently();
+      
+      document.getElementById("idToken-data").innerText = JSON.stringify(
+        id_token,
+        null,
+        2
+      );
+
+      document.getElementById("accessToken-data").innerText = JSON.stringify(
+        accessToken,
+        null,
+        2
+      );
+
+
 
       document.getElementById("profile-data").innerText = JSON.stringify(
         user,
