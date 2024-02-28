@@ -67,7 +67,21 @@ const updateUI = async () => {
       const accessToken = await auth0Client.getTokenSilently();
 
       const decodedIDToken = jwtDecode(id_token);
-      const decodedAccessToken = jwtDecode(accessToken);
+      let decodedAccessToken;
+      function isJWT(token) {
+    // Split the token into parts
+    const parts = token.split('.');
+    
+    // JWTs consist of three parts separated by dots
+    return Array.isArray(parts) && parts.length === 3;
+}
+      if(isJWT(accessToken)){
+      
+      decodedAccessToken = jwtDecode(accessToken);
+      }
+      else {
+      decodedAccessToken = "AT is an Opauqe Token"
+      }
       
       document.getElementById("idToken-data").innerText = JSON.stringify(
         id_token,
