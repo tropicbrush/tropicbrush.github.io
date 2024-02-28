@@ -91,17 +91,17 @@ const configureClient = async () => {
     clientId: config.clientId,
     useRefreshTokens : config.useRefreshTokens,
     authorizationParams : {
-    audience: config.useRefreshTokens,
-    connection: config.useRefreshTokens,
-    display: config.useRefreshTokens, "page" | "popup" | "touch" | "wap";
-    invitation: config.useRefreshTokens,
-    login_hint: config.useRefreshTokens,
-    max_age: config.useRefreshTokens,
-    organization: config.useRefreshTokens,
-    prompt: config.useRefreshTokens,"none" | "login" | "consent" | "select_account";
-    scope: config.useRefreshTokens,
-    screen_hint: config.useRefreshTokens,
-    ui_locales: config.useRefreshTokens
+    audience: config.audience,
+    connection: config.connection,
+    display: config.display, 
+    invitation: config.invitation,
+    login_hint: config.login_hint,
+    max_age: config.max_age,
+    organization: config.organization,
+    prompt: config.prompt,
+    scope: config.scope,
+    screen_hint: config.screen_hint,
+    ui_locales: config.ui_locales
       
     }
   });
