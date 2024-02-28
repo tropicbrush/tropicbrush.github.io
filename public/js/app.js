@@ -49,18 +49,18 @@ const fetchAuthConfig = async () => {
   try{
   const storedDomain = localStorage.getItem('auth0_domain') || 'abhishek-customers.us.auth0.com';
   const storedClientId = localStorage.getItem('auth0_client_id') || 'y12dT3aFnRArFWcUSeLZqsONNihvggGF';
-  const useRefreshTokens = localStorage.getItem('useRefreshTokens')|| null;
-  const scopes = localStorage.getItem('scopes') || null;
-  const audience = localStorage.getItem('audience') || null;
-  const connection = localStorage.getItem('connection') || null;
-  const display = localStorage.getItem('display') || null;    
-  const invitation = localStorage.getItem('invitation') || null;
-  const login_hint = localStorage.getItem('login_hint') || null
-  const max_age = localStorage.getItem('max_age') || null;
-  const organization = localStorage.getItem('organization') || null;
-  const prompt = localStorage.getItem('prompt') || null;
-  const screen_hint = localStorage.getItem('screen_hint') || null;
-  const ui_locales = localStorage.getItem('ui_locales') || null;    
+  const useRefreshTokens = localStorage.getItem('useRefreshTokens')|| undefined;
+  const scopes = localStorage.getItem('scopes') || undefined;
+  const audience = localStorage.getItem('audience') || undefined;
+  const connection = localStorage.getItem('connection') || undefined;
+  const display = localStorage.getItem('display') || undefined;    
+  const invitation = localStorage.getItem('invitation') || undefined;
+  const login_hint = localStorage.getItem('login_hint') || undefined
+  const max_age = localStorage.getItem('max_age') || undefined;
+  const organization = localStorage.getItem('organization') || undefined;
+  const prompt = localStorage.getItem('prompt') || undefined;
+  const screen_hint = localStorage.getItem('screen_hint') || undefined;
+  const ui_locales = localStorage.getItem('ui_locales') || undefined;    
     
   return {"domain": storedDomain, "clientId":storedClientId, "useRefreshTokens":useRefreshTokens,"scopes":scopes,"audience": audience,
          "connection": connection,
