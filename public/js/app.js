@@ -43,7 +43,41 @@ const logout = async () => {
 /**
  * Retrieves the auth configuration from the server
  */
-const fetchAuthConfig = () => fetch("/auth_config.json");
+// const fetchAuthConfig = () => fetch("/auth_config.json");
+
+const fetchAuthConfig = async () => {
+  try{
+  const storedDomain = localStorage.getItem('auth0_domain') || 'abhishek-customers.us.auth0.com';
+  const storedClientId = localStorage.getItem('auth0_client_id') || 'y12dT3aFnRArFWcUSeLZqsONNihvggGF';
+  const useRefreshTokens = localStorage.getItem('useRefreshTokens')|| null;
+  const scopes = localStorage.getItem('scopes') || null;
+  const audience = localStorage.getItem('audience') || null;
+  const connection = localStorage.getItem('connection') || null;
+  const display = localStorage.getItem('display') || null;    
+  const invitation = localStorage.getItem('invitation') || null;
+  const login_hint = localStorage.getItem('login_hint') || null
+  const max_age = localStorage.getItem('max_age') || null;
+  const organization = localStorage.getItem('organization') || null;
+  const prompt = localStorage.getItem('prompt') || null;
+  const screen_hint = localStorage.getItem('screen_hint') || null;
+  const ui_locales = localStorage.getItem('ui_locales') || null;    
+    
+  return {"domain": storedDomain, "clientId":storedClientId, "useRefreshTokens":useRefreshTokens,"scopes":scopes,"audience": audience,
+         "connection": connection,
+          "display": display,
+          "invitation": invitation,
+          "login_hint": login_hint,
+          "max_age": max_age,
+          "organization": organization,
+         "prompt": prompt,
+         "screen_hint": screen_hint,
+         "ui_locales": ui_locales,
+         };
+  }
+  catch(error){
+    throw error
+  }
+}
 
 /**
  * Initializes the Auth0 client
@@ -54,7 +88,22 @@ const configureClient = async () => {
 
   auth0Client = await auth0.createAuth0Client({
     domain: config.domain,
-    clientId: config.clientId
+    clientId: config.clientId,
+    useRefreshTokens : config.useRefreshTokens,
+    authorizationParams : {
+    audience: config.useRefreshTokens,
+    connection: config.useRefreshTokens,
+    display: config.useRefreshTokens, "page" | "popup" | "touch" | "wap";
+    invitation: config.useRefreshTokens,
+    login_hint: config.useRefreshTokens,
+    max_age: config.useRefreshTokens,
+    organization: config.useRefreshTokens,
+    prompt: config.useRefreshTokens,"none" | "login" | "consent" | "select_account";
+    scope: config.useRefreshTokens,
+    screen_hint: config.useRefreshTokens,
+    ui_locales: config.useRefreshTokens
+      
+    }
   });
 };
 
