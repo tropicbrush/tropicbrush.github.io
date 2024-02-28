@@ -44,6 +44,9 @@
             const domain = document.getElementById('domain').value;
             const clientId = document.getElementById('clientId').value;
             initializeAuth0Client(domain, clientId);
+            // Save domain and client ID to local storage
+            localStorage.setItem('auth0_domain', domain);
+            localStorage.setItem('auth0_client_id', clientId);
         });
 
         async function initializeAuth0Client(domain, clientId) {
@@ -82,6 +85,15 @@
             }
 
             handleRedirectCallback();
+        }
+
+        // Check if domain and client ID are present in local storage
+        const storedDomain = localStorage.getItem('auth0_domain');
+        const storedClientId = localStorage.getItem('auth0_client_id');
+        if (storedDomain && storedClientId) {
+            document.getElementById('domain').value = storedDomain;
+            document.getElementById('clientId').value = storedClientId;
+            initializeAuth0Client(storedDomain, storedClientId);
         }
     </script>
 </body>
