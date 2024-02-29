@@ -4,13 +4,11 @@
       <meta charset="UTF-8" />
       <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     
-      <title>SPA SDK Sample</title>
+      <title>Auth0 Login Using SPA SDK</title>
       <link
          rel="stylesheet"
          href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
          />
-      <link rel="stylesheet" type="text/css" href="/public/css/main.css" />
       <link
          rel="stylesheet"
          href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/monokai-sublime.min.css"
@@ -27,11 +25,92 @@
          integrity="sha384-4aon80D8rXCGx9ayDt85LbyUHeMWd3UiBaWliBlJ53yzm9hqN21A+o1pqoyK04h+"
          crossorigin="anonymous"
          />
-      <link
-         rel="stylesheet"
-         href="https://cdn.auth0.com/js/auth0-samples-theme/1.0/css/auth0-theme.min.css"
-         />
-       <link rel="stylesheet" href="public/css/styles.css">
+      <style>
+         .hidden {
+         display: none;
+         }
+         label {
+         margin-bottom: 10px;
+         display: block;
+         }
+         .navbar {
+         min-height: 115px;
+         }
+      </style>
+      <style>
+         * {
+         box-sizing: border-box;
+         }
+         input[type=text],
+         select,
+         textarea {
+         width: 100%;
+         padding: 12px;
+         border: 1px solid #ccc;
+         border-radius: 4px;
+         resize: vertical;
+         }
+         label {
+         padding: 12px 12px 12px 0;
+         display: inline-block;
+         }
+         input[type=submit] {
+         background-color: #04AA6D;
+         color: white;
+         padding: 12px 20px;
+         border: none;
+         border-radius: 4px;
+         cursor: pointer;
+         float: right;
+         }
+         input[type=submit]:hover {
+         background-color: #45a049;
+         }
+         .container {
+         border-radius: 5px;
+         background-color: #f2f2f2;
+         padding: 20px;
+         }
+         .col-25 {
+         float: left;
+         width: 25%;
+         margin-top: 6px;
+         }
+         .col-75 {
+         float: left;
+         width: 75%;
+         margin-top: 6px;
+         }
+         /* Clear floats after the columns */
+         .row:after {
+         content: "";
+         display: table;
+         clear: both;
+         }
+         /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+         @media screen and (max-width: 600px) {
+         .col-25,
+         .col-75,
+         input[type=submit] {
+         width: 100%;
+         margin-top: 0;
+         }
+         }
+         .advanced-options {
+         display: none;
+         /* Initially hidden */
+         border: 1px solid #ccc;
+         padding: 20px;
+         border-radius: 5px;
+         margin-top: 20px;
+         }
+         .advanced-options h3 {
+         margin-top: 0;
+         }
+         .advanced-options-toggle {
+         margin-bottom: 10px;
+         }
+      </style>
    </head>
    <body class="h-100">
       <div id="app" class="h-100 d-flex flex-column">
@@ -157,25 +236,25 @@
                </div>
             </nav>
          </div>
-<!--          <div id="main-content" class="container mt-5 flex-grow-1"> -->
+         <!--          <div id="main-content" class="container mt-5 flex-grow-1"> -->
          <div id="main-content">
             <div id="content-home" class="page">
                <div class="container">
                   <form id="auth0-form">
                      <div class="row">
                         <div class="col-25">
-                           <label for="domain">Auth0 Domain:</label>
-                        </div>
-                        <div class="col-75">
-                           <input type="text" id="domain" name="domain" required value="abhishek-customers.us.auth0.com">
-                        </div>
-                     </div>
-                     <div class="row">
-                        <div class="col-25">
                            <label for="clientId">Client ID:</label>
                         </div>
                         <div class="col-75">
                            <input type="text" id="clientId" name="clientId" required value="y12dT3aFnRArFWcUSeLZqsONNihvggGF">
+                        </div>
+                     </div>
+                     <div class="row">
+                        <div class="col-25">
+                           <label for="domain">Auth0 Domain:</label>
+                        </div>
+                        <div class="col-75">
+                           <input type="text" id="domain" name="domain" required value="abhishek-customers.us.auth0.com">
                         </div>
                      </div>
                      <div class="advanced-options-toggle">
@@ -431,8 +510,7 @@
          <footer class="bg-light text-center p-5">
             <div class="logo"></div>
             <p>
-               Sample project provided by
-               <a href="https://auth0.com">Auth0</a>
+               Sample project provided by @Tropicbrush
             </p>
          </footer>
       </div>
