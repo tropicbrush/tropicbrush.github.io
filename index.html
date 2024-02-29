@@ -177,7 +177,23 @@
               flow for an SPA, using plain JavaScript
             </p>
           </div>
-
+              <form id="auth0-form">
+                <label for="domain">Auth0 Domain:</label>
+                <input type="text" id="domain" name="domain" required>
+                <br>
+                <label for="clientId">Client ID:</label>
+                <input type="text" id="clientId" name="clientId" required>
+                <br>
+                <button type="submit">Initialize Auth0 Client</button>
+              </form>
+           <script>
+         auth0Form.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const domain = document.getElementById('domain').value;
+            const clientId = document.getElementById('clientId').value;
+            // initializeAuth0Client(domain, clientId);
+        });
+           </script>
           <div class="next-steps">
             <h2 class="my-5 text-center">What can I do next?</h2>
 
