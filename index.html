@@ -455,6 +455,10 @@ input[type=submit]:hover {
                 
                auth0Form.addEventListener('submit', async (event) => {
                event.preventDefault();
+
+
+		const formData = new FormData(form);
+		       console.log("formData",formData)
                const domain = document.getElementById('domain').value;
                const clientId = document.getElementById('clientId').value;
                
