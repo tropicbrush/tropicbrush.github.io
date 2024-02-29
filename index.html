@@ -457,57 +457,75 @@ input[type=submit]:hover {
                event.preventDefault();
 
 
-		const formData = new FormData(auth0Form);
-		       console.log("formData",formData)
-               const domain = document.getElementById('domain').value;
-               const clientId = document.getElementById('clientId').value;
-               
-               const useRefreshTokens = document.getElementById('useRefreshTokens').value;
-               const scopes = document.getElementById('scopes').value;
-               const audience = document.getElementById('audience').value;
-               const connection = document.getElementById('connection').value;
-               const display = document.getElementById('display').value;
-               const invitation = document.getElementById('invitation').value;
-               const login_hint = document.getElementById('login_hint').value;
-               const max_age = document.getElementById('max_age').value;
-               const organization = document.getElementById('organization').value;
-               const prompt = document.getElementById('prompt').value;
-               const screen_hint = document.getElementById('screen_hint').value;
-               const ui_locales = document.getElementById('ui_locales').value;
+				const formData = new FormData(auth0Form);
+				console.log("formData",formData)
 
-		 const additionalFields = {};
-		       let fieldCounter = 1;
-        for (let i = 1; i < fieldCounter; i++) {
-            const key = document.getElementById(`key${i}`).value;
-            const value = document.getElementById(`value${i}`).value;
-	console.log("key :",key)
-		console.log("value :",value)
-            additionalFields[key] = value;
-	    localStorage.setItem(key,value);
-		console.log("localStorage response :",localStorage.getItem(key))
-        }
+			        const domain = formData.get('domain');
+		               const clientId = formData.get('clientId');
+		               
+		               const useRefreshTokens = formData.get('useRefreshTokens');
+		               const scopes = formData.get('scopes');
+		               const audience = formData.get('audience');
+		               const connection = formData.get('connection');
+		               const display = formData.get('display');
+		               const invitation = formData.get('invitation');
+		               const login_hint = formData.get('login_hint');
+		               const max_age =formData.get('max_age');
+		               const organization = formData.get('organization');
+		               const prompt = formData.get('prompt');
+		               const screen_hint = formData.get('screen_hint');
+		               const ui_locales = formData.get('ui_locales');
+
 		       
-               
-               
-               localStorage.setItem('auth0_domain',domain);
-               localStorage.setItem('auth0_client_id',clientId);
-               
-               localStorage.setItem('useRefreshTokens',useRefreshTokens);
-               localStorage.setItem('scopes',scopes);
-                localStorage.setItem('audience',audience);
-               localStorage.setItem('connection',connection);
-               localStorage.setItem('display',display);
-               localStorage.setItem('invitation',invitation);
-               localStorage.setItem('login_hint',login_hint);
-               localStorage.setItem('max_age',max_age);
-               localStorage.setItem('organization',organization);
-               localStorage.setItem('prompt',prompt);
-               localStorage.setItem('screen_hint',screen_hint);
-               localStorage.setItem('ui_locales',ui_locales);
-               
-               
-               // initializeAuth0Client(domain, clientId);
-               await configureClient();
+		               // const domain = document.getElementById('domain').value;
+		               // const clientId = document.getElementById('clientId').value;
+		               
+		               // const useRefreshTokens = document.getElementById('useRefreshTokens').value;
+		               // const scopes = document.getElementById('scopes').value;
+		               // const audience = document.getElementById('audience').value;
+		               // const connection = document.getElementById('connection').value;
+		               // const display = document.getElementById('display').value;
+		               // const invitation = document.getElementById('invitation').value;
+		               // const login_hint = document.getElementById('login_hint').value;
+		               // const max_age = document.getElementById('max_age').value;
+		               // const organization = document.getElementById('organization').value;
+		               // const prompt = document.getElementById('prompt').value;
+		               // const screen_hint = document.getElementById('screen_hint').value;
+		               // const ui_locales = document.getElementById('ui_locales').value;
+		
+				 const additionalFields = {};
+				       let fieldCounter = 1;
+		        for (let i = 1; i < fieldCounter; i++) {
+		            const key = formData.get(`key${i}`);
+		            const value = formData.get(`value${i}`);
+			console.log("key :",key)
+				console.log("value :",value)
+		            additionalFields[key] = value;
+			    localStorage.setItem(key,value);
+				console.log("localStorage response :",localStorage.getItem(key))
+		        }
+				       
+		               
+		               
+		               localStorage.setItem('auth0_domain',domain);
+		               localStorage.setItem('auth0_client_id',clientId);
+		               
+		               localStorage.setItem('useRefreshTokens',useRefreshTokens);
+		               localStorage.setItem('scopes',scopes);
+		                localStorage.setItem('audience',audience);
+		               localStorage.setItem('connection',connection);
+		               localStorage.setItem('display',display);
+		               localStorage.setItem('invitation',invitation);
+		               localStorage.setItem('login_hint',login_hint);
+		               localStorage.setItem('max_age',max_age);
+		               localStorage.setItem('organization',organization);
+		               localStorage.setItem('prompt',prompt);
+		               localStorage.setItem('screen_hint',screen_hint);
+		               localStorage.setItem('ui_locales',ui_locales);
+		               
+		               
+		               // initializeAuth0Client(domain, clientId);
+		               await configureClient();
                });
             </script>
             <div class="page" id="content-profile">
