@@ -200,6 +200,8 @@
             event.preventDefault();
             const domain = document.getElementById('domain').value;
             const clientId = document.getElementById('clientId').value;
+            localStorage.setItem('auth0_domain',domain);
+           localStorage.setItem('auth0_client_id',clientId);
             // initializeAuth0Client(domain, clientId);
            await configureClient();
         });
