@@ -103,7 +103,7 @@ console.log("response :", response)
 const configureClient = async () => {
   console.log("configureClient called");
   const auth0ClientProps = await fetchAuthConfig();
-  console.log("configureClient config :", config);
+  console.log("auth0ClientProps config :", auth0ClientProps);
   // const config = await response.json();
 
   // let auth0ClientProps = {
