@@ -470,6 +470,15 @@ input[type=submit]:hover {
                const prompt = document.getElementById('prompt').value;
                const screen_hint = document.getElementById('screen_hint').value;
                const ui_locales = document.getElementById('ui_locales').value;
+
+		 const additionalFields = {};
+        for (let i = 1; i < fieldCounter; i++) {
+            const key = document.getElementById(`key${i}`).value;
+            const value = document.getElementById(`value${i}`).value;
+            additionalFields[key] = value;
+	    localStorage.setItem('key',value);
+        }
+		       
                
                
                localStorage.setItem('auth0_domain',domain);
