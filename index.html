@@ -196,7 +196,7 @@
              
              domainValueInput.value = currentDomain || ''; 
              clientIdValueInput.value = currentClient || ''; 
-             
+             const auth0Form = document.getElementById('auth0-form');
          auth0Form.addEventListener('submit', async (event) => {
             event.preventDefault();
             const domain = document.getElementById('domain').value;
