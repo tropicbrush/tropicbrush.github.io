@@ -166,101 +166,166 @@
 
       <div id="main-content" class="container mt-5 flex-grow-1">
         <div id="content-home" class="page">
-          <div class="text-center hero">
-            <img
-              class="mb-3 app-logo"
-              src="/public/images/logo.png"
-              alt="JavaScript logo"
-              width="75"
-            />
-            <h1 class="mb-4">JavaScript Sample Project</h1>
-
-            <p class="lead">
-              This is a sample application that demonstrates an authentication
-              flow for an SPA, using plain JavaScript
-            </p>
-          </div>
-              <form id="auth0-form">
-                <div class="input-group">
-                <label for="domain">Auth0 Domain:</label>
-                <input type="text" id="domain" name="domain" required value="abhishek-customers.us.auth0.com">
-                </div>
-                <div class="input-group">
-                <br>
-                <label for="clientId">Client ID:</label>
-                <input type="text" id="clientId" name="clientId" required value="y12dT3aFnRArFWcUSeLZqsONNihvggGF">
-                <br>
-                </div>
-                 <div class="advanced-options-toggle">
+          <div class="container">
+      
+      <form id="auth0-form">
+         <div class="row">
+            <div class="col-25">
+               <label for="domain">Auth0 Domain:</label>
+            </div>
+            <div class="col-75">
+               <input type="text" id="domain" name="domain" required value="abhishek-customers.us.auth0.com">
+            </div>
+         </div>
+         <div class="row">
+            <div class="col-25">
+               <label for="clientId">Client ID:</label>
+            </div>
+            <div class="col-75">
+               <input type="text" id="clientId" name="clientId" required value="y12dT3aFnRArFWcUSeLZqsONNihvggGF">
+            </div>
+         </div>
+         <div class="advanced-options-toggle">
             <label for="advanced-options-checkbox">Show Advanced Options</label>
             <input type="checkbox" id="advanced-options-checkbox">
-        </div>
-
-        <div class="advanced-options">
-            <h2>Advanced Options</h2>
-                   <div class="input-group">
-                <label for="useRefreshTokens">useRefreshTokens:</label>
-                <input type="text" id="useRefreshTokens" name="useRefreshTokens" >
-                     </div>
-                <div class="input-group">
-                <br>
-                <label for="scopes">scopes:</label>
-                <input type="text" id="scopes" name="scopes" value="openid email profile">
-                  </div>
-                <div class="input-group">
-                <br>
-                <label for="audience">audience:</label>
-                <input type="text" id="audience" name="audience" >
-                  </div>
-                <div class="input-group">
-                <br>
-                <label for="connection">connection:</label>
-                <input type="text" id="connection" name="connection" >
-                  </div>
-                <div class="input-group">
-                <br>
-                <label for="display">display:</label>
-                <input type="text" id="display" name="display" >
-                  </div>
-                <div class="input-group">
-                <br>
-                <label for="invitation">invitation:</label>
-                <input type="text" id="invitation" name="invitation"  >
-                  </div>
-                <div class="input-group">
-                <br>
-                <label for="login_hint">login_hint:</label>
-                <input type="text" id="login_hint" name="login_hint" >
-                  </div>
-                <div class="input-group">
-                <br>
-                <label for="max_age">max_age:</label>
-                <input type="text" id="max_age" name="max_age"  >
-                  </div>
-                <div class="input-group">
-                <br>
-                <label for="organization">organization:</label>
-                <input type="text" id="organization" name="organization" >
-                  </div>
-                <div class="input-group">
-                <br>
-                <label for="prompt">prompt:</label>
-                <input type="text" id="prompt" name="prompt" >
-                  </div>
-                <div class="input-group">
-                <br>
-                <label for="screen_hint">screen_hint:</label>
-                <input type="text" id="screen_hint" name="screen_hint">
-                  </div>
-                <div class="input-group">
-                <br>
-                <label for="ui_locales">ui_locales:</label>
-                <input type="text" id="ui_locales" name="ui_locales">
-                  </div>
+         </div>
+         <div class="advanced-options">
+            <h3>Advanced Options</h3>
+           
+            <div class="row">
+            <div class="col-25">
+               <label for="useRefreshTokens">useRefreshTokens</label>
+            </div>
+            <div class="col-75">
+               <select id="useRefreshTokens" name="useRefreshTokens">
+               	  <option value="">Select an option</option>
+                  <option value="true">true</option>
+                  <option value="false">false</option>
+               </select>
+            </div>
+         </div>
+         
+         
+            <div class="row">
+               <div class="col-25">
+                  <label for="scopes">scopes:</label>
                </div>
-                <br>
-                <button type="submit">Initialize Auth0 Client</button>
-              </form>
+               <div class="col-75">
+                  <input type="text" id="scopes" name="scopes" value="openid email profile">
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-25">
+                  <label for="audience">audience:</label>
+               </div>
+               <div class="col-75">
+                  <input type="text" id="audience" name="audience" placeholder="API Identifier" >
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-25">
+                  <label for="connection">connection:</label>
+               </div>
+               <div class="col-75">
+                  <input type="text" id="connection" name="connection" placeholder="Connection name in Auth0">
+               </div>
+            </div>
+            
+            
+            <div class="row">
+            <div class="col-25">
+               <label for="display">display</label>
+            </div>
+            <div class="col-75">
+               <select id="display" name="display">
+                 <option value="">Select an option</option>
+                  <option value="page">page</option>
+                  <option value="popup">popup</option>
+                  <option value="touch">touch</option>
+                  <option value="touch">wap</option>
+               </select>
+            </div>
+         </div>
+         
+         
+            <div class="row">
+               <div class="col-25">
+                  <label for="invitation">invitation:</label>
+               </div>
+               <div class="col-75">
+                  <input type="text" id="invitation" name="invitation"  >
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-25">
+                  <label for="login_hint">login_hint:</label>
+               </div>
+               <div class="col-75">
+                  <input type="text" id="login_hint" name="login_hint"  placeholder="email address">
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-25">
+                  <label for="max_age">max_age:</label>
+               </div>
+               <div class="col-75">
+                  <input type="text" id="max_age" name="max_age" placeholder="entering 0 would force user to authenticate irrespective of current session" >
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-25">
+                  <label for="organization">organization:</label>
+               </div>
+               <div class="col-75">
+                  <input type="text" id="organization" name="organization" placeholder="Enter Auth0 organization name">
+               </div>
+            </div>
+          
+            
+            <div class="row">
+            <div class="col-25">
+               <label for="prompt">prompt</label>
+            </div>
+            <div class="col-75">
+               <select id="prompt" name="prompt">
+               	  <option value="">Select an option</option>
+                  <option value="login">login</option>
+                  <option value="none">none</option>
+                  <option value="touch">consent</option>
+                  <option value="touch">select_account</option>
+               </select>
+            </div>
+         </div>
+            
+      
+            
+            <div class="row">
+            <div class="col-25">
+               <label for="screen_hint">screen_hint</label>
+            </div>
+            <div class="col-75">
+               <select id="screen_hint" name="screen_hint">
+               	  <option value="">Select an option</option>
+                  <option value="login">login</option>
+                  <option value="signup">signup</option>
+               </select>
+            </div>
+         </div>
+         
+         
+            <div class="row">
+               <div class="col-25">
+                  <label for="ui_locales">ui_locales:</label>
+               </div>
+               <div class="col-75">
+                  <input type="text" id="ui_locales" name="ui_locales" placeholder="e.g en">
+               </div>
+            </div>
+           </div>
+            <br>
+            <button type="submit">Initialize Auth0 Client</button>
+      </form>
+      </div>
           </div>
            <script>
 
