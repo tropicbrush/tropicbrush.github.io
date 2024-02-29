@@ -75,13 +75,14 @@ const fetchAuthConfig = async () => {
          "screen_hint": screen_hint,
          "ui_locales": ui_locales,
          };
-
+console.log("response :", response)
     
    for (let i = 0; i < localStorage.length; i++) {
             const key = localStorage.key(i);
-            if (key.startsWith('key')) {
-               response[key] = localStorage.getItem(key);
-                
+            if (key.startsWith('cust_field_')) {
+                let keyName = key.replace(/^abc_/, ""); 
+               response[keyName] = localStorage.getItem(keyName);
+               console.log("response :", response) 
             }
         }
     
