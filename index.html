@@ -187,8 +187,8 @@
                 <button type="submit">Initialize Auth0 Client</button>
               </form>
            <script>
-            let currentDomain = localStorage.setItem('auth0_domain');
-            let currentClient = localStorage.setItem('auth0_client_id'); 
+            let currentDomain = localStorage.getItem('auth0_domain');
+            let currentClient = localStorage.getItem('auth0_client_id'); 
 
              const domainValueInput = document.getElementById('domain');
              const clientIdValueInput = document.getElementById('clientId');
