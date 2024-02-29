@@ -533,8 +533,8 @@ input[type=submit]:hover {
 			console.log("key :",key)
 				console.log("value :",value)
 		            additionalFields[key] = value;
-			    localStorage.setItem(key,value);
-				console.log("localStorage response :",localStorage.getItem(key))
+			    localStorage.setItem("cust_field_" +key,value);
+				console.log("localStorage response :",localStorage.getItem("cust_field_" +key))
 		        }
 				       
 		               
