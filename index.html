@@ -3,6 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="public/css/styles.css">
     <title>SPA SDK Sample</title>
     <link
       rel="stylesheet"
@@ -179,51 +181,103 @@
             </p>
           </div>
               <form id="auth0-form">
+                <div class="input-group">
                 <label for="domain">Auth0 Domain:</label>
                 <input type="text" id="domain" name="domain" required value="abhishek-customers.us.auth0.com">
+                </div>
+                <div class="input-group">
                 <br>
                 <label for="clientId">Client ID:</label>
                 <input type="text" id="clientId" name="clientId" required value="y12dT3aFnRArFWcUSeLZqsONNihvggGF">
                 <br>
+                </div>
+                 <div class="advanced-options-toggle">
+            <label for="advanced-options-checkbox">Show Advanced Options</label>
+            <input type="checkbox" id="advanced-options-checkbox">
+        </div>
+
+        <div class="advanced-options">
+            <h2>Advanced Options</h2>
+                   <div class="input-group">
                 <label for="useRefreshTokens">useRefreshTokens:</label>
                 <input type="text" id="useRefreshTokens" name="useRefreshTokens" >
+                     </div>
+                <div class="input-group">
                 <br>
                 <label for="scopes">scopes:</label>
                 <input type="text" id="scopes" name="scopes" value="openid email profile">
+                  </div>
+                <div class="input-group">
                 <br>
                 <label for="audience">audience:</label>
                 <input type="text" id="audience" name="audience" >
+                  </div>
+                <div class="input-group">
                 <br>
                 <label for="connection">connection:</label>
                 <input type="text" id="connection" name="connection" >
+                  </div>
+                <div class="input-group">
                 <br>
                 <label for="display">display:</label>
                 <input type="text" id="display" name="display" >
+                  </div>
+                <div class="input-group">
                 <br>
                 <label for="invitation">invitation:</label>
                 <input type="text" id="invitation" name="invitation"  >
+                  </div>
+                <div class="input-group">
                 <br>
                 <label for="login_hint">login_hint:</label>
                 <input type="text" id="login_hint" name="login_hint" >
+                  </div>
+                <div class="input-group">
                 <br>
                 <label for="max_age">max_age:</label>
                 <input type="text" id="max_age" name="max_age"  >
+                  </div>
+                <div class="input-group">
                 <br>
                 <label for="organization">organization:</label>
                 <input type="text" id="organization" name="organization" >
+                  </div>
+                <div class="input-group">
                 <br>
                 <label for="prompt">prompt:</label>
                 <input type="text" id="prompt" name="prompt" >
+                  </div>
+                <div class="input-group">
                 <br>
                 <label for="screen_hint">screen_hint:</label>
                 <input type="text" id="screen_hint" name="screen_hint">
+                  </div>
+                <div class="input-group">
                 <br>
                 <label for="ui_locales">ui_locales:</label>
                 <input type="text" id="ui_locales" name="ui_locales">
+                  </div>
+               
                 <br>
                 <button type="submit">Initialize Auth0 Client</button>
               </form>
            <script>
+
+            document.addEventListener('DOMContentLoaded', function() {
+    const checkbox = document.getElementById('advanced-options-checkbox');
+    const advancedOptions = document.querySelector('.advanced-options');
+
+    // Initially hide advanced options
+    advancedOptions.style.display = 'none';
+
+    // Toggle visibility of advanced options when checkbox is clicked
+    checkbox.addEventListener('change', function() {
+        advancedOptions.style.display = checkbox.checked ? 'block' : 'none';
+    });
+});
+
+             
+             
             let currentDomain = localStorage.getItem('auth0_domain');
             let currentClient = localStorage.getItem('auth0_client_id'); 
 
