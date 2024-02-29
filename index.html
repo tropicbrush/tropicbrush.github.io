@@ -414,6 +414,7 @@ input[type=submit]:hover {
                </div>
             </div>
             <script>
+		        let fieldCounter = 1;
                document.addEventListener('DOMContentLoaded', function() {
                const checkbox = document.getElementById('advanced-options-checkbox');
                const advancedOptions = document.querySelector('.advanced-options');
@@ -425,7 +426,38 @@ input[type=submit]:hover {
                checkbox.addEventListener('change', function() {
                advancedOptions.style.display = checkbox.checked ? 'block' : 'none';
                });
+
+		  // Counter for dynamic field IDs
+    
+
+        // Function to create new input fields
+        function createField() {
+            const container = document.querySelector('.additional-fields');
+            const newRow = document.createElement('div');
+            newRow.classList.add('row');
+            newRow.innerHTML = `
+                <div class="col-25">
+                    <label for="key${fieldCounter}">Key:</label>
+                    <input type="text" id="key${fieldCounter}" name="key${fieldCounter}">
+                </div>
+                <div class="col-75">
+                    <label for="value${fieldCounter}">Value:</label>
+                    <input type="text" id="value${fieldCounter}" name="value${fieldCounter}">
+                </div>
+            `;
+            container.appendChild(newRow);
+            fieldCounter++;
+        }
+
+        // Event listener for the add field button
+        const addFieldButton = document.getElementById('addFieldButton');
+        addFieldButton.addEventListener('click', createField);
+		       
                });
+
+		// document.addEventListener('DOMContentLoaded', function() {
+      
+  //   });
                
                 
                 
@@ -494,7 +526,7 @@ input[type=submit]:hover {
 		               // const ui_locales = document.getElementById('ui_locales').value;
 		
 				 const additionalFields = {};
-				       let fieldCounter = 1;
+				    
 		        for (let i = 1; i < fieldCounter; i++) {
 		            const key = formData.get(`key${i}`);
 		            const value = formData.get(`value${i}`);
@@ -584,7 +616,7 @@ input[type=submit]:hover {
       <script src="/public/js/ui.js"></script>
       <script src="/public/js/app.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/jwt-decode@4.0.0/build/cjs/index.min.js"></script>
-      <script>
+<!--       <script>
     document.addEventListener('DOMContentLoaded', function() {
         // Counter for dynamic field IDs
         let fieldCounter = 1;
@@ -612,6 +644,6 @@ input[type=submit]:hover {
         const addFieldButton = document.getElementById('addFieldButton');
         addFieldButton.addEventListener('click', createField);
     });
-</script>
+</script> -->
    </body>
 </html>
