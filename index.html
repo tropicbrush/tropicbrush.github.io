@@ -4,11 +4,13 @@
       <meta charset="UTF-8" />
       <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     
       <title>Auth0 Login Using SPA SDK</title>
       <link
          rel="stylesheet"
          href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
          />
+      
       <link
          rel="stylesheet"
          href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/monokai-sublime.min.css"
@@ -25,92 +27,112 @@
          integrity="sha384-4aon80D8rXCGx9ayDt85LbyUHeMWd3UiBaWliBlJ53yzm9hqN21A+o1pqoyK04h+"
          crossorigin="anonymous"
          />
-      <style>
-         .hidden {
-         display: none;
-         }
-         label {
-         margin-bottom: 10px;
-         display: block;
-         }
-         .navbar {
-         min-height: 115px;
-         }
-      </style>
-      <style>
-         * {
-         box-sizing: border-box;
-         }
-         input[type=text],
-         select,
-         textarea {
-         width: 100%;
-         padding: 12px;
-         border: 1px solid #ccc;
-         border-radius: 4px;
-         resize: vertical;
-         }
-         label {
-         padding: 12px 12px 12px 0;
-         display: inline-block;
-         }
-         input[type=submit] {
-         background-color: #04AA6D;
-         color: white;
-         padding: 12px 20px;
-         border: none;
-         border-radius: 4px;
-         cursor: pointer;
-         float: right;
-         }
-         input[type=submit]:hover {
-         background-color: #45a049;
-         }
-         .container {
-         border-radius: 5px;
-         background-color: #f2f2f2;
-         padding: 20px;
-         }
-         .col-25 {
-         float: left;
-         width: 25%;
-         margin-top: 6px;
-         }
-         .col-75 {
-         float: left;
-         width: 75%;
-         margin-top: 6px;
-         }
-         /* Clear floats after the columns */
-         .row:after {
-         content: "";
-         display: table;
-         clear: both;
-         }
-         /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
-         @media screen and (max-width: 600px) {
-         .col-25,
-         .col-75,
-         input[type=submit] {
-         width: 100%;
-         margin-top: 0;
-         }
-         }
-         .advanced-options {
-         display: none;
-         /* Initially hidden */
-         border: 1px solid #ccc;
-         padding: 20px;
-         border-radius: 5px;
-         margin-top: 20px;
-         }
-         .advanced-options h3 {
-         margin-top: 0;
-         }
-         .advanced-options-toggle {
-         margin-bottom: 10px;
-         }
-      </style>
+
+      
+       <style>
+.hidden {
+  display: none;
+}
+label {
+  margin-bottom: 10px;
+  display: block;
+}
+
+.navbar {
+  min-height: 115px;
+}
+</style>
+       <style>
+
+* {
+	box-sizing: border-box;
+}
+
+input[type=text],
+select,
+textarea {
+	width: 100%;
+	padding: 12px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	resize: vertical;
+}
+
+label {
+	padding: 12px 12px 12px 0;
+	display: inline-block;
+}
+
+input[type=submit] {
+	background-color: #04AA6D;
+	color: white;
+	padding: 12px 20px;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	float: right;
+}
+
+input[type=submit]:hover {
+	background-color: #45a049;
+}
+
+.container {
+	border-radius: 5px;
+	background-color: #f2f2f2;
+	padding: 20px;
+}
+
+.col-25 {
+	float: left;
+	width: 25%;
+	margin-top: 6px;
+}
+
+.col-75 {
+	float: left;
+	width: 75%;
+	margin-top: 6px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+
+	.col-25,
+	.col-75,
+	input[type=submit] {
+		width: 100%;
+		margin-top: 0;
+	}
+}
+
+.advanced-options {
+	display: none;
+	/* Initially hidden */
+	border: 1px solid #ccc;
+	padding: 20px;
+	border-radius: 5px;
+	margin-top: 20px;
+}
+
+.advanced-options h3 {
+	margin-top: 0;
+}
+
+.advanced-options-toggle {
+	margin-bottom: 10px;
+}
+</style>
+       
+       
+       
    </head>
    <body class="h-100">
       <div id="app" class="h-100 d-flex flex-column">
@@ -236,7 +258,7 @@
                </div>
             </nav>
          </div>
-         <!--          <div id="main-content" class="container mt-5 flex-grow-1"> -->
+<!--          <div id="main-content" class="container mt-5 flex-grow-1"> -->
          <div id="main-content">
             <div id="content-home" class="page">
                <div class="container">
@@ -248,15 +270,16 @@
                         <div class="col-75">
                            <input type="text" id="clientId" name="clientId" required value="y12dT3aFnRArFWcUSeLZqsONNihvggGF">
                         </div>
-                     </div>
-                     <div class="row">
+                        </div>
+                         <div class="row">
                         <div class="col-25">
                            <label for="domain">Auth0 Domain:</label>
-                        </div>
+                           </div>
                         <div class="col-75">
                            <input type="text" id="domain" name="domain" required value="abhishek-customers.us.auth0.com">
                         </div>
-                     </div>
+                        </div>
+                    
                      <div class="advanced-options-toggle">
                         <label for="advanced-options-checkbox">Show Advanced Options</label>
                         <input type="checkbox" id="advanced-options-checkbox">
@@ -379,6 +402,11 @@
                               <input type="text" id="ui_locales" name="ui_locales" placeholder="e.g en">
                            </div>
                         </div>
+                        <div class="additional-fields">
+                        <!-- Dynamically added fields will go here -->
+                    </div>
+                    <!-- Button to add more fields -->
+                    <button type="button" id="addFieldButton">Add More Fields</button>
                      </div>
                      <br>
                      <button type="submit">Initialize Auth0 Client</button>
@@ -511,7 +539,7 @@
             <div class="logo"></div>
             <p>
                Sample project provided by @Tropicbrush
-            </p>
+                         </p>
          </footer>
       </div>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -521,5 +549,34 @@
       <script src="/public/js/ui.js"></script>
       <script src="/public/js/app.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/jwt-decode@4.0.0/build/cjs/index.min.js"></script>
+      <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Counter for dynamic field IDs
+        let fieldCounter = 1;
+
+        // Function to create new input fields
+        function createField() {
+            const container = document.querySelector('.additional-fields');
+            const newRow = document.createElement('div');
+            newRow.classList.add('row');
+            newRow.innerHTML = `
+                <div class="col-25">
+                    <label for="key${fieldCounter}">Key:</label>
+                    <input type="text" id="key${fieldCounter}" name="key${fieldCounter}">
+                </div>
+                <div class="col-75">
+                    <label for="value${fieldCounter}">Value:</label>
+                    <input type="text" id="value${fieldCounter}" name="value${fieldCounter}">
+                </div>
+            `;
+            container.appendChild(newRow);
+            fieldCounter++;
+        }
+
+        // Event listener for the add field button
+        const addFieldButton = document.getElementById('addFieldButton');
+        addFieldButton.addEventListener('click', createField);
+    });
+</script>
    </body>
 </html>
