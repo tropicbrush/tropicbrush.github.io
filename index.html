@@ -185,11 +185,61 @@
                 <label for="clientId">Client ID:</label>
                 <input type="text" id="clientId" name="clientId" required value="y12dT3aFnRArFWcUSeLZqsONNihvggGF">
                 <br>
+                <label for="useRefreshTokens">useRefreshTokens:</label>
+                <input type="text" id="useRefreshTokens" name="useRefreshTokens" >
+                <br>
+                <label for="scopes">scopes:</label>
+                <input type="text" id="scopes" name="scopes" value="openid email profile">
+                <br>
+                <label for="audience">audience:</label>
+                <input type="text" id="audience" name="audience" >
+                <br>
+                <label for="connection">connection:</label>
+                <input type="text" id="connection" name="connection" >
+                <br>
+                <label for="display">display:</label>
+                <input type="text" id="display" name="display" >
+                <br>
+                <label for="invitation">invitation:</label>
+                <input type="text" id="invitation" name="invitation"  >
+                <br>
+                <label for="login_hint">login_hint:</label>
+                <input type="text" id="login_hint" name="login_hint" >
+                <br>
+                <label for="max_age">max_age:</label>
+                <input type="text" id="max_age" name="max_age"  >
+                <br>
+                <label for="organization">organization:</label>
+                <input type="text" id="organization" name="organization" >
+                <br>
+                <label for="prompt">prompt:</label>
+                <input type="text" id="prompt" name="prompt" >
+                <br>
+                <label for="screen_hint">screen_hint:</label>
+                <input type="text" id="screen_hint" name="screen_hint">
+                <br>
+                <label for="ui_locales">ui_locales:</label>
+                <input type="text" id="ui_locales" name="ui_locales">
+                <br>
                 <button type="submit">Initialize Auth0 Client</button>
               </form>
            <script>
             let currentDomain = localStorage.getItem('auth0_domain');
             let currentClient = localStorage.getItem('auth0_client_id'); 
+
+            let useRefreshTokens = localStorage.getItem('useRefreshTokens');
+            let scopes = localStorage.getItem('scopes'); 
+             let audience = localStorage.getItem('audience');
+            let connection = localStorage.getItem('connection');
+             let display = localStorage.getItem('display');
+            let invitation = localStorage.getItem('invitation');
+             let login_hint = localStorage.getItem('login_hint');
+            let max_age = localStorage.getItem('max_age');
+             let organization = localStorage.getItem('organization');
+            let prompt = localStorage.getItem('prompt');
+             let screen_hint = localStorage.getItem('screen_hint');
+            let ui_locales = localStorage.getItem('ui_locales'); 
+             
 
              const domainValueInput = document.getElementById('domain');
              const clientIdValueInput = document.getElementById('clientId');
@@ -197,12 +247,43 @@
              domainValueInput.value = currentDomain || ''; 
              clientIdValueInput.value = currentClient || ''; 
              const auth0Form = document.getElementById('auth0-form');
+             
          auth0Form.addEventListener('submit', async (event) => {
             event.preventDefault();
             const domain = document.getElementById('domain').value;
             const clientId = document.getElementById('clientId').value;
-            localStorage.setItem('auth0_domain',domain);
+           
+            const useRefreshTokens = document.getElementById('useRefreshTokens').value;
+            const scopes = document.getElementById('scopes').value;
+           const audience = document.getElementById('audience').value;
+            const connection = document.getElementById('connection').value;
+           const display = document.getElementById('display').value;
+            const invitation = document.getElementById('invitation').value;
+           const login_hint = document.getElementById('login_hint').value;
+            const max_age = document.getElementById('max_age').value;
+           const organization = document.getElementById('organization').value;
+            const prompt = document.getElementById('prompt').value;
+           const screen_hint = document.getElementById('screen_hint').value;
+            const ui_locales = document.getElementById('ui_locales').value;
+
+           
+          localStorage.setItem('auth0_domain',domain);
            localStorage.setItem('auth0_client_id',clientId);
+
+            localStorage.setItem('useRefreshTokens',v);
+           localStorage.setItem('scopes',scopes);
+             localStorage.setItem('audience',audience);
+           localStorage.setItem('connection',connection);
+            localStorage.setItem('display',display);
+           localStorage.setItem('invitation',invitation);
+            localStorage.setItem('login_hint',login_hint);
+           localStorage.setItem('max_age',max_age);
+            localStorage.setItem('organization',organization);
+           localStorage.setItem('prompt',prompt);
+            localStorage.setItem('screen_hint',screen_hint);
+           localStorage.setItem('ui_locales',ui_locales);
+           
+           
             // initializeAuth0Client(domain, clientId);
            await configureClient();
         });
