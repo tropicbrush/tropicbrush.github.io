@@ -103,7 +103,7 @@ const configureClient = async () => {
     max_age: config.max_age,
     organization: config.organization,
     prompt: config.prompt,
-    scope: config.scope,
+    scope: config.scopes,
     screen_hint: config.screen_hint,
     ui_locales: config.ui_locales
       
