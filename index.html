@@ -179,14 +179,23 @@
           </div>
               <form id="auth0-form">
                 <label for="domain">Auth0 Domain:</label>
-                <input type="text" id="domain" name="domain" required>
+                <input type="text" id="domain" name="domain" required value = localStorage.setItem('auth0_domain')>
                 <br>
                 <label for="clientId">Client ID:</label>
-                <input type="text" id="clientId" name="clientId" required>
+                <input type="text" id="clientId" name="clientId" required value=localStorage.setItem('auth0_client_id')>
                 <br>
                 <button type="submit">Initialize Auth0 Client</button>
               </form>
            <script>
+            let currentDomain = localStorage.setItem('auth0_domain');
+            let currentClient = localStorage.setItem('auth0_client_id'); 
+
+             const domainValueInput = document.getElementById('domain');
+             const clientIdValueInput = document.getElementById('clientId');
+             
+             domainValueInput.value = currentDomain || ''; 
+             clientIdValueInput.value = currentClient || ''; 
+             
          auth0Form.addEventListener('submit', async (event) => {
             event.preventDefault();
             const domain = document.getElementById('domain').value;
