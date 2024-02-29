@@ -85,7 +85,9 @@ const fetchAuthConfig = async () => {
  * Initializes the Auth0 client
  */
 const configureClient = async () => {
+  console.log("configureClient called");
   const config = await fetchAuthConfig();
+  console.log("configureClient config :", config);
   // const config = await response.json();
 
   auth0Client = await auth0.createAuth0Client({
