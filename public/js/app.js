@@ -66,7 +66,8 @@ const fetchAuthConfig = async () => {
 
   let response = {"domain": storedDomain, "clientId":storedClientId, "useRefreshTokens":useRefreshTokens,
                    "authorizationParams" : {
-                  "scopes":scopes,"audience": audience,
+                  "scope":scopes,
+                     "audience": audience,
          "connection": connection,
           "display": display,
           "invitation": invitation,
@@ -83,7 +84,7 @@ console.log("response :", response)
             const key = localStorage.key(i);
             if (key.startsWith('cust_field_')) {
                 let keyName = key.replace(/^cust_field_/, ""); 
-               response["authorizationParams".keyName] = localStorage.getItem(keyName);
+               response["authorizationParams"][keyName] = localStorage.getItem(keyName);
                console.log("response :", response) 
             }
         }
