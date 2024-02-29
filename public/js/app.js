@@ -79,7 +79,7 @@ const fetchAuthConfig = async () => {
     
    for (let i = 0; i < localStorage.length; i++) {
             const key = localStorage.key(i);
-            if (key.startsWith(prefix)) {
+            if (key.startsWith('key')) {
                response[key] = localStorage.getItem(key);
                 
             }
