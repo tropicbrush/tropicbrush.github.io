@@ -64,7 +64,9 @@ const fetchAuthConfig = async () => {
   const screen_hint = localStorage.getItem('screen_hint') || undefined;
   const ui_locales = localStorage.getItem('ui_locales') || undefined;  
 
-  let response = {"domain": storedDomain, "clientId":storedClientId, "useRefreshTokens":useRefreshTokens,"scopes":scopes,"audience": audience,
+  let response = {"domain": storedDomain, "clientId":storedClientId, "useRefreshTokens":useRefreshTokens,
+                   "authorizationParams" : {
+                  "scopes":scopes,"audience": audience,
          "connection": connection,
           "display": display,
           "invitation": invitation,
@@ -73,7 +75,7 @@ const fetchAuthConfig = async () => {
           "organization": organization,
          "prompt": prompt,
          "screen_hint": screen_hint,
-         "ui_locales": ui_locales,
+         "ui_locales": ui_locales}
          };
 console.log("response :", response)
     
@@ -81,7 +83,7 @@ console.log("response :", response)
             const key = localStorage.key(i);
             if (key.startsWith('cust_field_')) {
                 let keyName = key.replace(/^cust_field_/, ""); 
-               response[keyName] = localStorage.getItem(keyName);
+               response["authorizationParams".keyName] = localStorage.getItem(keyName);
                console.log("response :", response) 
             }
         }
@@ -100,29 +102,29 @@ console.log("response :", response)
  */
 const configureClient = async () => {
   console.log("configureClient called");
-  const config = await fetchAuthConfig();
+  const auth0ClientProps = await fetchAuthConfig();
   console.log("configureClient config :", config);
   // const config = await response.json();
 
-  let auth0ClientProps = {
-    domain: config.domain,
-    clientId: config.clientId,
-    useRefreshTokens : config.useRefreshTokens,
-    authorizationParams : {
-    audience: config.audience,
-    connection: config.connection,
-    display: config.display, 
-    invitation: config.invitation,
-    login_hint: config.login_hint,
-    max_age: config.max_age,
-    organization: config.organization,
-    prompt: config.prompt,
-    scope: config.scopes,
-    screen_hint: config.screen_hint,
-    ui_locales: config.ui_locales
+  // let auth0ClientProps = {
+  //   domain: config.domain,
+  //   clientId: config.clientId,
+  //   useRefreshTokens : config.useRefreshTokens,
+  //   authorizationParams : {
+  //   audience: config.audience,
+  //   connection: config.connection,
+  //   display: config.display, 
+  //   invitation: config.invitation,
+  //   login_hint: config.login_hint,
+  //   max_age: config.max_age,
+  //   organization: config.organization,
+  //   prompt: config.prompt,
+  //   scope: config.scopes,
+  //   screen_hint: config.screen_hint,
+  //   ui_locales: config.ui_locales
       
-    }
-  };
+  //   }
+  // };
 
   
     auth0Client = await auth0.createAuth0Client(auth0ClientProps);
