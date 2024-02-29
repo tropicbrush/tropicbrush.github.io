@@ -476,8 +476,11 @@ input[type=submit]:hover {
         for (let i = 1; i < fieldCounter; i++) {
             const key = document.getElementById(`key${i}`).value;
             const value = document.getElementById(`value${i}`).value;
+	console.log("key :",key)
+		console.log("value :",value)
             additionalFields[key] = value;
 	    localStorage.setItem(key,value);
+		console.log("localStorage response :",localStorage.getItem(key))
         }
 		       
                
