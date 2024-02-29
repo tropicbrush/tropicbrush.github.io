@@ -50,7 +50,7 @@ const fetchAuthConfig = async () => {
   const storedDomain = localStorage.getItem('auth0_domain') || 'abhishek-customers.us.auth0.com';
   const storedClientId = localStorage.getItem('auth0_client_id') || 'y12dT3aFnRArFWcUSeLZqsONNihvggGF';
   if(storedDomain === 'abhishek-customers.us.auth0.com') {localStorage.setItem('auth0_domain',storedDomain )}
-  if(storedClientId === 'y12dT3aFnRArFWcUSeLZqsONNihvggGF') {localStorage.setItem('auth0_domain',storedClientId )} 
+  if(storedClientId === 'y12dT3aFnRArFWcUSeLZqsONNihvggGF') {localStorage.setItem('auth0_client_id',storedClientId )} 
   const useRefreshTokens = localStorage.getItem('useRefreshTokens')|| undefined;
   const scopes = localStorage.getItem('scopes') || undefined;
   const audience = localStorage.getItem('audience') || undefined;
