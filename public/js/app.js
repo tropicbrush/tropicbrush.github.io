@@ -80,7 +80,7 @@ console.log("response :", response)
    for (let i = 0; i < localStorage.length; i++) {
             const key = localStorage.key(i);
             if (key.startsWith('cust_field_')) {
-                let keyName = key.replace(/^abc_/, ""); 
+                let keyName = key.replace(/^cust_field_/, ""); 
                response[keyName] = localStorage.getItem(keyName);
                console.log("response :", response) 
             }
