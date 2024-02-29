@@ -62,9 +62,9 @@ const fetchAuthConfig = async () => {
   const organization = localStorage.getItem('organization') || undefined;
   const prompt = localStorage.getItem('prompt') || undefined;
   const screen_hint = localStorage.getItem('screen_hint') || undefined;
-  const ui_locales = localStorage.getItem('ui_locales') || undefined;    
-    
-  return {"domain": storedDomain, "clientId":storedClientId, "useRefreshTokens":useRefreshTokens,"scopes":scopes,"audience": audience,
+  const ui_locales = localStorage.getItem('ui_locales') || undefined;  
+
+  let response = {"domain": storedDomain, "clientId":storedClientId, "useRefreshTokens":useRefreshTokens,"scopes":scopes,"audience": audience,
          "connection": connection,
           "display": display,
           "invitation": invitation,
@@ -75,6 +75,19 @@ const fetchAuthConfig = async () => {
          "screen_hint": screen_hint,
          "ui_locales": ui_locales,
          };
+
+    
+   for (let i = 0; i < localStorage.length; i++) {
+            const key = localStorage.key(i);
+            if (key.startsWith(prefix)) {
+               response[key] = localStorage.getItem(key);
+                
+            }
+        }
+    
+    
+
+    return response;
   }
   catch(error){
     throw error
@@ -90,7 +103,7 @@ const configureClient = async () => {
   console.log("configureClient config :", config);
   // const config = await response.json();
 
-  auth0Client = await auth0.createAuth0Client({
+  let auth0ClientProps = {
     domain: config.domain,
     clientId: config.clientId,
     useRefreshTokens : config.useRefreshTokens,
@@ -108,7 +121,30 @@ const configureClient = async () => {
     ui_locales: config.ui_locales
       
     }
-  });
+  };
+
+  
+    auth0Client = await auth0.createAuth0Client(auth0ClientProps);
+  
+  // auth0Client = await auth0.createAuth0Client({
+  //   domain: config.domain,
+  //   clientId: config.clientId,
+  //   useRefreshTokens : config.useRefreshTokens,
+  //   authorizationParams : {
+  //   audience: config.audience,
+  //   connection: config.connection,
+  //   display: config.display, 
+  //   invitation: config.invitation,
+  //   login_hint: config.login_hint,
+  //   max_age: config.max_age,
+  //   organization: config.organization,
+  //   prompt: config.prompt,
+  //   scope: config.scopes,
+  //   screen_hint: config.screen_hint,
+  //   ui_locales: config.ui_locales
+      
+  //   }
+  // });
 };
 
 /**
