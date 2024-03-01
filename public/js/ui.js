@@ -121,9 +121,11 @@ const updateUI = async () => {
       eachElement(".user-email", (e) => (e.innerText = user.email));
       eachElement(".auth-invisible", (e) => e.classList.add("hidden"));
       eachElement(".auth-visible", (e) => e.classList.remove("hidden"));
+      document.getElementById("initBtn").disabled = true;
     } else {
       eachElement(".auth-invisible", (e) => e.classList.remove("hidden"));
       eachElement(".auth-visible", (e) => e.classList.add("hidden"));
+       document.getElementById("initBtn").disabled = false;
     }
   } catch (err) {
     console.log("Error updating UI!", err);
