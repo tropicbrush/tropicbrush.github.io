@@ -411,6 +411,15 @@ input[type=submit]:hover {
                      <br>
                      <button type="submit">Initialize Auth0 Client</button>
                   </form>
+		                           
+                           <button
+                              id="qsLoginBtn"
+                              onclick="login()"
+                              class="btn btn-primary btn-margin auth-invisible hidden disabled"
+                              >
+                           Log in
+                           </button>
+                        
                </div>
             </div>
             <script>
@@ -558,6 +567,7 @@ input[type=submit]:hover {
 		               
 		               // initializeAuth0Client(domain, clientId);
 		               await configureClient();
+		       document.getElementById("qsLoginBtn").removeAttribute("disabled");
                });
             </script>
             <div class="page" id="content-profile">
