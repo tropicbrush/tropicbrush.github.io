@@ -108,7 +108,16 @@ footer {
 	display: table;
 	clear: both;
 }
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Ensure the body takes up the full viewport height */
+}
 
+#app {
+  flex: 1; /* Allow the main content to grow and take up remaining space */
+}
+	       
 /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 600px) {
 
@@ -144,7 +153,8 @@ footer {
        
    </head>
    <body class="h-100">
-      <div id="app" class="h-100 d-flex flex-column">
+	   
+      <div id="app" class="flex-grow-1 d-flex flex-column">
          <div class="nav-container">
             <nav class="navbar navbar-expand-md navbar-light bg-light">
                <div class="container">
