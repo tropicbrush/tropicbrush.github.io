@@ -205,6 +205,14 @@ body {
             <div id="content-home" class="page">
                <div class="container">
                   <form id="auth0-form">
+			  <div class="row">
+                        <div class="col-25">
+                           <label for="domain">Auth0 Domain:</label>
+                           </div>
+                        <div class="col-75">
+                           <input type="text" id="domain" name="domain" required value="abhishek-customers.us.auth0.com">
+                        </div>
+                        </div>
                      <div class="row">
                         <div class="col-25">
                            <label for="clientId">Client ID:</label>
@@ -213,15 +221,7 @@ body {
                            <input type="text" id="clientId" name="clientId" required value="y12dT3aFnRArFWcUSeLZqsONNihvggGF">
                         </div>
                         </div>
-                         <div class="row">
-                        <div class="col-25">
-                           <label for="domain">Auth0 Domain:</label>
-                           </div>
-                        <div class="col-75">
-                           <input type="text" id="domain" name="domain" required value="abhishek-customers.us.auth0.com">
-                        </div>
-                        </div>
-                    
+                         
                      <div class="advanced-options-toggle">
                         <label for="advanced-options-checkbox">Show Advanced Options</label>
                         <input type="checkbox" id="advanced-options-checkbox">
