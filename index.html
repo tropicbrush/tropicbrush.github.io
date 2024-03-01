@@ -208,7 +208,7 @@ body {
 		        <h2>How to Use</h2>
     <ol>
         <li>Enter your tenant domain name and client id.(optionally any additional parameters from the Advanced section.)</li>
-        <li>Click "Initiate Auth0 Client". (This will initaite the Auth0 SDK client with the parameters provided in the form.)</li>
+        <li>Click "Initialize Auth0 Client". (This will initaite the Auth0 SDK client with the parameters provided in the form.)</li>
         <li>Click "Login".</li>
         <li>Once logged in, you will see "Profile" and "Logout" buttons.</li>
         <li>Click "Profile" to check User Profile, ID Token and AT content.</li>
@@ -219,7 +219,7 @@ body {
                   <form id="auth0-form">
 			  <div class="row">
                         <div class="col-25">
-                           <label for="domain">Auth0 Domain:</label>
+                           <label for="domain">Auth0 Domain <span style="color: red;">*</span>:</label>				
                            </div>
                         <div class="col-75">
                            <input type="text" id="domain" name="domain" required value="abhishek-customers.us.auth0.com">
@@ -227,7 +227,7 @@ body {
                         </div>
                      <div class="row">
                         <div class="col-25">
-                           <label for="clientId">Client ID:</label>
+                           <label for="clientId">Client ID <span style="color: red;">*</span>:</label>
                         </div>
                         <div class="col-75">
                            <input type="text" id="clientId" name="clientId" required value="y12dT3aFnRArFWcUSeLZqsONNihvggGF">
