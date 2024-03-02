@@ -11,6 +11,8 @@
         <div id="public-key"></div>
         <div id="private-key"></div>
         <button onclick="generateAndDisplayKeys()">Generate Keys</button>
+        <button onclick="downloadPublicKey()">Download Public Key</button>
+        <button onclick="downloadPrivateKey()">Download Private Key</button>
     </div>
 
     <script>
@@ -47,11 +49,46 @@
             }
         }
 
-        // Update HTML content with generated keys
+        // Convert public key from SPKI to PEM format
+        function spkiToPem(spkiArray) {
+            const base64Key = btoa(String.fromCharCode.apply(null, new Uint8Array(spkiArray)));
+            return `-----BEGIN PUBLIC KEY-----\n${base64Key}\n-----END PUBLIC KEY-----`;
+        }
+
+        // Function to download the public key
+        function downloadPublicKey() {
+            const publicKeyContent = document.getElementById("public-key").textContent;
+            downloadKey(publicKeyContent, "public_key.pem");
+        }
+
+        // Function to download the private key
+        function downloadPrivateKey() {
+            const privateKeyContent = document.getElementById("private-key").textContent;
+            downloadKey(privateKeyContent, "private_key.txt");
+        }
+
+        // Helper function to trigger download of key content
+        function downloadKey(content, filename) {
+            const element = document.createElement("a");
+            element.setAttribute("href", "data:text/plain;charset=utf-8," + encodeURIComponent(content));
+            element.setAttribute("download", filename);
+            element.style.display = "none";
+            document.body.appendChild(element);
+            element.click();
+            document.body.removeChild(element);
+        }
+
+        // Update HTML content with generated keys and store in sessionStorage
         async function updateKeys() {
             const { publicKey, privateKey } = await generateKeyPair();
-            document.getElementById("public-key").textContent = "Public Key: " + btoa(String.fromCharCode.apply(null, new Uint8Array(publicKey)));
-            document.getElementById("private-key").textContent = "Private Key: " + btoa(String.fromCharCode.apply(null, new Uint8Array(privateKey)));
+            const pemPublicKey = spkiToPem(publicKey);
+            const base64PrivateKey = btoa(String.fromCharCode.apply(null, new Uint8Array(privateKey)));
+            document.getElementById("public-key").textContent = "Public Key (PEM): " + pemPublicKey;
+            document.getElementById("private-key").textContent = "Private Key: " + base64PrivateKey;
+
+            // Store keys in sessionStorage
+            sessionStorage.setItem("publicKey", pemPublicKey);
+            sessionStorage.setItem("privateKey", base64PrivateKey);
         }
 
         // Function to generate and display keys
