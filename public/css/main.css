@@ -6,6 +6,12 @@ label {
   display: block;
 }
 
+#key-container {
+    width: 100%;
+    overflow: auto; /* Add scrollbar if necessary */
+    white-space: pre-wrap; /* Preserve whitespace and wrap long lines */
+}
+
 .navbar {
   min-height: 115px;
 }
