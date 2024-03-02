@@ -47,8 +47,8 @@ const logout = async () => {
 
 const fetchAuthConfig = async () => {
   try{
-  const storedDomain = sessionStorage.getItem('auth0_domain') || 'abhishek-customers.us.auth0.com';
-  const storedClientId = sessionStorage.getItem('auth0_client_id') || 'y12dT3aFnRArFWcUSeLZqsONNihvggGF';
+  const storedDomain = sessionStorage.getItem('auth0_domain') || 'tropicbrush.us.auth0.com';
+  const storedClientId = sessionStorage.getItem('auth0_client_id') || 'e9HS1RUqY0i5UGa99W9BwpSxlSaPk9xU';
   if(storedDomain === 'abhishek-customers.us.auth0.com') {sessionStorage.setItem('auth0_domain',storedDomain )}
   if(storedClientId === 'y12dT3aFnRArFWcUSeLZqsONNihvggGF') {sessionStorage.setItem('auth0_client_id',storedClientId )} 
   const useRefreshTokens = sessionStorage.getItem('useRefreshTokens')|| undefined;
