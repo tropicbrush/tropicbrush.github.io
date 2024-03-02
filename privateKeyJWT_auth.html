@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JWT Generation with JOSE Library</title>
+</head>
+<body>
+
+<!-- Include the jose library from CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jose/3.4.0-beta1/jose.min.js"></script>
+
+<button id="generateKeysBtn">Generate Keys</button>
+
+<!-- Container to display keys and JWT -->
+<div id="keysContainer" style="display: none;">
+    <h3>Private Key</h3>
+    <textarea id="privateKeyTextarea" cols="80" rows="10" readonly></textarea>
+    <br>
+    <a id="downloadPrivateKeyLink" download="private_key.pem" href="#" style="display: none;">Download Private Key (PEM)</a>
+    <br><br>
+    <h3>Public Key</h3>
+    <textarea id="publicKeyTextarea" cols="80" rows="10" readonly></textarea>
+    <br>
+    <a id="downloadPublicKeyLink" download="public_key.pem" href="#" style="display: none;">Download Public Key (PEM)</a>
+    <br><br>
+</div>
+
+<form id="jwtForm">
+    <label for="clientId">Client ID:</label>
+    <input type="text" id="clientId" name="clientId" required>
+    <br>
+    <label for="auth0Domain">Auth0 Domain:</label>
+    <input type="text" id="auth0Domain" name="auth0Domain" required>
+    <br><br>
+    <button type="submit">Generate JWT</button>
+</form>
+
+<div id="jwtContainer" style="display: none;">
+    <h3>Generated JWT:</h3>
+    <textarea id="jwtTextarea" cols="80" rows="10" readonly></textarea>
+</div>
+
+<script>
+    const { generateKeyPair } = jose.JWK;
+
+    document.getElementById('generateKeysBtn').addEventListener('click', function () {
+        generateKeyPair('RSA', {
+            modulusLength: 2048,
+            publicKeyUse: 'sig',
+        }).then((keypair) => {
+            const privateKey = keypair.privateKey;
+            const publicKey = keypair.publicKey;
+
+            document.getElementById('privateKeyTextarea').value = privateKey.toPEM();
+            document.getElementById('publicKeyTextarea').value = publicKey.toPEM();
+
+            document.getElementById('downloadPrivateKeyLink').setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(privateKey.toPEM()));
+            document.getElementById('downloadPrivateKeyLink').style.display = 'block';
+
+            document.getElementById('downloadPublicKeyLink').setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(publicKey.toPEM()));
+            document.getElementById('downloadPublicKeyLink').style.display = 'block';
+
+            document.getElementById('keysContainer').style.display = 'block';
+        }).catch((error) => {
+            console.error('Error generating key pair:', error);
+        });
+    });
+
+    document.getElementById('jwtForm').addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        const clientId = document.getElementById('clientId').value;
+        const auth0Domain = document.getElementById('auth0Domain').value;
+
+        const payload = {
+            sub: '1234567890',
+            client_id: clientId,
+            iss: 'https://' + auth0Domain + '/',
+            iat: Math.floor(Date.now() / 1000), // Issued at time
+            exp: Math.floor(Date.now() / 1000) + (60 * 60), // Expiration time (1 hour from now)
+        };
+
+        const privateKey = jose.KEYUTIL.getKey(document.getElementById('privateKeyTextarea').value);
+        
+        jose.JWS.createSign({ format: 'compact', fields: { alg: 'RS256' } }, privateKey)
+            .update(JSON.stringify(payload))
+            .final()
+            .then((signedJWT) => {
+                document.getElementById('jwtTextarea').value = signedJWT;
+
+                document.getElementById('jwtContainer').style.display = 'block';
+            })
+            .catch((error) => {
+                console.error('Error signing JWT:', error);
+            });
+    });
+</script>
+
+</body>
+</html>
