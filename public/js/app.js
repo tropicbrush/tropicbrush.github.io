@@ -47,22 +47,22 @@ const logout = async () => {
 
 const fetchAuthConfig = async () => {
   try{
-  const storedDomain = localStorage.getItem('auth0_domain') || 'abhishek-customers.us.auth0.com';
-  const storedClientId = localStorage.getItem('auth0_client_id') || 'y12dT3aFnRArFWcUSeLZqsONNihvggGF';
-  if(storedDomain === 'abhishek-customers.us.auth0.com') {localStorage.setItem('auth0_domain',storedDomain )}
-  if(storedClientId === 'y12dT3aFnRArFWcUSeLZqsONNihvggGF') {localStorage.setItem('auth0_client_id',storedClientId )} 
-  const useRefreshTokens = localStorage.getItem('useRefreshTokens')|| undefined;
-  const scopes = localStorage.getItem('scopes') || undefined;
-  const audience = localStorage.getItem('audience') || undefined;
-  const connection = localStorage.getItem('connection') || undefined;
-  const display = localStorage.getItem('display') || undefined;    
-  const invitation = localStorage.getItem('invitation') || undefined;
-  const login_hint = localStorage.getItem('login_hint') || undefined
-  const max_age = localStorage.getItem('max_age') || undefined;
-  const organization = localStorage.getItem('organization') || undefined;
-  const prompt = localStorage.getItem('prompt') || undefined;
-  const screen_hint = localStorage.getItem('screen_hint') || undefined;
-  const ui_locales = localStorage.getItem('ui_locales') || undefined;  
+  const storedDomain = sessionStorage.getItem('auth0_domain') || 'abhishek-customers.us.auth0.com';
+  const storedClientId = sessionStorage.getItem('auth0_client_id') || 'y12dT3aFnRArFWcUSeLZqsONNihvggGF';
+  if(storedDomain === 'abhishek-customers.us.auth0.com') {sessionStorage.setItem('auth0_domain',storedDomain )}
+  if(storedClientId === 'y12dT3aFnRArFWcUSeLZqsONNihvggGF') {sessionStorage.setItem('auth0_client_id',storedClientId )} 
+  const useRefreshTokens = sessionStorage.getItem('useRefreshTokens')|| undefined;
+  const scopes = sessionStorage.getItem('scopes') || undefined;
+  const audience = sessionStorage.getItem('audience') || undefined;
+  const connection = sessionStorage.getItem('connection') || undefined;
+  const display = sessionStorage.getItem('display') || undefined;    
+  const invitation = sessionStorage.getItem('invitation') || undefined;
+  const login_hint = sessionStorage.getItem('login_hint') || undefined
+  const max_age = sessionStorage.getItem('max_age') || undefined;
+  const organization = sessionStorage.getItem('organization') || undefined;
+  const prompt = sessionStorage.getItem('prompt') || undefined;
+  const screen_hint = sessionStorage.getItem('screen_hint') || undefined;
+  const ui_locales = sessionStorage.getItem('ui_locales') || undefined;  
 
   let response = {"domain": storedDomain, "clientId":storedClientId, "useRefreshTokens":useRefreshTokens,
                    "authorizationParams" : {
@@ -80,11 +80,11 @@ const fetchAuthConfig = async () => {
          };
 console.log("response :", response)
     
-   for (let i = 0; i < localStorage.length; i++) {
-            const key = localStorage.key(i);
+   for (let i = 0; i < sessionStorage.length; i++) {
+            const key = sessionStorage.key(i);
             if (key.startsWith('cust_field_')) {
                 let keyName = key.replace(/^cust_field_/, ""); 
-               response["authorizationParams"][keyName] = localStorage.getItem(key);
+               response["authorizationParams"][keyName] = sessionStorage.getItem(key);
                console.log("response :", response) 
             }
         }
