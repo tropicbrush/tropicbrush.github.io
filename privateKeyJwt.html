@@ -1,20 +1,95 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Key Pair Generation</title>
-</head>
-<body>
+<html class="h-100">
+   <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     
+      <title>Auth0 Login Using SPA SDK</title>
+      <link
+         rel="stylesheet"
+         href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+         />
+      
+      <link
+         rel="stylesheet"
+         href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/monokai-sublime.min.css"
+         />
+      <link
+         rel="stylesheet"
+         href="https://use.fontawesome.com/releases/v5.7.2/css/solid.css"
+         integrity="sha384-r/k8YTFqmlOaqRkZuSiE9trsrDXkh07mRaoGBMoDcmA58OHILZPsk29i2BsFng1B"
+         crossorigin="anonymous"
+         />
+      <link
+         rel="stylesheet"
+         href="https://use.fontawesome.com/releases/v5.7.2/css/fontawesome.css"
+         integrity="sha384-4aon80D8rXCGx9ayDt85LbyUHeMWd3UiBaWliBlJ53yzm9hqN21A+o1pqoyK04h+"
+         crossorigin="anonymous"
+         />
+
+      <link
+         rel="stylesheet"
+         href="public/css/main.css"
+         />
+      
+       
+       
+       
+   </head>
+<body class="h-100">
+	   
+      <div id="app" class="flex-grow-1 d-flex flex-column">
+         <div class="nav-container">
+            <nav class="navbar navbar-expand-md navbar-light bg-light">
+               <div class="container">
+                  <div class="navbar-brand logo"></div>
+                  <button
+                     class="navbar-toggler"
+                     type="button"
+                     data-toggle="collapse"
+                     data-target="#navbarNav"
+                     aria-controls="navbarNav"
+                     aria-expanded="false"
+                     aria-label="Toggle navigation"
+                     >
+                  <span class="navbar-toggler-icon"></span>
+                  </button>
+                  <div class="collapse navbar-collapse" id="navbarNav">
+                     <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                           <a href="/" class="route-link btn btn-primary btn-margin">Home</a>
+                        </li>
+	
+                     </ul>
+                   
+                  </div>
+               </div>
+            </nav>
+         </div>
+          
+ <div id="main-content">
+            <div id="content-home" class="page">
+		   
+               <div class="container form-options">
+          
     <div id="keys-container">
         <h2>Generated Keys:</h2>
-        <div id="public-key"></div>
-        <div id="private-key"></div>
+        
+        <div class="form-options">
         <button onclick="generateAndDisplayKeys()">Generate Keys</button>
+        <div class="form-options">
+        <div id="public-key"></div>
+        </div>
+        <div class="form-options">
+        <div id="private-key"></div>
+        </div
         <button onclick="downloadPublicKey()">Download Public Key</button>
         <button onclick="downloadPrivateKey()">Download Private Key</button>
+            </div>
     </div>
-
+</div>
+               </div>
+      </div>
     <script>
         // Generate key pair
         async function generateKeyPair() {
