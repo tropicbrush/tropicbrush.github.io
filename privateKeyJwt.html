@@ -71,25 +71,24 @@
             <div id="content-home" class="page">
 		   
                <div class="container form-options">
-          
-    <div id="keys-container">
-        <h2>Generated Keys:</h2>
+        <h2>Private Key/Public Key:</h2>
         
         <div class="form-options">
         <button onclick="generateAndDisplayKeys()">Generate Keys</button>
-        <div class="form-options">
-        <div id="public-key"></div>
+	<div class="form-options">
+	<label for="private-key"><b>Private Key</b></label>
+        <div id="private-key"></div>
         </div>
         <div class="form-options">
-        <div id="private-key"></div>
-        </div
+	<label for="public-key"><b>Public Key</b></label>
+        <div id="public-key"></div>
+        </div>
         <button onclick="downloadPublicKey()">Download Public Key</button>
         <button onclick="downloadPrivateKey()">Download Private Key</button>
             </div>
     </div>
 </div>
                </div>
-      </div>
     <script>
         // Generate key pair
         async function generateKeyPair() {
@@ -158,8 +157,8 @@
             const { publicKey, privateKey } = await generateKeyPair();
             const pemPublicKey = spkiToPem(publicKey);
             const base64PrivateKey = btoa(String.fromCharCode.apply(null, new Uint8Array(privateKey)));
-            document.getElementById("public-key").textContent = "Public Key (PEM): " + pemPublicKey;
-            document.getElementById("private-key").textContent = "Private Key: " + base64PrivateKey;
+            document.getElementById("public-key").textContent = pemPublicKey;
+            document.getElementById("private-key").textContent = base64PrivateKey;
 
             // Store keys in sessionStorage
             sessionStorage.setItem("publicKey", pemPublicKey);
