@@ -1,1 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Key Pair Generation</title>
+</head>
+<body>
+    <div id="keys-container">
+        <h2>Generated Keys:</h2>
+        <div id="public-key"></div>
+        <div id="private-key"></div>
+        <button onclick="generateAndDisplayKeys()">Generate Keys</button>
+    </div>
 
+    <script>
+        // Generate key pair
+        async function generateKeyPair() {
+            try {
+                // Generate RSA key pair
+                const keyPair = await window.crypto.subtle.generateKey(
+                    {
+                        name: "RSA-OAEP", // Using RSA with Optimal Asymmetric Encryption Padding
+                        modulusLength: 2048, // 2048-bit key length
+                        publicExponent: new Uint8Array([0x01, 0x00, 0x01]), // Exponent value (65537)
+                        hash: { name: "SHA-256" }, // SHA-256 hashing algorithm
+                    },
+                    true, // Whether the key is extractable (we need to export it)
+                    ["encrypt", "decrypt"] // Key usage
+                );
+
+                // Export public key
+                const publicKey = await window.crypto.subtle.exportKey(
+                    "spki", // Format: SubjectPublicKeyInfo (SPKI)
+                    keyPair.publicKey
+                );
+
+                // Export private key
+                const privateKey = await window.crypto.subtle.exportKey(
+                    "pkcs8", // Format: PrivateKeyInfo (PKCS8)
+                    keyPair.privateKey
+                );
+
+                return { publicKey, privateKey };
+            } catch (error) {
+                console.error("Key pair generation error:", error);
+            }
+        }
+
+        // Update HTML content with generated keys
+        async function updateKeys() {
+            const { publicKey, privateKey } = await generateKeyPair();
+            document.getElementById("public-key").textContent = "Public Key: " + btoa(String.fromCharCode.apply(null, new Uint8Array(publicKey)));
+            document.getElementById("private-key").textContent = "Private Key: " + btoa(String.fromCharCode.apply(null, new Uint8Array(privateKey)));
+        }
+
+        // Function to generate and display keys
+        async function generateAndDisplayKeys() {
+            await updateKeys();
+        }
+    </script>
+</body>
+</html>
