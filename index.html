@@ -457,21 +457,21 @@ body {
                
                 
                 
-               let currentDomain = localStorage.getItem('auth0_domain');
-               let currentClient = localStorage.getItem('auth0_client_id'); 
+               let currentDomain = sessionStorage.getItem('auth0_domain');
+               let currentClient = sessionStorage.getItem('auth0_client_id'); 
                
-               let useRefreshTokens = localStorage.getItem('useRefreshTokens');
-               let scopes = localStorage.getItem('scopes'); 
-                let audience = localStorage.getItem('audience');
-               let connection = localStorage.getItem('connection');
-                let display = localStorage.getItem('display');
-               let invitation = localStorage.getItem('invitation');
-                let login_hint = localStorage.getItem('login_hint');
-               let max_age = localStorage.getItem('max_age');
-                let organization = localStorage.getItem('organization');
-               let prompt = localStorage.getItem('prompt');
-                let screen_hint = localStorage.getItem('screen_hint');
-               let ui_locales = localStorage.getItem('ui_locales'); 
+               let useRefreshTokens = sessionStorage.getItem('useRefreshTokens');
+               let scopes = sessionStorage.getItem('scopes'); 
+                let audience = sessionStorage.getItem('audience');
+               let connection = sessionStorage.getItem('connection');
+                let display = sessionStorage.getItem('display');
+               let invitation = sessionStorage.getItem('invitation');
+                let login_hint = sessionStorage.getItem('login_hint');
+               let max_age = sessionStorage.getItem('max_age');
+                let organization = sessionStorage.getItem('organization');
+               let prompt = sessionStorage.getItem('prompt');
+                let screen_hint = sessionStorage.getItem('screen_hint');
+               let ui_locales = sessionStorage.getItem('ui_locales'); 
                 
                
                 const domainValueInput = document.getElementById('domain');
@@ -529,27 +529,27 @@ body {
 			console.log("key :",key)
 				console.log("value :",value)
 		            additionalFields[key] = value;
-			    localStorage.setItem("cust_field_" +key,value);
-				console.log("localStorage response :",localStorage.getItem("cust_field_" +key))
+			    sessionStorage.setItem("cust_field_" +key,value);
+				console.log("sessionStorage response :",sessionStorage.getItem("cust_field_" +key))
 		        }
 				       
 		               
 		               
-		               localStorage.setItem('auth0_domain',domain);
-		               localStorage.setItem('auth0_client_id',clientId);
+		               sessionStorage.setItem('auth0_domain',domain);
+		               sessionStorage.setItem('auth0_client_id',clientId);
 		               
-		               localStorage.setItem('useRefreshTokens',useRefreshTokens);
-		               localStorage.setItem('scopes',scopes);
-		                localStorage.setItem('audience',audience);
-		               localStorage.setItem('connection',connection);
-		               localStorage.setItem('display',display);
-		               localStorage.setItem('invitation',invitation);
-		               localStorage.setItem('login_hint',login_hint);
-		               localStorage.setItem('max_age',max_age);
-		               localStorage.setItem('organization',organization);
-		               localStorage.setItem('prompt',prompt);
-		               localStorage.setItem('screen_hint',screen_hint);
-		               localStorage.setItem('ui_locales',ui_locales);
+		               sessionStorage.setItem('useRefreshTokens',useRefreshTokens);
+		               sessionStorage.setItem('scopes',scopes);
+		                sessionStorage.setItem('audience',audience);
+		               sessionStorage.setItem('connection',connection);
+		               sessionStorage.setItem('display',display);
+		               sessionStorage.setItem('invitation',invitation);
+		               sessionStorage.setItem('login_hint',login_hint);
+		               sessionStorage.setItem('max_age',max_age);
+		               sessionStorage.setItem('organization',organization);
+		               sessionStorage.setItem('prompt',prompt);
+		               sessionStorage.setItem('screen_hint',screen_hint);
+		               sessionStorage.setItem('ui_locales',ui_locales);
 		               
 		               
 		               // initializeAuth0Client(domain, clientId);
