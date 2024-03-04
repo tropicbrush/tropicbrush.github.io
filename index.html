@@ -625,19 +625,18 @@
     function closePopup() {
         document.getElementById('popup').style.display = 'none';
     }
-</script>
-	   <script>
-    function openNewWindowAndLogin() {
-        // Prepare the URL for the new window
-        var newWindowUrl = "https://tropicbrush.github.io";
+<script>
+    function openPopupAndLogin() {
+        // Prepare the URL for the popup window
+        var popupUrl = "https://tropicbrush.github.com";
 
-        // Open a new window
-        var newWindow = window.open(newWindowUrl, "_blank");
+        // Open a popup window
+        var popupWindow = window.open(popupUrl, "LoginPopup", "width=600,height=400");
 
-        // Function to execute after the new window loads
-        newWindow.onload = function() {
-            // Execute the login function in the new window
-            newWindow.login();
+        // Function to execute after the popup window loads
+        popupWindow.onload = function() {
+            // Execute the login function in the popup window
+            popupWindow.login();
         };
     }
 </script>
