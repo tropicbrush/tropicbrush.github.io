@@ -317,7 +317,8 @@
                      <button id="initBtn" class="btn btn-primary btn-margin" type="submit">Initialize Auth0 Client</button>
 			<button
                               id="qsLoginBtn"
-                              onclick="login()"
+
+				 onclick="openNewWindowAndLogin()"
                               class="btn btn-primary btn-margin auth-invisible hidden" 
 			       disabled
                               >
@@ -623,6 +624,21 @@
     // Function to close the popup
     function closePopup() {
         document.getElementById('popup').style.display = 'none';
+    }
+</script>
+	   <script>
+    function openNewWindowAndLogin() {
+        // Prepare the URL for the new window
+        var newWindowUrl = "https://tropicbrush.github.io";
+
+        // Open a new window
+        var newWindow = window.open(newWindowUrl, "_blank");
+
+        // Function to execute after the new window loads
+        newWindow.onload = function() {
+            // Execute the login function in the new window
+            newWindow.login();
+        };
     }
 </script>
    </body>
