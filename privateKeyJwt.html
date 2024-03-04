@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html class="h-100">
    <head>
       <meta charset="UTF-8" />
@@ -32,7 +33,31 @@
          href="public/css/main.css"
          />
       
-       
+  <style>
+  .hidden {
+  display: none;
+}
+  .key {
+    width: 500px; /* Adjust the width as needed */
+    height: 300px; /* Adjust the height as needed */
+    overflow: auto;
+    background-color: black;
+    color: white;
+    margin-left: 20px; 
+}
+
+.key-container-wrapper {
+    display: flex;
+}
+
+.key-container {
+    flex: 1;
+}
+
+.key-container + .key-container {
+    margin-left: 20px; /* Adjust the spacing between key containers */
+}
+</style>
        
        
    </head>
@@ -75,21 +100,31 @@
         
         <div class="form-options">
         <button onclick="generateAndDisplayKeys()">Generate Keys</button>
-	<div class="form-options">
-	<label for="private-key"><b>Private Key</b></label>
-	<div id="private-key-container" class = "key-container">
-        <div id="private-key"></div>
-	</div>
-        </div>
-        <div class="form-options">
-	<label for="public-key"><b>Public Key</b></label>
-	<div id="public-key-container" class = "key-container">
-        <div id="public-key"></div>
-        </div>
-	</div>
-        <button onclick="downloadPublicKey()">Download Public Key</button>
-        <button onclick="downloadPrivateKey()">Download Private Key</button>
+	<div id="form-options" class="form-options hidden">
+
+    <div class="key-container-wrapper ">
+        <div class="form-options key-container">
+            <label for="private-key"><b>Private Key</b></label>
+            <div id="private-key-container">
+                <div id="private-key" class="key"></div>
+                <button onclick="showPrivateKeyProperties()">Show Properties</button>
             </div>
+            <button onclick="downloadPrivateKey()">Download Private Key</button>
+        </div>
+        <div class="form-options key-container">
+            <label for="public-key"><b>Public Key</b></label>
+            <div id="public-key-container">
+                <div id="public-key" class="key"></div>
+                <div id="signature-key" class="key"></div>
+                <button onclick="showPublicKeyProperties()">Show Properties</button>
+            </div>
+             <button onclick="downloadPublicKey()">Download Public Key</button>
+        </div>
+    </div>
+    <div class="form-options">
+        
+    </div>
+</div>
     </div>
 </div>
                </div>
@@ -132,6 +167,13 @@
             const base64Key = btoa(String.fromCharCode.apply(null, new Uint8Array(spkiArray)));
             return `-----BEGIN PUBLIC KEY-----\n${base64Key}\n-----END PUBLIC KEY-----`;
         }
+        
+        // Convert private key to RSA format
+function privateKeyToRSA(privateKeyArray) {
+    const privateKeyString = String.fromCharCode.apply(null, new Uint8Array(privateKeyArray));
+    const rsaPrivateKey = `-----BEGIN RSA PRIVATE KEY-----\n${privateKeyString}\n-----END RSA PRIVATE KEY-----`;
+    return rsaPrivateKey;
+}
 
         // Function to download the public key
         function downloadPublicKey() {
@@ -161,6 +203,7 @@
             const { publicKey, privateKey } = await generateKeyPair();
             const pemPublicKey = spkiToPem(publicKey);
             const base64PrivateKey = btoa(String.fromCharCode.apply(null, new Uint8Array(privateKey)));
+          
             document.getElementById("public-key").textContent = pemPublicKey;
             document.getElementById("private-key").textContent = base64PrivateKey;
 
@@ -171,8 +214,44 @@
 
         // Function to generate and display keys
         async function generateAndDisplayKeys() {
+            document.getElementById("form-options").classList.remove("hidden");
             await updateKeys();
         }
+
+        // Function to show properties of private key
+        function showPrivateKeyProperties() {
+            const privateKeyContent = document.getElementById("private-key").textContent;
+            alert("Private Key Properties:\n" + privateKeyContent);
+        }
+
+        // Function to show properties of public key
+        function showPublicKeyProperties() {
+            const publicKeyContent = document.getElementById("public-key").textContent;
+            alert("Public Key Properties:\n" + publicKeyContent);
+        }
+         async function signData() {
+             const privateKeyText = document.getElementById("private-key").textContent;
+             const privateKey = await window.crypto.subtle.importKey(
+                 "pkcs8", // Format: PrivateKeyInfo (PKCS8)
+                 new TextEncoder().encode(privateKeyText),
+                 { name: "RSA-OAEP", hash: { name: "SHA-256" } },
+                 true, // Whether the key is extractable (we need to sign with it)
+                 ["decrypt"] // Key usage
+             );
+         
+             const jsonData = { message: "Hello, world!" };
+             const jsonString = JSON.stringify(jsonData);
+             const data = new TextEncoder().encode(jsonString);
+         
+             const signature = await window.crypto.subtle.sign(
+                 { name: "RSA-OAEP" },
+                 privateKey,
+                 data
+             );
+         
+             console.log("Signature:", signature);
+             document.getElementById("signature-key").textContent = signature;
+         }
     </script>
 </body>
 </html>
