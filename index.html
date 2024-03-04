@@ -34,7 +34,42 @@
          />
       
        
-       
+     <style>
+    /* Popup styles */
+    .popup {
+        display: none; /* Hidden by default */
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.4); /* Black background with opacity */
+    }
+
+    .popup-content {
+        background-color: #fefefe;
+        margin: 15% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+    }
+
+    .close {
+        color: #aaaaaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+    }
+</style>  
        
    </head>
    <body class="h-100">
@@ -103,8 +138,24 @@
 		   
                <div class="container form-options">
 		<h2>Auth Code flow with PKCE - Public Client</h2>
-		<h3>How to Use</h3>
-    <ol>
+<div id="popup" class="popup">
+        <div class="popup-content">
+            <span class="close" onclick="closePopup()">&times;</span>
+            <h3>How to Use</h3>
+            <ol>
+                <li>Enter your tenant domain name and client id.(optionally any additional parameters from the Advanced section.)</li>
+                <b>Note:</b> You will need to add ,<b>https://tropicbrush.github.io</b> in the "Allowed Callback URLs", "Allowed Logout URLs" and "Allowed Web Origins" in the client in Auth0.
+                <li>Click "Initialize Auth0 Client". (This will initaite the Auth0 SDK client with the parameters provided in the form.)</li>
+                <li>Click "Login".</li>
+                <li>Once logged in, you will see "Profile" and "Logout" buttons.</li>
+                <li>Click "Profile" to check User Profile, ID Token and AT content.</li>
+                <li>Click "Logout" to logout user or if you want to change initialization parameters.</li>
+            </ol>
+        </div>
+    </div>
+		       
+		<button onclick="openPopup()">How to Use</button>
+<!--     <ol>
         <li>Enter your tenant domain name and client id.(optionally any additional parameters from the Advanced section.)</li>
 	    <b>Note:</b> You will need to add ,<b>https://tropicbrush.github.io</b> in the "Allowed Callback URLs", "Allowed Logout URLs" and "Allowed Web Origins" in the client in Auth0.
         <li>Click "Initialize Auth0 Client". (This will initaite the Auth0 SDK client with the parameters provided in the form.)</li>
@@ -114,7 +165,7 @@
         <li>Click "Logout" to logout user or if you want to change initialization parameters.</li>
       
       
-    </ol>
+    </ol> -->
                   <form id="auth0-form">
 		   <div class="form-options">
 			  <div class="row">
@@ -563,5 +614,16 @@
         addFieldButton.addEventListener('click', createField);
     });
 </script> -->
+	   <script>
+    // Function to open the popup
+    function openPopup() {
+        document.getElementById('popup').style.display = 'block';
+    }
+
+    // Function to close the popup
+    function closePopup() {
+        document.getElementById('popup').style.display = 'none';
+    }
+</script>
    </body>
 </html>
