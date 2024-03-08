@@ -114,11 +114,17 @@
         <div class="form-options key-container">
             <label for="public-key"><b>Public Key</b></label>
             <div id="public-key-container">
-                <div id="public-key" class="key"></div>
-                <div id="signature-key" class="key"></div>
-                <button onclick="showPublicKeyProperties()">Show Properties</button>
-            </div>
+                <div id="public-key" class="key"></div>            </div>
             <button id="downloadPublicKey">Download Public Key</button>
+        </div>
+        <div class="form-options key-container">
+        <button id="generateAssertion">Generate Assertion</button>
+            <label for="public-key"><b>signed Assertion</b></label>
+            <div id="signedAssertion-container">
+               
+                <div id="signedAssertion" class="key"></div>
+            </div>
+            
         </div>
     </div>
     <div class="form-options">
@@ -196,7 +202,32 @@
             document.getElementById("form-options").classList.remove("hidden");
             await updateKeys();
         }
-                document.getElementById('downloadPrivateKey').addEventListener('click', downloadPrivateKey);
+        
+        async function generateAssertion(){
+        
+        const privateKeyPKCS8 = sessionStorage.getItem("privateKey");
+        const rsaPrivateKey = await jose.importPKCS8(privateKeyPKCS8, 'PS256');
+        console.log("rsaPrivateKey in signAssertion :", rsaPrivateKey);
+        
+
+const jwt = await new jose.SignJWT({ 'urn:example:claim': true })
+  .setProtectedHeader({ alg: 'PS256' })
+  .setIssuedAt()
+  .setIssuer('urn:example:issuer')
+  .setAudience('urn:example:audience')
+  .setExpirationTime('2h')
+  .sign(rsaPrivateKey)
+  
+  console.log(jwt)
+        document.getElementById("signedAssertion").textContent = jwt;
+        }
+        
+
+        
+        
+        
+        generateAssertion
+   document.getElementById('generateAssertion').addEventListener('click', generateAssertion);             document.getElementById('downloadPrivateKey').addEventListener('click', downloadPrivateKey);
         document.getElementById('downloadPublicKey').addEventListener('click', downloadPublicKey);
 
         document.getElementById('generateAndDisplayKeys').addEventListener('click', generateAndDisplayKeys);
