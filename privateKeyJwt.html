@@ -66,7 +66,6 @@
     <div id="main-content">
       <div id="content-home" class="page">
         <div class="container form-options">
-          <h2>Private Key/Public Key:</h2>
           <div class="form-options">
             <button id="generateAndDisplayKeys" class="btn btn-primary btn-margin">Generate Keys</button>
             <div id="form-options" class="form-options hidden">
@@ -87,40 +86,40 @@
                 </div>
               </div>
             </div>
-          </div>
+
           </div>
           <br>
-           <div class="container form-options">
+
           <div class="form-options">
-            <div class="form-options">
-              <div class="row">
-                <div class="col-25">
-                  <label for="domain">Auth0 Domain <span style="color: red;">*</span>:</label>
-                </div>
-                <div class="col-75">
-                  <input type="text" id="domain" name="domain" required value="tropicbrush.us.auth0.com">
-                </div>
+
+            <div class="row">
+              <div class="col-25">
+                <label for="domain">Auth0 Domain <span style="color: red;">*</span>:</label>
               </div>
-              <div class="row">
-                <div class="col-25">
-                  <label for="clientId">Client ID <span style="color: red;">*</span>:</label>
-                </div>
-                <div class="col-75">
-                  <input type="text" id="clientId" name="clientId" required value="e9HS1RUqY0i5UGa99W9BwpSxlSaPk9xU">
-                </div>
-              </div>
-              <button id="generateAssertion" class="btn btn-primary btn-margin">Generate Assertion</button>
-            </div>
-            <div id="generateAssertion-div" class="form-options hidden">
-              <div class="key-container-wrapper ">
-                <div class="form-options key-container">
-                  <label for="signedAssertion-key"><b>signed Assertion</b></label>
-                  <div id="signedAssertion-container">
-                    <div id="signedAssertion-key" class="key"></div>
-                  </div>
-                </div>
+              <div class="col-75">
+                <input type="text" id="domain" name="domain" required value="tropicbrush.us.auth0.com">
               </div>
             </div>
+            <div class="row">
+              <div class="col-25">
+                <label for="clientId">Client ID <span style="color: red;">*</span>:</label>
+              </div>
+              <div class="col-75">
+                <input type="text" id="clientId" name="clientId" required value="e9HS1RUqY0i5UGa99W9BwpSxlSaPk9xU">
+              </div>
+            </div>
+            <button id="generateAssertion" class="btn btn-primary btn-margin">Generate Assertion</button>
+          </div>
+          <div id="generateAssertion-div" class="form-options hidden">
+            <div class="key-container-wrapper ">
+              <div class="form-options key-container">
+                <label for="signedAssertion-key"><b>signed Assertion</b></label>
+                <div id="signedAssertion-container">
+                  <div id="signedAssertion-key" class="key"></div>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
