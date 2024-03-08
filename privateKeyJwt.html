@@ -105,27 +105,26 @@
           <div class="form-options">
 
 
-                  <form id="auth0-form">
-                    <div class="form-options">
-                      <div class="row">
-                        <div class="col-25">
-                          <label for="domain">Auth0 Domain <span style="color: red;">*</span>:</label>
-                        </div>
-                        <div class="col-75">
-                          <input type="text" id="domain" name="domain" required value="tropicbrush.us.auth0.com">
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-25">
-                          <label for="clientId">Client ID <span style="color: red;">*</span>:</label>
-                        </div>
-                        <div class="col-75">
-                          <input type="text" id="clientId" name="clientId" required value="e9HS1RUqY0i5UGa99W9BwpSxlSaPk9xU">
-                        </div>
-                      </div>
-                      <button id="generateAssertion" class="btn btn-primary btn-margin" type="submit">Generate Assertion</button>
-                    </div>
-                  </form>
+  <div class="form-options">
+    <div class="row">
+      <div class="col-25">
+        <label for="domain">Auth0 Domain <span style="color: red;">*</span>:</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="domain" name="domain" required value="tropicbrush.us.auth0.com">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="clientId">Client ID <span style="color: red;">*</span>:</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="clientId" name="clientId" required value="e9HS1RUqY0i5UGa99W9BwpSxlSaPk9xU">
+      </div>
+    </div>
+    <button id="generateAssertion" class="btn btn-primary btn-margin" >Generate Assertion</button>
+  </div>
+
 
 
 
@@ -224,12 +223,15 @@
         const rsaPrivateKey = await jose.importPKCS8(privateKeyPKCS8, 'PS256');
         console.log("rsaPrivateKey in signAssertion :", rsaPrivateKey);
         
+const domain = document.getElementById("domain").value;
+const clientID = document.getElementById("clientId").value;
 
 const jwt = await new jose.SignJWT({ 'urn:example:claim': true })
   .setProtectedHeader({ alg: 'PS256' })
   .setIssuedAt()
-  .setIssuer('urn:example:issuer')
-  .setAudience('urn:example:audience')
+  .setIssuer(clientID)
+  .setSubject(clientID)
+  .setAudience("https://" + domain + "/")
   .setExpirationTime('2h')
   .sign(rsaPrivateKey)
   
