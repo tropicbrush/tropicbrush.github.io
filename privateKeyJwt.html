@@ -198,7 +198,13 @@ console.log("Error while generating keys : " , e)
             await updateKeys();
         }
     </script>
-
+<script>
+	 // Function to generate and display keys
+        async function generateAndDisplayKeys() {
+            document.getElementById("form-options").classList.remove("hidden");
+            await updateKeys();
+        }
+	  </script>
 	 
 <!--     <script>
         // Generate key pair
