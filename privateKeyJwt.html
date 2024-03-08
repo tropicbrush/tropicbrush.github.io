@@ -1,124 +1,133 @@
 <!DOCTYPE html>
 <html class="h-100">
-   <head>
-      <meta charset="UTF-8" />
-      <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Auth0 Login Using SPA SDK</title>
-      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
-      <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/monokai-sublime.min.css" />
-      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/solid.css" integrity="sha384-r/k8YTFqmlOaqRkZuSiE9trsrDXkh07mRaoGBMoDcmA58OHILZPsk29i2BsFng1B" crossorigin="anonymous" />
-      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/fontawesome.css" integrity="sha384-4aon80D8rXCGx9ayDt85LbyUHeMWd3UiBaWliBlJ53yzm9hqN21A+o1pqoyK04h+" crossorigin="anonymous" />
-      <link rel="stylesheet" href="public/css/main.css" />
-      <style>
-         .hidden {
-         display: none;
-         }
-         .key {
-         width: 500px;
-         /* Adjust the width as needed */
-         height: 300px;
-         /* Adjust the height as needed */
-         overflow: auto;
-         background-color: black;
-         color: white;
-         margin-left: 20px;
-         }
-         .key-container-wrapper {
-         display: flex;
-         }
-         .key-container {
-         flex: 1;
-         }
-         .key-container+.key-container {
-         margin-left: 20px;
-         /* Adjust the spacing between key containers */
-         }
-      </style>
-   </head>
-   <body class="h-100">
-      <div id="app" class="flex-grow-1 d-flex flex-column">
-         <div class="nav-container">
-            <nav class="navbar navbar-expand-md navbar-light bg-light">
-               <div class="container">
-                  <div class="navbar-brand logo"></div>
-                  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                  <span class="navbar-toggler-icon"></span>
-                  </button>
-                  <div class="collapse navbar-collapse" id="navbarNav">
-                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
-                           <a href="/" class="route-link btn btn-primary btn-margin">Home</a>
-                        </li>
-                     </ul>
-                  </div>
-               </div>
-            </nav>
-         </div>
-      </div>
-      <div id="main-content">
-         <div id="content-home" class="page">
-            <div class="container form-options">
-               <h2>Private Key/Public Key:</h2>
-               <div class="form-options">
-                  <button id="generateAndDisplayKeys">Generate Keys</button>
-                  <div id="form-options" class="form-options hidden">
-                     <div class="key-container-wrapper ">
-                        <div class="form-options key-container">
-                           <label for="private-key"><b>Private Key</b></label>
-                           <div id="private-key-container">
-                              <div id="private-key" class="key"></div>
-                           </div>
-                           <button id="downloadPrivateKey">Download Private Key</button>
-                        </div>
-                        <div class="form-options key-container">
-                           <label for="public-key"><b>Public Key</b></label>
-                           <div id="public-key-container">
-                              <div id="public-key" class="key"></div>
-                           </div>
-                           <button id="downloadPublicKey">Download Public Key</button>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-               <br>
-               <div class="form-options">
-                  <div class="form-options">
-                     <div class="row">
-                        <div class="col-25">
-                           <label for="domain">Auth0 Domain <span style="color: red;">*</span>:</label>
-                        </div>
-                        <div class="col-75">
-                           <input type="text" id="domain" name="domain" required value="tropicbrush.us.auth0.com">
-                        </div>
-                     </div>
-                     <div class="row">
-                        <div class="col-25">
-                           <label for="clientId">Client ID <span style="color: red;">*</span>:</label>
-                        </div>
-                        <div class="col-75">
-                           <input type="text" id="clientId" name="clientId" required value="e9HS1RUqY0i5UGa99W9BwpSxlSaPk9xU">
-                        </div>
-                     </div>
-                     <button id="generateAssertion" class="btn btn-primary btn-margin">Generate Assertion</button>
-                  </div>
-                  <div id="generateAssertion-div" class="form-options hidden">
-                     <div class="key-container-wrapper ">
-                        <div class="form-options key-container">
-                           <label for="signedAssertion-key"><b>signed Assertion</b></label>
-                           <div id="signedAssertion-container">
-                              <div id="signedAssertion-key" class="key"></div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auth0 Login Using SPA SDK</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/monokai-sublime.min.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/solid.css" integrity="sha384-r/k8YTFqmlOaqRkZuSiE9trsrDXkh07mRaoGBMoDcmA58OHILZPsk29i2BsFng1B" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/fontawesome.css" integrity="sha384-4aon80D8rXCGx9ayDt85LbyUHeMWd3UiBaWliBlJ53yzm9hqN21A+o1pqoyK04h+" crossorigin="anonymous" />
+    <link rel="stylesheet" href="public/css/main.css" />
+    <style>
+      .hidden {
+        display: none;
+      }
+
+      .key {
+        width: 500px;
+        /* Adjust the width as needed */
+        height: 300px;
+        /* Adjust the height as needed */
+        overflow: auto;
+        background-color: black;
+        color: white;
+        margin-left: 20px;
+      }
+
+      .key-container-wrapper {
+        display: flex;
+      }
+
+      .key-container {
+        flex: 1;
+      }
+
+      .key-container+.key-container {
+        margin-left: 20px;
+        /* Adjust the spacing between key containers */
+      }
+
+    </style>
+  </head>
+
+  <body class="h-100">
+    <div id="app" class="flex-grow-1 d-flex flex-column">
+      <div class="nav-container">
+        <nav class="navbar navbar-expand-md navbar-light bg-light">
+          <div class="container">
+            <div class="navbar-brand logo"></div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                  <a href="/" class="route-link btn btn-primary btn-margin">Home</a>
+                </li>
+              </ul>
             </div>
-         </div>
+          </div>
+        </nav>
       </div>
-      <!-- Import the JavaScript module -->
-      <script type="module">
-         // Import the jose module using its full URL
+    </div>
+    <div id="main-content">
+      <div id="content-home" class="page">
+        <div class="container form-options">
+          <h2>Private Key/Public Key:</h2>
+          <div class="form-options">
+            <button id="generateAndDisplayKeys" class="btn btn-primary btn-margin">Generate Keys</button>
+            <div id="form-options" class="form-options hidden">
+              <div class="key-container-wrapper ">
+                <div class="form-options key-container">
+                  <label for="private-key"><b>Private Key</b></label>
+                  <div id="private-key-container">
+                    <div id="private-key" class="key"></div>
+                  </div>
+                  <button id="downloadPrivateKey">Download Private Key</button>
+                </div>
+                <div class="form-options key-container">
+                  <label for="public-key"><b>Public Key</b></label>
+                  <div id="public-key-container">
+                    <div id="public-key" class="key"></div>
+                  </div>
+                  <button id="downloadPublicKey">Download Public Key</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+          <br>
+           <div class="container form-options">
+          <div class="form-options">
+            <div class="form-options">
+              <div class="row">
+                <div class="col-25">
+                  <label for="domain">Auth0 Domain <span style="color: red;">*</span>:</label>
+                </div>
+                <div class="col-75">
+                  <input type="text" id="domain" name="domain" required value="tropicbrush.us.auth0.com">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-25">
+                  <label for="clientId">Client ID <span style="color: red;">*</span>:</label>
+                </div>
+                <div class="col-75">
+                  <input type="text" id="clientId" name="clientId" required value="e9HS1RUqY0i5UGa99W9BwpSxlSaPk9xU">
+                </div>
+              </div>
+              <button id="generateAssertion" class="btn btn-primary btn-margin">Generate Assertion</button>
+            </div>
+            <div id="generateAssertion-div" class="form-options hidden">
+              <div class="key-container-wrapper ">
+                <div class="form-options key-container">
+                  <label for="signedAssertion-key"><b>signed Assertion</b></label>
+                  <div id="signedAssertion-container">
+                    <div id="signedAssertion-key" class="key"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Import the JavaScript module -->
+    <script type="module">
+      // Import the jose module using its full URL
            import * as jose from 'https://cdn.jsdelivr.net/npm/jose@5.2.3/dist/browser/index.min.js';
          
            async function generateKeyPair() {
@@ -214,5 +223,6 @@
          
            document.getElementById('generateAndDisplayKeys').addEventListener('click', generateAndDisplayKeys);
       </script>
-   </body>
+  </body>
+
 </html>
