@@ -226,13 +226,13 @@
 const domain = document.getElementById("domain").value;
 const clientID = document.getElementById("clientId").value;
 
-const jwt = await new jose.SignJWT({ 'urn:example:claim': true })
+const jwt = await new jose.SignJWT({})
   .setProtectedHeader({ alg: 'PS256' })
   .setIssuedAt()
   .setIssuer(clientID)
   .setSubject(clientID)
   .setAudience("https://" + domain + "/")
-  .setExpirationTime('2h')
+  .setExpirationTime('3m')
   .sign(rsaPrivateKey)
   
   console.log(jwt)
