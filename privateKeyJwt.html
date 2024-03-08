@@ -106,6 +106,20 @@
                 <input type="text" id="clientId" name="clientId" required value="e9HS1RUqY0i5UGa99W9BwpSxlSaPk9xU">
               </div>
             </div>
+            <div class="row">
+            <div class="col-25">
+                <label for="options">Select an Option:</label>
+            </div>
+            <div class="col-75">
+                <select id="assertionValidity" name="Assertion Validity">
+                    <option value="1">1 minutes</option>
+                    <option value="2">2 minutes</option>
+                    <option value="3">3 minutes</option>
+                    <option value="4">4 minutes</option>
+                    <option value="5">5 minutes</option>
+                </select>
+            </div>
+        </div>
             <button id="generateAssertion" class="btn btn-primary btn-margin">Generate Assertion</button>
           
           <div id="generateAssertion-div" class="form-options hidden">
@@ -197,6 +211,7 @@
            
          const domain = document.getElementById("domain").value;
          const clientID = document.getElementById("clientId").value;
+         const assertionValidity = document.getElementById("assertionValidity").value;
          
          const jwt = await new jose.SignJWT({})
          .setProtectedHeader({ alg: 'PS256' })
@@ -204,7 +219,7 @@
          .setIssuer(clientID)
          .setSubject(clientID)
          .setAudience("https://" + domain + "/")
-         .setExpirationTime('3m')
+         .setExpirationTime(assertionValidity + 'm')
          .sign(rsaPrivateKey)
          
          console.log(jwt)
