@@ -128,7 +128,79 @@
     </div>
 </div>
                </div>
-    <script>
+
+	     <!-- Import the JavaScript module -->
+    <script type="module">
+        // Import the jose module using its full URL
+        import * as jose from 'https://cdn.jsdelivr.net/npm/jose@5.2.3/dist/browser/index.min.js';
+	async function generateKeyPair() {
+     try {
+        // Now that the module is loaded, you can use its functionalities
+        console.log(jose);
+        
+        
+       const { publicKey, privateKey } = await jose.generateKeyPair('PS256', {
+  extractable: true,modulusLength: 2048
+})
+console.log(await jose.exportJWK(privateKey))
+console.log(await jose.exportPKCS8(privateKey))
+
+
+console.log(await jose.exportSPKI(publicKey));
+                 return { await jose.exportPKCS8(privateKey), await jose.exportSPKI(publicKey) };
+
+} catch(e){
+console.log("Error while generating keys : " , e)
+}
+
+}
+
+// Function to download the public key
+        function downloadPublicKey() {
+            const publicKeyContent = document.getElementById("public-key").textContent;
+            downloadKey(publicKeyContent, "public_key.pem");
+        }
+
+        // Function to download the private key
+        function downloadPrivateKey() {
+            const privateKeyContent = document.getElementById("private-key").textContent;
+            downloadKey(privateKeyContent, "private_key.txt");
+        }
+
+        // Helper function to trigger download of key content
+        function downloadKey(content, filename) {
+            const element = document.createElement("a");
+            element.setAttribute("href", "data:text/plain;charset=utf-8," + encodeURIComponent(content));
+            element.setAttribute("download", filename);
+            element.style.display = "none";
+            document.body.appendChild(element);
+            element.click();
+            document.body.removeChild(element);
+        }
+
+        // Update HTML content with generated keys and store in sessionStorage
+        async function updateKeys() {
+            const { publicKey, privateKey } = await generateKeyPair();
+            const pemPublicKey = spkiToPem(publicKey);
+            const base64PrivateKey = btoa(String.fromCharCode.apply(null, new Uint8Array(privateKey)));
+          
+            document.getElementById("public-key").textContent = publicKey;
+            document.getElementById("private-key").textContent = privateKey;
+
+            // Store keys in sessionStorage
+            sessionStorage.setItem("publicKey", publicKey);
+            sessionStorage.setItem("privateKey", privateKey);
+        }
+
+        // Function to generate and display keys
+        async function generateAndDisplayKeys() {
+            document.getElementById("form-options").classList.remove("hidden");
+            await updateKeys();
+        }
+    </script>
+
+	 
+<!--     <script>
         // Generate key pair
         async function generateKeyPair() {
             try {
@@ -252,6 +324,6 @@ function privateKeyToRSA(privateKeyArray) {
              console.log("Signature:", signature);
              document.getElementById("signature-key").textContent = signature;
          }
-    </script>
+    </script> -->
 </body>
 </html>
