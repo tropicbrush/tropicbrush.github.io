@@ -99,7 +99,7 @@
         <h2>Private Key/Public Key:</h2>
         
         <div class="form-options">
-        <button onclick="generateAndDisplayKeys()">Generate Keys</button>
+        <button id="generateAndDisplayKeys">Generate Keys</button>
 	<div id="form-options" class="form-options hidden">
 
     <div class="key-container-wrapper ">
@@ -109,7 +109,7 @@
                 <div id="private-key" class="key"></div>
                 <button onclick="showPrivateKeyProperties()">Show Properties</button>
             </div>
-            <button onclick="downloadPrivateKey()">Download Private Key</button>
+             <button id="downloadPrivateKey">Download Private Key</button>
         </div>
         <div class="form-options key-container">
             <label for="public-key"><b>Public Key</b></label>
@@ -118,7 +118,7 @@
                 <div id="signature-key" class="key"></div>
                 <button onclick="showPublicKeyProperties()">Show Properties</button>
             </div>
-             <button onclick="downloadPublicKey()">Download Public Key</button>
+            <button id="downloadPublicKey">Download Public Key</button>
         </div>
     </div>
     <div class="form-options">
@@ -133,125 +133,25 @@
     <script type="module">
         // Import the jose module using its full URL
         import * as jose from 'https://cdn.jsdelivr.net/npm/jose@5.2.3/dist/browser/index.min.js';
-	async function generateKeyPair() {
-     try {
-        // Now that the module is loaded, you can use its functionalities
-        console.log(jose);
-        
-        
-       const { publicKey, privateKey } = await jose.generateKeyPair('PS256', {
-  extractable: true,modulusLength: 2048
-})
 
-const privateKey=  await jose.exportPKCS8(privateKey)
-const publicKey = await jose.exportSPKI(publicKey)
-	     
-console.log("privateKey :" , privateKey);
-console.log("publicKey :" , publicKey);
-return {publicKey , privateKey};
-
-} catch(e){
-console.log("Error while generating keys : " , e)
-}
-}
-
-// Function to download the public key
-        function downloadPublicKey() {
-            const publicKeyContent = document.getElementById("public-key").textContent;
-            downloadKey(publicKeyContent, "public_key.pem");
-        }
-
-        // Function to download the private key
-        function downloadPrivateKey() {
-            const privateKeyContent = document.getElementById("private-key").textContent;
-            downloadKey(privateKeyContent, "private_key.txt");
-        }
-
-        // Helper function to trigger download of key content
-        function downloadKey(content, filename) {
-            const element = document.createElement("a");
-            element.setAttribute("href", "data:text/plain;charset=utf-8," + encodeURIComponent(content));
-            element.setAttribute("download", filename);
-            element.style.display = "none";
-            document.body.appendChild(element);
-            element.click();
-            document.body.removeChild(element);
-        }
-
-        // Update HTML content with generated keys and store in sessionStorage
-        async function updateKeys() {
-            const { publicKey, privateKey } = await generateKeyPair();
-            const pemPublicKey = spkiToPem(publicKey);
-            const base64PrivateKey = btoa(String.fromCharCode.apply(null, new Uint8Array(privateKey)));
-          
-            document.getElementById("public-key").textContent = publicKey;
-            document.getElementById("private-key").textContent = privateKey;
-
-            // Store keys in sessionStorage
-            sessionStorage.setItem("publicKey", publicKey);
-            sessionStorage.setItem("privateKey", privateKey);
-        }
-
-        // Function to generate and display keys
-        async function generateAndDisplayKeys() {
-            document.getElementById("form-options").classList.remove("hidden");
-            await updateKeys();
-        }
-    </script>
-<script>
-	 // Function to generate and display keys
-        async function generateAndDisplayKeys() {
-            document.getElementById("form-options").classList.remove("hidden");
-            await updateKeys();
-        }
-	  </script>
-	 
-<!--     <script>
-        // Generate key pair
         async function generateKeyPair() {
             try {
-                // Generate RSA key pair
-                const keyPair = await window.crypto.subtle.generateKey(
-                    {
-                        name: "RSA-OAEP", // Using RSA with Optimal Asymmetric Encryption Padding
-                        modulusLength: 2048, // 2048-bit key length
-                        publicExponent: new Uint8Array([0x01, 0x00, 0x01]), // Exponent value (65537)
-                        hash: { name: "SHA-256" }, // SHA-256 hashing algorithm
-                    },
-                    true, // Whether the key is extractable (we need to export it)
-                    ["encrypt", "decrypt"] // Key usage
-                );
+                const { publicKey, privateKey } = await jose.generateKeyPair('PS256', {
+                    extractable: true,
+                    modulusLength: 2048
+                });
 
-                // Export public key
-                const publicKey = await window.crypto.subtle.exportKey(
-                    "spki", // Format: SubjectPublicKeyInfo (SPKI)
-                    keyPair.publicKey
-                );
+                const privateKeyPKCS8 = await jose.exportPKCS8(privateKey);
+                const publicKeySPKI = await jose.exportSPKI(publicKey);
 
-                // Export private key
-                const privateKey = await window.crypto.subtle.exportKey(
-                    "pkcs8", // Format: PrivateKeyInfo (PKCS8)
-                    keyPair.privateKey
-                );
-
-                return { publicKey, privateKey };
-            } catch (error) {
-                console.error("Key pair generation error:", error);
+                console.log("privateKey :", privateKeyPKCS8);
+                console.log("publicKey :", publicKeySPKI);
+                
+                return { publicKeySPKI, privateKeyPKCS8 };
+            } catch (e) {
+                console.log("Error while generating keys : ", e);
             }
         }
-
-        // Convert public key from SPKI to PEM format
-        function spkiToPem(spkiArray) {
-            const base64Key = btoa(String.fromCharCode.apply(null, new Uint8Array(spkiArray)));
-            return `-----BEGIN PUBLIC KEY-----\n${base64Key}\n-----END PUBLIC KEY-----`;
-        }
-        
-        // Convert private key to RSA format
-function privateKeyToRSA(privateKeyArray) {
-    const privateKeyString = String.fromCharCode.apply(null, new Uint8Array(privateKeyArray));
-    const rsaPrivateKey = `-----BEGIN RSA PRIVATE KEY-----\n${privateKeyString}\n-----END RSA PRIVATE KEY-----`;
-    return rsaPrivateKey;
-}
 
         // Function to download the public key
         function downloadPublicKey() {
@@ -278,16 +178,17 @@ function privateKeyToRSA(privateKeyArray) {
 
         // Update HTML content with generated keys and store in sessionStorage
         async function updateKeys() {
-            const { publicKey, privateKey } = await generateKeyPair();
-            const pemPublicKey = spkiToPem(publicKey);
-            const base64PrivateKey = btoa(String.fromCharCode.apply(null, new Uint8Array(privateKey)));
-          
-            document.getElementById("public-key").textContent = pemPublicKey;
-            document.getElementById("private-key").textContent = base64PrivateKey;
+            const { publicKeySPKI, privateKeyPKCS8 } = await generateKeyPair();
+			
+           console.log("publicKey  in updateKeys :", publicKeySPKI);
+                console.log("privateKey in updateKeys  :", privateKeyPKCS8);
+                
+            document.getElementById("public-key").textContent = publicKeySPKI;
+            document.getElementById("private-key").textContent = privateKeyPKCS8;
 
             // Store keys in sessionStorage
-            sessionStorage.setItem("publicKey", pemPublicKey);
-            sessionStorage.setItem("privateKey", base64PrivateKey);
+            sessionStorage.setItem("publicKey", publicKeySPKI);
+            sessionStorage.setItem("privateKey", privateKeyPKCS8);
         }
 
         // Function to generate and display keys
@@ -295,41 +196,10 @@ function privateKeyToRSA(privateKeyArray) {
             document.getElementById("form-options").classList.remove("hidden");
             await updateKeys();
         }
+                document.getElementById('downloadPrivateKey').addEventListener('click', downloadPrivateKey);
+        document.getElementById('downloadPublicKey').addEventListener('click', downloadPublicKey);
 
-        // Function to show properties of private key
-        function showPrivateKeyProperties() {
-            const privateKeyContent = document.getElementById("private-key").textContent;
-            alert("Private Key Properties:\n" + privateKeyContent);
-        }
-
-        // Function to show properties of public key
-        function showPublicKeyProperties() {
-            const publicKeyContent = document.getElementById("public-key").textContent;
-            alert("Public Key Properties:\n" + publicKeyContent);
-        }
-         async function signData() {
-             const privateKeyText = document.getElementById("private-key").textContent;
-             const privateKey = await window.crypto.subtle.importKey(
-                 "pkcs8", // Format: PrivateKeyInfo (PKCS8)
-                 new TextEncoder().encode(privateKeyText),
-                 { name: "RSA-OAEP", hash: { name: "SHA-256" } },
-                 true, // Whether the key is extractable (we need to sign with it)
-                 ["decrypt"] // Key usage
-             );
-         
-             const jsonData = { message: "Hello, world!" };
-             const jsonString = JSON.stringify(jsonData);
-             const data = new TextEncoder().encode(jsonString);
-         
-             const signature = await window.crypto.subtle.sign(
-                 { name: "RSA-OAEP" },
-                 privateKey,
-                 data
-             );
-         
-             console.log("Signature:", signature);
-             document.getElementById("signature-key").textContent = signature;
-         }
-    </script> -->
+        document.getElementById('generateAndDisplayKeys').addEventListener('click', generateAndDisplayKeys);
+    </script>
 </body>
 </html>
