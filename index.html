@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+	<!DOCTYPE html>
 <html class="h-100">
    <head>
       <meta charset="UTF-8" />
@@ -33,89 +33,140 @@
          href="public/css/main.css"
          />
       
-  <style>
-  .hidden {
-  display: none;
-}
-  .key {
-    width: 500px; /* Adjust the width as needed */
-    height: 300px; /* Adjust the height as needed */
-    overflow: auto;
-    background-color: black;
-    color: white;
-    margin-left: 20px; 
-}
-
-.key-container-wrapper {
-    display: flex;
-}
-
-.key-container {
-    flex: 1;
-}
-
-.key-container + .key-container {
-    margin-left: 20px; /* Adjust the spacing between key containers */
-}
-</style>
        
+     <style>
+    /* Popup styles */
+    .popup {
+        display: none; /* Hidden by default */
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.4); /* Black background with opacity */
+    }
+
+    .popup-content {
+        background-color: #fefefe;
+        margin: 15% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+    }
+
+    .close {
+        color: #aaaaaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+    }
+</style>  
        
    </head>
-<body class="h-100">
+   <body class="h-100">
+	   
+      <div id="app" class="flex-grow-1 d-flex flex-column">
+         <div class="nav-container">
+            <nav class="navbar navbar-expand-md navbar-light bg-light">
+               <div class="container">
+                  <div class="navbar-brand logo"></div>
+                  <button
+                     class="navbar-toggler"
+                     type="button"
+                     data-toggle="collapse"
+                     data-target="#navbarNav"
+                     aria-controls="navbarNav"
+                     aria-expanded="false"
+                     aria-label="Toggle navigation"
+                     >
+                  <span class="navbar-toggler-icon"></span>
+                  </button>
+                  <div class="collapse navbar-collapse" id="navbarNav">
+                     <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                           <a href="/" class="route-link btn btn-primary btn-margin">Home</a>
+                        </li>
+			     <li class="nav-item">
+			     <a href="/profile" class="btn btn-primary btn-margin auth-visible hidden route-link">Profile</a>
+				       </li>
+				     <li class="nav-item">
+			  <a href="#"  id="qsLogoutBtn"  onclick="logout()" class="btn btn-primary btn-margin auth-visible hidden route-link">Log Out</a>
+					       </li>
+                     </ul>
+                     <ul class="navbar-nav d-none d-md-block">
+                 
+                        <li class="nav-item auth-visible hidden">
 
-  <div id="app" class="flex-grow-1 d-flex flex-column">
-    <div class="nav-container">
-      <nav class="navbar navbar-expand-md navbar-light bg-light">
+                              <img
+                                 alt="Profile picture"
+                                 class="nav-user-profile profile-image rounded-circle"
+                                 width="50"
+                                 />
+                          
+                        </li>
+                     
+                     </ul>
+                   
+                  </div>
+               </div>
+            </nav>
+		     <nav class="navbar navbar-expand-md navbar-light bg-light">
         <div class="container">
-          <div class="navbar-brand logo"></div>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav mr-auto">
-              <li class="nav-item">
-                <a href="/" class="route-link btn btn-primary btn-margin">Home</a>
-              </li>
-
+                <li class="nav-item">
+                    <a href="#" class="btn btn-primary btn-margin">Auth Code flow with PKCE - Public Client</a>
+                </li>
+                <li class="nav-item">
+                    <a href="privateKeyJwt.html" class="btn btn-primary btn-margin">Auth Code flow with Private JWT (Confidential Client)</a>
+                </li>
             </ul>
-
-          </div>
         </div>
-      </nav>
+    </nav>
+         </div>
+<!--          <div id="main-content" class="container mt-5 flex-grow-1"> -->
+         <div id="main-content">
+            <div id="content-home" class="page">
+		   
+               <div class="container form-options">
+		<h2>Auth Code flow with PKCE - Public Client</h2>
+<div id="popup" class="popup">
+        <div class="popup-content">
+            <span class="close" onclick="closePopup()">&times;</span>
+            <h3>How to Use</h3>
+            <ol>
+                <li>Enter your tenant domain name and client id.(optionally any additional parameters from the Advanced section.)</li>
+                <b>Note:</b> You will need to add ,<b>https://tropicbrush.github.io</b> in the "Allowed Callback URLs", "Allowed Logout URLs" and "Allowed Web Origins" in the client in Auth0.
+                <li>Click "Initialize Auth0 Client". (This will initaite the Auth0 SDK client with the parameters provided in the form.)</li>
+                <li>Click "Login".</li>
+                <li>Once logged in, you will see "Profile" and "Logout" buttons.</li>
+                <li>Click "Profile" to check User Profile, ID Token and AT content.</li>
+                <li>Click "Logout" to logout user or if you want to change initialization parameters.</li>
+            </ol>
+        </div>
     </div>
-
-    <div id="main-content">
-      <div id="content-home" class="page">
-
-        <div class="container form-options">
-          <h2>Private Key/Public Key:</h2>
-
-          <div class="form-options">
-            <button id="generateAndDisplayKeys">Generate Keys</button>
-            <div id="form-options" class="form-options hidden">
-
-              <div class="key-container-wrapper ">
-                <div class="form-options key-container">
-                  <label for="private-key"><b>Private Key</b></label>
-                  <div id="private-key-container">
-                    <div id="private-key" class="key"></div>
-                  </div>
-                  <button id="downloadPrivateKey">Download Private Key</button>
-                </div>
-                <div class="form-options key-container">
-                  <label for="public-key"><b>Public Key</b></label>
-                  <div id="public-key-container">
-                    <div id="public-key" class="key"></div>
-                  </div>
-                  <button id="downloadPublicKey">Download Public Key</button>
-                </div>
-
-              </div>
-<br>
-              <div class="form-options">
-              	
-                
-                <form id="auth0-form">
+		       
+		<button onclick="openPopup()">How to Use</button>
+<!--     <ol>
+        <li>Enter your tenant domain name and client id.(optionally any additional parameters from the Advanced section.)</li>
+	    <b>Note:</b> You will need to add ,<b>https://tropicbrush.github.io</b> in the "Allowed Callback URLs", "Allowed Logout URLs" and "Allowed Web Origins" in the client in Auth0.
+        <li>Click "Initialize Auth0 Client". (This will initaite the Auth0 SDK client with the parameters provided in the form.)</li>
+        <li>Click "Login".</li>
+        <li>Once logged in, you will see "Profile" and "Logout" buttons.</li>
+        <li>Click "Profile" to check User Profile, ID Token and AT content.</li>
+        <li>Click "Logout" to logout user or if you want to change initialization parameters.</li>
+      
+      
+    </ol> -->
+                  <form id="auth0-form">
 		   <div class="form-options">
 			  <div class="row">
                         <div class="col-25">
@@ -133,127 +184,461 @@
                            <input type="text" id="clientId" name="clientId" required value="e9HS1RUqY0i5UGa99W9BwpSxlSaPk9xU">
                         </div>
                         </div>
-                         <button type="button" id="addFieldButton">Add More Fields</button>
-                         </form>
-              
-              
-                <button id="generateAssertion">Generate Assertion</button>
-                <div id="generateAssertion-div" class="form-options hidden">
-
-                  <div class="key-container-wrapper ">
-
-                    <div class="form-options key-container">
-
-                      <label for="signedAssertion-key"><b>signed Assertion</b></label>
-                      <div id="signedAssertion-container">
-
-                        <div id="signedAssertion-key" class="key"></div>
-                      </div>
-
+                         
+                     <div class="advanced-options-toggle">
+                        <label for="advanced-options-checkbox">Show Advanced Options</label>
+                        <input type="checkbox" id="advanced-options-checkbox">
+                     </div>
+                     <div class="advanced-options">
+                        <h4>Advanced Options</h4>
+                        <div class="row">
+                           <div class="col-25">
+                              <label for="useRefreshTokens">useRefreshTokens</label>
+                           </div>
+                           <div class="col-75">
+                              <select id="useRefreshTokens" name="useRefreshTokens">
+                                 <option value="">Select an option</option>
+                                 <option value="true">true</option>
+                                 <option value="false">false</option>
+                              </select>
+                           </div>
+                        </div>
+                        <div class="row">
+                           <div class="col-25">
+                              <label for="scopes">scopes:</label>
+                           </div>
+                           <div class="col-75">
+                              <input type="text" id="scopes" name="scopes" value="openid email profile">
+                           </div>
+                        </div>
+                        <div class="row">
+                           <div class="col-25">
+                              <label for="audience">audience:</label>
+                           </div>
+                           <div class="col-75">
+                              <input type="text" id="audience" name="audience" placeholder="API Identifier" >
+                           </div>
+                        </div>
+                        <div class="row">
+                           <div class="col-25">
+                              <label for="connection">connection:</label>
+                           </div>
+                           <div class="col-75">
+                              <input type="text" id="connection" name="connection" placeholder="Connection name in Auth0">
+                           </div>
+                        </div>
+                        <div class="row">
+                           <div class="col-25">
+                              <label for="display">display</label>
+                           </div>
+                           <div class="col-75">
+                              <select id="display" name="display">
+                                 <option value="">Select an option</option>
+                                 <option value="page">page</option>
+                                 <option value="popup">popup</option>
+                                 <option value="touch">touch</option>
+                                 <option value="touch">wap</option>
+                              </select>
+                           </div>
+                        </div>
+                        <div class="row">
+                           <div class="col-25">
+                              <label for="invitation">invitation:</label>
+                           </div>
+                           <div class="col-75">
+                              <input type="text" id="invitation" name="invitation"  >
+                           </div>
+                        </div>
+                        <div class="row">
+                           <div class="col-25">
+                              <label for="login_hint">login_hint:</label>
+                           </div>
+                           <div class="col-75">
+                              <input type="text" id="login_hint" name="login_hint"  placeholder="email address">
+                           </div>
+                        </div>
+                        <div class="row">
+                           <div class="col-25">
+                              <label for="max_age">max_age:</label>
+                           </div>
+                           <div class="col-75">
+                              <input type="text" id="max_age" name="max_age" placeholder="entering 0 would force user to authenticate irrespective of current session" >
+                           </div>
+                        </div>
+                        <div class="row">
+                           <div class="col-25">
+                              <label for="organization">organization:</label>
+                           </div>
+                           <div class="col-75">
+                              <input type="text" id="organization" name="organization" placeholder="Enter Auth0 organization name">
+                           </div>
+                        </div>
+                        <div class="row">
+                           <div class="col-25">
+                              <label for="prompt">prompt</label>
+                           </div>
+                           <div class="col-75">
+                              <select id="prompt" name="prompt">
+                                 <option value="">Select an option</option>
+                                 <option value="login">login</option>
+                                 <option value="none">none</option>
+                                 <option value="touch">consent</option>
+                                 <option value="touch">select_account</option>
+                              </select>
+                           </div>
+                        </div>
+                        <div class="row">
+                           <div class="col-25">
+                              <label for="screen_hint">screen_hint</label>
+                           </div>
+                           <div class="col-75">
+                              <select id="screen_hint" name="screen_hint">
+                                 <option value="">Select an option</option>
+                                 <option value="login">login</option>
+                                 <option value="signup">signup</option>
+                              </select>
+                           </div>
+                        </div>
+                        <div class="row">
+                           <div class="col-25">
+                              <label for="ui_locales">ui_locales:</label>
+                           </div>
+                           <div class="col-75">
+                              <input type="text" id="ui_locales" name="ui_locales" placeholder="e.g en">
+                           </div>
+                        </div>
+                        <div class="additional-fields">
+                        <!-- Dynamically added fields will go here -->
                     </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+                    <!-- Button to add more fields -->
+                    <button type="button" id="addFieldButton">Add More Fields</button>
+                     </div>
+                     <br>
+                     <button id="initBtn" class="btn btn-primary btn-margin" type="submit">Initialize Auth0 Client</button>
+			<button
+                              id="qsLoginBtn"
 
-
-	     <!-- Import the JavaScript module -->
-    <script type="module">
-        // Import the jose module using its full URL
-        import * as jose from 'https://cdn.jsdelivr.net/npm/jose@5.2.3/dist/browser/index.min.js';
-
-        async function generateKeyPair() {
-            try {
-                const { publicKey, privateKey } = await jose.generateKeyPair('PS256', {
-                    extractable: true,
-                    modulusLength: 2048
-                });
-
-                const privateKeyPKCS8 = await jose.exportPKCS8(privateKey);
-                const publicKeySPKI = await jose.exportSPKI(publicKey);
-
-                console.log("privateKey :", privateKeyPKCS8);
-                console.log("publicKey :", publicKeySPKI);
-                
-                return { publicKeySPKI, privateKeyPKCS8 };
-            } catch (e) {
-                console.log("Error while generating keys : ", e);
-            }
-        }
-
-        // Function to download the public key
-        function downloadPublicKey() {
-            const publicKeyContent = document.getElementById("public-key").textContent;
-            downloadKey(publicKeyContent, "public_key.pem");
-        }
-
-        // Function to download the private key
-        function downloadPrivateKey() {
-            const privateKeyContent = document.getElementById("private-key").textContent;
-            downloadKey(privateKeyContent, "private_key.txt");
-        }
-
-        // Helper function to trigger download of key content
-        function downloadKey(content, filename) {
-            const element = document.createElement("a");
-            element.setAttribute("href", "data:text/plain;charset=utf-8," + encodeURIComponent(content));
-            element.setAttribute("download", filename);
-            element.style.display = "none";
-            document.body.appendChild(element);
-            element.click();
-            document.body.removeChild(element);
-        }
-
-        // Update HTML content with generated keys and store in sessionStorage
-        async function updateKeys() {
-            const { publicKeySPKI, privateKeyPKCS8 } = await generateKeyPair();
+				 onclick="login()"
+                              class="btn btn-primary btn-margin auth-invisible hidden" 
+			       disabled
+                              >
+                           Log in
+                           </button>
+			  <a href="/profile" class="btn btn-primary btn-margin auth-visible hidden route-link">Profile</a>
+			  <a href="#"  id="qsLogoutBtn"  onclick="logout()" class="btn btn-primary btn-margin auth-visible hidden route-link">Log Out</a>
 			
-           console.log("publicKey  in updateKeys :", publicKeySPKI);
-                console.log("privateKey in updateKeys  :", privateKeyPKCS8);
+                             <!-- 			  <a href="/profile" class="btn btn-primary btn-margin" disabled = true>Go to Profile</a> -->
+<!-- 			  <button id="profile-btn" class="btn btn-primary btn-margin auth-visible hidden" data-href="/profile">Go to Profile</button> -->
+
+		   </div>
+                  </form>
+		                           
+                           
+                        
+               </div>
+            </div>
+            <script>
+// 		    document.addEventListener("DOMContentLoaded", function() {
+//   const profileBtn = document.getElementById("profile-btn");
+
+//   profileBtn.addEventListener("click", function() {
+//     // Get the href attribute of the button
+//     const href = profileBtn.getAttribute("data-href");
+    
+//     // Navigate to the URL
+//     window.location.href = href;
+//   });
+// });
+
+		    
+		        let fieldCounter = 1;
+               document.addEventListener('DOMContentLoaded', function() {
+               const checkbox = document.getElementById('advanced-options-checkbox');
+               const advancedOptions = document.querySelector('.advanced-options');
+               
+               // Initially hide advanced options
+               advancedOptions.style.display = 'none';
+               
+               // Toggle visibility of advanced options when checkbox is clicked
+               checkbox.addEventListener('change', function() {
+               advancedOptions.style.display = checkbox.checked ? 'block' : 'none';
+               });
+
+		  // Counter for dynamic field IDs
+    
+
+        // Function to create new input fields
+        function createField() {
+            const container = document.querySelector('.additional-fields');
+            const newRow = document.createElement('div');
+            newRow.classList.add('row');
+            newRow.innerHTML = `
+                <div class="col-25">
+                    <label for="key${fieldCounter}">Key:</label>
+                    <input type="text" id="key${fieldCounter}" name="key${fieldCounter}">
+                </div>
+                <div class="col-75">
+                    <label for="value${fieldCounter}">Value:</label>
+                    <input type="text" id="value${fieldCounter}" name="value${fieldCounter}">
+                </div>
+            `;
+            container.appendChild(newRow);
+            fieldCounter++;
+        }
+
+        // Event listener for the add field button
+        const addFieldButton = document.getElementById('addFieldButton');
+        addFieldButton.addEventListener('click', createField);
+		       
+               });
+
+		// document.addEventListener('DOMContentLoaded', function() {
+      
+  //   });
+               
                 
-            document.getElementById("public-key").textContent = publicKeySPKI;
-            document.getElementById("private-key").textContent = privateKeyPKCS8;
+                
+               let currentDomain = sessionStorage.getItem('auth0_domain');
+               let currentClient = sessionStorage.getItem('auth0_client_id'); 
+               
+               let useRefreshTokens = sessionStorage.getItem('useRefreshTokens');
+               let scopes = sessionStorage.getItem('scopes'); 
+                let audience = sessionStorage.getItem('audience');
+               let connection = sessionStorage.getItem('connection');
+                let display = sessionStorage.getItem('display');
+               let invitation = sessionStorage.getItem('invitation');
+                let login_hint = sessionStorage.getItem('login_hint');
+               let max_age = sessionStorage.getItem('max_age');
+                let organization = sessionStorage.getItem('organization');
+               let prompt = sessionStorage.getItem('prompt');
+                let screen_hint = sessionStorage.getItem('screen_hint');
+               let ui_locales = sessionStorage.getItem('ui_locales'); 
+                
+               
+                const domainValueInput = document.getElementById('domain');
+                const clientIdValueInput = document.getElementById('clientId');
+                
+                domainValueInput.value = currentDomain || 'tropicbrush.us.auth0.com'; 
+                clientIdValueInput.value = currentClient || 'e9HS1RUqY0i5UGa99W9BwpSxlSaPk9xU'; 
+                const auth0Form = document.getElementById('auth0-form');
+                
+               auth0Form.addEventListener('submit', async (event) => {
+               event.preventDefault();
 
-            // Store keys in sessionStorage
-            sessionStorage.setItem("publicKey", publicKeySPKI);
-            sessionStorage.setItem("privateKey", privateKeyPKCS8);
+
+				const formData = new FormData(auth0Form);
+				console.log("formData",formData)
+
+			        const domain = formData.get('domain');
+		               const clientId = formData.get('clientId');
+		               
+		               const useRefreshTokens = formData.get('useRefreshTokens');
+		               const scopes = formData.get('scopes');
+		               const audience = formData.get('audience');
+		               const connection = formData.get('connection');
+		               const display = formData.get('display');
+		               const invitation = formData.get('invitation');
+		               const login_hint = formData.get('login_hint');
+		               const max_age =formData.get('max_age');
+		               const organization = formData.get('organization');
+		               const prompt = formData.get('prompt');
+		               const screen_hint = formData.get('screen_hint');
+		               const ui_locales = formData.get('ui_locales');
+
+		       
+		               // const domain = document.getElementById('domain').value;
+		               // const clientId = document.getElementById('clientId').value;
+		               
+		               // const useRefreshTokens = document.getElementById('useRefreshTokens').value;
+		               // const scopes = document.getElementById('scopes').value;
+		               // const audience = document.getElementById('audience').value;
+		               // const connection = document.getElementById('connection').value;
+		               // const display = document.getElementById('display').value;
+		               // const invitation = document.getElementById('invitation').value;
+		               // const login_hint = document.getElementById('login_hint').value;
+		               // const max_age = document.getElementById('max_age').value;
+		               // const organization = document.getElementById('organization').value;
+		               // const prompt = document.getElementById('prompt').value;
+		               // const screen_hint = document.getElementById('screen_hint').value;
+		               // const ui_locales = document.getElementById('ui_locales').value;
+		
+				 const additionalFields = {};
+				    
+		        for (let i = 1; i < fieldCounter; i++) {
+		            const key = formData.get(`key${i}`);
+		            const value = formData.get(`value${i}`);
+			console.log("key :",key)
+				console.log("value :",value)
+		            additionalFields[key] = value;
+			    sessionStorage.setItem("cust_field_" +key,value);
+				console.log("sessionStorage response :",sessionStorage.getItem("cust_field_" +key))
+		        }
+				       
+		               
+		               
+		               sessionStorage.setItem('auth0_domain',domain);
+		               sessionStorage.setItem('auth0_client_id',clientId);
+		               
+		               sessionStorage.setItem('useRefreshTokens',useRefreshTokens);
+		               sessionStorage.setItem('scopes',scopes);
+		                sessionStorage.setItem('audience',audience);
+		               sessionStorage.setItem('connection',connection);
+		               sessionStorage.setItem('display',display);
+		               sessionStorage.setItem('invitation',invitation);
+		               sessionStorage.setItem('login_hint',login_hint);
+		               sessionStorage.setItem('max_age',max_age);
+		               sessionStorage.setItem('organization',organization);
+		               sessionStorage.setItem('prompt',prompt);
+		               sessionStorage.setItem('screen_hint',screen_hint);
+		               sessionStorage.setItem('ui_locales',ui_locales);
+		               
+		               
+		               // initializeAuth0Client(domain, clientId);
+		               await configureClient();
+		       document.getElementById("qsLoginBtn").removeAttribute("disabled");
+		       document.getElementById("profile-btn").removeAttribute("disabled");
+		      
+               });
+            </script>
+            <div class="page" id="content-profile">
+               <div class="container">
+<!-- 		          <div class="form-options">
+		       
+                  <div class="row align-items-center profile-header">
+                     <div class="col-md-2">
+                        <img
+                           alt="User's profile picture"
+                           class="rounded-circle img-fluid profile-image mb-3 mb-md-0"/>
+                     </div>
+                     <div class="col-md">
+                        <h2 class="user-name"></h2>
+                        <p class="lead text-muted user-email"></p>
+                     </div>
+              
+                  <div class="row">
+                     <label for="profile-data">User Profile Data</label>
+                     <pre class="rounded">
+                <code id="profile-data" class="json"></code></pre>
+                </div>
+                </div>
+		</div> -->
+        <div class="form-options">
+		
+                  <div class="row">
+                     <img
+                           alt="User's profile picture"
+                           class="rounded-circle img-fluid profile-image mb-3 mb-md-0"/>
+                  </div>
+                  <div class="col-md">
+                        <h2 class="user-name"></h2>
+                        <p class="lead text-muted user-email"></p>
+                     </div>
+		
+                  <div class="row">
+                     <label for="profile-data"><b>User Profile Data</b></label>
+                     <pre class="rounded">
+                <code id="profile-data" class="json"></code></pre>
+                  </div>
+		</div>
+		<div class="form-options">
+		
+                  <div class="row">
+                     <label for="idToken-data"><b>ID Token</b></label>
+                     <pre class="rounded">
+                <code id="idToken-data" class="json"></code></pre>
+                  </div>
+		
+                  <div class="row">
+                     <label for="idToken-decoded-data"><b>Decoded ID Token Data</b></label>
+                     <pre class="rounded">
+                <code id="idToken-decoded-data" class="json"></code></pre>
+                  </div>
+		</div>
+		<div class="form-options">
+                  <div class="row">
+                     <label for="accessToken-data"><b>Access Token</b></label>
+                     <pre class="rounded">
+                <code id="accessToken-data" class="json"></code></pre>
+                  </div>
+		
+		
+                  <div class="row">
+                     <label for="accessToken-decoded-data"><b>Decoded Access Token</b></label>
+                     <pre class="rounded">
+                	<code id="accessToken-decoded-data" class="json"></code></pre>
+                  </div>
+		
+               </div>
+		</div>       
+            </div>
+         </div>
+         <footer class="bg-light text-center p-5">
+            <div class="logo"></div>
+            <p>
+               Sample project provided by @Tropicbrush
+                         </p>
+         </footer>
+      </div>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+      <script src="https://cdn.auth0.com/js/auth0-spa-js/2.0/auth0-spa-js.production.js"></script>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+      <script src="/public/js/ui.js"></script>
+      <script src="/public/js/app.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/jwt-decode@4.0.0/build/cjs/index.min.js"></script>
+<!--       <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Counter for dynamic field IDs
+        let fieldCounter = 1;
+
+        // Function to create new input fields
+        function createField() {
+            const container = document.querySelector('.additional-fields');
+            const newRow = document.createElement('div');
+            newRow.classList.add('row');
+            newRow.innerHTML = `
+                <div class="col-25">
+                    <label for="key${fieldCounter}">Key:</label>
+                    <input type="text" id="key${fieldCounter}" name="key${fieldCounter}">
+                </div>
+                <div class="col-75">
+                    <label for="value${fieldCounter}">Value:</label>
+                    <input type="text" id="value${fieldCounter}" name="value${fieldCounter}">
+                </div>
+            `;
+            container.appendChild(newRow);
+            fieldCounter++;
         }
 
-        // Function to generate and display keys
-        async function generateAndDisplayKeys() {
-            document.getElementById("form-options").classList.remove("hidden");
-            await updateKeys();
-        }
-        
-        async function generateAssertion(){
-        
-        const privateKeyPKCS8 = sessionStorage.getItem("privateKey");
-        const rsaPrivateKey = await jose.importPKCS8(privateKeyPKCS8, 'PS256');
-        console.log("rsaPrivateKey in signAssertion :", rsaPrivateKey);
-        
+        // Event listener for the add field button
+        const addFieldButton = document.getElementById('addFieldButton');
+        addFieldButton.addEventListener('click', createField);
+    });
+</script> -->
+	   <script>
+    // Function to open the popup
+    function openPopup() {
+        document.getElementById('popup').style.display = 'block';
+    }
 
-const jwt = await new jose.SignJWT({ 'urn:example:claim': true })
-  .setProtectedHeader({ alg: 'PS256' })
-  .setIssuedAt()
-  .setIssuer('urn:example:issuer')
-  .setAudience('urn:example:audience')
-  .setExpirationTime('2h')
-  .sign(rsaPrivateKey)
-  
-  console.log(jwt)
-        document.getElementById("signedAssertion-key").textContent = jwt;
- document.getElementById("generateAssertion-div").classList.remove("hidden");
-        }
-        
+    // Function to close the popup
+    function closePopup() {
+        document.getElementById('popup').style.display = 'none';
+    }
+<script>
+    function openPopupAndLogin() {
+        // Prepare the URL for the popup window
+        var popupUrl = "https://tropicbrush.github.com";
 
-        
-        
-        
-        generateAssertion
-   document.getElementById('generateAssertion').addEventListener('click', generateAssertion);             document.getElementById('downloadPrivateKey').addEventListener('click', downloadPrivateKey);
-        document.getElementById('downloadPublicKey').addEventListener('click', downloadPublicKey);
+        // Open a popup window
+        var popupWindow = window.open(popupUrl, "LoginPopup", "width=600,height=400");
 
-        document.getElementById('generateAndDisplayKeys').addEventListener('click', generateAndDisplayKeys);
-    </script>
-</body>
+        // Function to execute after the popup window loads
+        popupWindow.onload = function() {
+            // Execute the login function in the popup window
+            popupWindow.login();
+        };
+    }
+</script>
+   </body>
 </html>
