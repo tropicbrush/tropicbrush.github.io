@@ -142,17 +142,17 @@
        const { publicKey, privateKey } = await jose.generateKeyPair('PS256', {
   extractable: true,modulusLength: 2048
 })
-console.log(await jose.exportJWK(privateKey))
-console.log(await jose.exportPKCS8(privateKey))
 
-
-console.log(await jose.exportSPKI(publicKey));
-                 return { await jose.exportPKCS8(privateKey), await jose.exportSPKI(publicKey) };
+const privateKey=  await jose.exportPKCS8(privateKey)
+const publicKey = await jose.exportSPKI(publicKey)
+	     
+console.log("privateKey :" , privateKey);
+console.log("publicKey :" , publicKey);
+return {publicKey , privateKey};
 
 } catch(e){
 console.log("Error while generating keys : " , e)
 }
-
 }
 
 // Function to download the public key
