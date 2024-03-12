@@ -2,14 +2,14 @@
 <html lang="en" data-bs-theme="auto">
 
 <head>
-    <script src="./public/assets/js/color-modes.js"></script>
+    <script src="/public/assets/js/color-modes.js"></script>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.122.0">
-    <title>Checkout example · Bootstrap v5.3</title>
+    <title>CIAM Playground</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/checkout/">
 
@@ -17,7 +17,7 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
 
-    <link href="./public/assets/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/public/assets/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
         .bd-placeholder-img {
@@ -172,34 +172,68 @@
         </ul>
     </div>
 
-
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">CIAM Playground</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav me-auto mb-2 mb-md-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Okta CIC(Auth0)</a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="./product/auth0/authCodeFlowPKCEPublic.html">Auth Code Flow with PKCE</a></li>
+                    <li><a class="dropdown-item" href="./product/auth0/privateKeyJwt.html">Auth Code Flow with Private JWT</a></li>
+                    <li><a class="dropdown-item" href="./product/auth0/ropg.html">Resource Owner Password Grant</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Auth Code Flow with PKCE</a></li>
+                  <li><a class="dropdown-item" href="#">Auth Code Flow with Private JWT</a></li>
+                  <li><a class="dropdown-item" href="#">Resource Owner Password Grant</a></li>
+                </ul>
+              </li>
+            </ul>
+            <form class="d-flex" role="search">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+          </div>
+        </div>
+      </nav>
+    
     <div class="container">
         <main>
+            <p class="lead"> </p>
             <div class="py-5 text-center">
-                <img class="d-block mx-auto mb-4" src="./public/assets/brand/bootstrap-logo.svg" alt="" width="72"
-                    height="57">
-                <h2>Auth0 Client Config Properties</h2>
-                <p class="lead">Test.</p>
+                <h2>Authorization Code Flow With PKCE For Public Client</h2>
+                <!-- <p class="lead">Test.</p> -->
             </div>
-
+            <div id="content-home" class="page">
             <div class="row g-5">
 
                 <div class="col-md-7 col-lg-8">
                     <h4 class="mb-3">Auth0 Client</h4>
                     <form id="auth0-form" class="needs-validation" novalidate>
                         <div class="row g-3">
-                            <div class="col-sm-6">
+                            <div class="col-sm-4">
                                 <label for="domain" class="form-label">Auth0 Tenant Domain</label>
-                                <input type="text" class="form-control" id="domain" placeholder="" value=""
-                                    required>
+                                <input type="text" class="form-control" name="domain" id="domain" placeholder="Auth0 Domain"
+                                    value="tropicbrush.us.auth0.com" required>
                                 <div class="invalid-feedback">
                                     Valid Auth0 domain is required.
                                 </div>
                             </div>
-                            <div class="col-sm-6">
+                            <div class="col-sm-4">
                                 <label for="clientId" class="form-label">Auth0 Client ID</label>
-                                <input type="text" class="form-control" id="clientId" placeholder="" value=""
-                                    required>
+                                <input type="text" class="form-control" name="clientId" id="clientId" placeholder="Auth0 Client Id"
+                                    value="e9HS1RUqY0i5UGa99W9BwpSxlSaPk9xU" required>
                                 <div class="invalid-feedback">
                                     Valid Auth0 Client ID is required.
                                 </div>
@@ -211,22 +245,15 @@
                             <div class="advanced-options">
                                 <div class="row g-3">
                                     <hr class="my-4">
-                                    <!-- <div class="col-sm-6">
-              <label for="lastName" class="form-label">Last name</label>
-              <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
-              <div class="invalid-feedback">
-                Valid last name is required.
-              </div>
-            </div> -->
 
                                     <div class="col-md-5">
                                         <label for="audience" class="form-label">Audience</label>
-                                        <input type="text" class="form-control" id="audience"
+                                        <input type="text" class="form-control" id="audience" name="audience"
                                             placeholder="API Identifier in Auth0">
                                     </div>
                                     <div class="col-md-5">
                                         <label for="scopes" class="form-label">Scopes</label>
-                                        <input type="text" class="form-control" id="scopes"
+                                        <input type="text" class="form-control" id="scopes" name="scopes"
                                             placeholder="openid email profile">
                                     </div>
 
@@ -234,12 +261,12 @@
 
                                     <div class="col-md-5">
                                         <label for="connection" class="form-label">Connection</label>
-                                        <input type="text" class="form-control" id="connection"
+                                        <input type="text" class="form-control" id="connection" name="connection"
                                             placeholder="Connection name in Auth0">
                                     </div>
                                     <div class="col-md-4">
                                         <label for="useRefreshTokens" class="form-label">Use Refresh Tokens</label>
-                                        <select class="form-select" id="useRefreshTokens">
+                                        <select class="form-select" id="useRefreshTokens" name="useRefreshTokens">
                                             <option value="">Select an option</option>
                                             <option value="true">true</option>
                                             <option value="false">false</option>
@@ -248,19 +275,19 @@
 
                                     <div class="col-md-5">
                                         <label for="organization" class="form-label">organization</label>
-                                        <input type="text" class="form-control" id="organization"
+                                        <input type="text" class="form-control" id="organization" name="organization"
                                             placeholder="Enter Auth0 organization name">
                                     </div>
 
                                     <div class="col-md-5">
                                         <label for="invitation" class="form-label">Invitation</label>
-                                        <input type="text" class="form-control" id="invitation"
+                                        <input type="text" class="form-control" id="invitation" name="invitation"
                                             placeholder="Organization Invitation ticket">
                                     </div>
 
                                     <div class="col-md-5">
                                         <label for="display" class="form-label">Display</label>
-                                        <select class="form-select" id="display">
+                                        <select class="form-select" id="display" name="display">
                                             <option value="">Select an option</option>
                                             <option value="page">page</option>
                                             <option value="popup">popup</option>
@@ -271,7 +298,7 @@
 
                                     <div class="col-md-5">
                                         <label for="login_hint" class="form-label">login_hint</label>
-                                        <input type="text" class="form-control" id="login_hint"
+                                        <input type="text" class="form-control" id="login_hint"  name="login_hint"
                                             placeholder="user email">
                                     </div>
 
@@ -281,7 +308,7 @@
 
                                     <div class="col-md-5">
                                         <label for="prompt" class="form-label">Prompt</label>
-                                        <select class="form-select" id="prompt">
+                                        <select class="form-select" id="prompt" name="prompt">
                                             <option value="">Select an option</option>
                                             <option value="login">login</option>
                                             <option value="none">none</option>
@@ -292,7 +319,7 @@
 
                                     <div class="col-md-5">
                                         <label for="screen_hint" class="form-label">screen_hint</label>
-                                        <select class="form-select" id="screen_hint">
+                                        <select class="form-select" id="screen_hint" name="screen_hint">
                                             <option value="">Select an option</option>
                                             <option value="login">login</option>
                                             <option value="signup">signup</option>
@@ -301,7 +328,7 @@
 
                                     <div class="col-md-5">
                                         <label for="max_age" class="form-label">max_age</label>
-                                        <input type="text" class="form-control" id="max_age"
+                                        <input type="text" class="form-control" id="max_age" name="max_age"
                                             placeholder="0 would force user to reauthenticate">
                                     </div>
 
@@ -309,7 +336,7 @@
 
                                     <div class="col-md-5">
                                         <label for="ui_locales" class="form-label">ui_locales</label>
-                                        <input type="text" class="form-control" id="ui_locales" placeholder="es">
+                                        <input type="text" class="form-control" id="ui_locales" name="ui_locales" placeholder="es">
                                     </div>
 
                                     <div class="additional-fields"></div>
@@ -323,48 +350,113 @@
                             </div>
                             <hr class="my-4">
 
-                            <div class="col-md-3">
+                            <div class="col-md-3 auth-hide">
                                 <button id="initBtn" class="btn btn-primary d-inline-flex align-items-center"
                                     type="submit">
                                     Initialize Auth0 Client
                                 </button>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-3 auth-hide">
                                 <button id="qsLoginBtn" class="btn btn-primary d-inline-flex align-items-center"
                                     onclick="login()" disabled>
                                     Log in
                                 </button>
 
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-3 auth-show visually-hidden">
+                                <button id="profile-btn" href="/profile"
+                                    class="btn btn-primary d-inline-flex align-items-center">
+                                    Profile
+                                </button>
+                            </div>
+                            <div class="col-md-3 auth-show visually-hidden">
                                 <button id="qsLogoutBtn"
-                                    class="btn btn-primary d-inline-flex align-items-center auth-visible hidden"
+                                    class="btn btn-primary d-inline-flex align-items-center"
                                     onclick="logout()">
                                     Log Out
                                 </button>
                             </div>
-
-
                         </div>
                     </form>
                 </div>
             </div>
-        </main>
+            </div>
+            <div class="row g-3 auth-show visually-hidden">
+                
+                    <label for="profile-data"><b>User Profile Data</b></label>
+                    <pre class="rounded">
+                <code id="profile-data" class="json"></code></pre>
+            
+            </div>
 
-        <footer class="my-5 pt-5 text-body-secondary text-center text-small">
-            <p class="mb-1">&copy; 2017–2024 Company Name</p>
-            <ul class="list-inline">
-                <li class="list-inline-item"><a href="#">Privacy</a></li>
-                <li class="list-inline-item"><a href="#">Terms</a></li>
-                <li class="list-inline-item"><a href="#">Support</a></li>
-            </ul>
-        </footer>
+
+            <div class="row g-3 auth-show visually-hidden" id="content-profile">
+                <div class="container">
+                    <div class="form-options">
+
+                        <div class="row">
+                            <img alt="User's profile picture"
+                                class="rounded-circle img-fluid profile-image mb-3 mb-md-0" />
+                        </div>
+                        <div class="col-md">
+                            <h2 class="user-name"></h2>
+                            <p class="lead text-muted user-email"></p>
+                        </div>
+
+                        <div class="row">
+                            <label for="profile-data"><b>User Profile Data</b></label>
+                            <pre class="rounded">
+                        <code id="profile-data" class="json"></code></pre>
+                        </div>
+                    </div>
+                    <div class="form-options">
+
+                        <div class="row">
+                            <label for="idToken-data"><b>ID Token</b></label>
+                            <pre class="rounded">
+                        <code id="idToken-data" class="json"></code></pre>
+                        </div>
+
+                        <div class="row">
+                            <label for="idToken-decoded-data"><b>Decoded ID Token Data</b></label>
+                            <pre class="rounded">
+                        <code id="idToken-decoded-data" class="json"></code></pre>
+                        </div>
+                    </div>
+                    <div class="form-options">
+                        <div class="row">
+                            <label for="accessToken-data"><b>Access Token</b></label>
+                            <pre class="rounded">
+                        <code id="accessToken-data" class="json"></code></pre>
+                        </div>
+
+
+                        <div class="row">
+                            <label for="accessToken-decoded-data"><b>Decoded Access Token</b></label>
+                            <pre class="rounded">
+                            <code id="accessToken-decoded-data" class="json"></code></pre>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
     </div>
-    <script src="./public/assets/dist/js/bootstrap.bundle.min.js"></script>
+    </main>
+
+    <footer class="my-5 pt-5 text-body-secondary text-center text-small">
+        <p class="mb-1">&copy; 2017–2024 Company Name</p>
+        <ul class="list-inline">
+            <li class="list-inline-item"><a href="#">Privacy</a></li>
+            <li class="list-inline-item"><a href="#">Terms</a></li>
+            <li class="list-inline-item"><a href="#">Support</a></li>
+        </ul>
+    </footer>
+    </div>
+    <script src="/public/assets/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 <script>
-     let fieldCounter = 1;
+    let fieldCounter = 1;
     document.addEventListener('DOMContentLoaded', function () {
         const checkbox = document.getElementById('advancedSettings');
         const advancedOptions = document.querySelector('.advanced-options');
@@ -377,7 +469,7 @@
             advancedOptions.style.display = checkbox.checked ? 'block' : 'none';
         });
 
-       
+
         function createField() {
             const container = document.querySelector('.additional-fields');
             const newRow = document.createElement('div');
@@ -427,6 +519,7 @@
     domainValueInput.value = currentDomain || 'tropicbrush.us.auth0.com';
     clientIdValueInput.value = currentClient || 'e9HS1RUqY0i5UGa99W9BwpSxlSaPk9xU';
     const auth0Form = document.getElementById('auth0-form');
+    console.log("auth0Form", auth0Form)
 
     auth0Form.addEventListener('submit', async (event) => {
         event.preventDefault();
@@ -488,20 +581,10 @@
         document.getElementById("profile-btn").removeAttribute("disabled");
 
     });
-
-
-
-
-
-
-
-
-
-
 </script>
 <script src="https://cdn.auth0.com/js/auth0-spa-js/2.0/auth0-spa-js.production.js"></script>
-<script src="./public/js/ui.js"></script>
-<script src="./public/js/app.js"></script>
+<script src="./js/ui.js"></script>
+<script src="./js/app.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jwt-decode@4.0.0/build/cjs/index.min.js"></script>
 
 
