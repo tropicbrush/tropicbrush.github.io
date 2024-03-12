@@ -67,7 +67,7 @@ const updateUI = async () => {
 
 
 
-      document.getElementById("profile-data").value = JSON.stringify(
+      document.getElementById("profile-data").innerText = JSON.stringify(
         user,
         null,
         2
