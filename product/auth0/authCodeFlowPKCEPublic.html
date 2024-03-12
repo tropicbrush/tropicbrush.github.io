@@ -583,10 +583,35 @@
     });
 </script>
 <script src="https://cdn.auth0.com/js/auth0-spa-js/2.0/auth0-spa-js.production.js"></script>
-<script src="./js/ui.js"></script>
-<script src="./js/app.js"></script>
+<script src="/public/js/ui.js"></script>
+<script src="/public/js/app.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jwt-decode@4.0.0/build/cjs/index.min.js"></script>
+<script>
+    // Function to open the popup
+    function openPopup() {
+        document.getElementById('popup').style.display = 'block';
+    }
 
+    // Function to close the popup
+    function closePopup() {
+        document.getElementById('popup').style.display = 'none';
+    }
+		   </script>
+<script>
+    function openPopupAndLogin() {
+        // Prepare the URL for the popup window
+        var popupUrl = "https://tropicbrush.github.com";
+
+        // Open a popup window
+        var popupWindow = window.open(popupUrl, "LoginPopup", "width=600,height=400");
+
+        // Function to execute after the popup window loads
+        popupWindow.onload = function() {
+            // Execute the login function in the popup window
+            popupWindow.login();
+        };
+    }
+</script>
 
 
 </html>
