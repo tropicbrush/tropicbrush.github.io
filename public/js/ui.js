@@ -42,16 +42,16 @@ const updateUI = async () => {
       decodedAccessToken = "AT is an Opauqe Token"
       }
       
-      // document.getElementById("idToken-data").innerText = JSON.stringify(
-      //   id_token,
-      //   null,
-      //   2
-      // );
-      document.getElementById("1234").innerText = JSON.stringify(
-              id_token,
-              null,
-              2
-            );
+      document.getElementById("idToken-data").innerText = JSON.stringify(
+        id_token,
+        null,
+        2
+      );
+      // document.getElementById("1234").innerText = JSON.stringify(
+      //         id_token,
+      //         null,
+      //         2
+      //       );
       
 
       document.getElementById("accessToken-decoded-data").innerText = JSON.stringify(
