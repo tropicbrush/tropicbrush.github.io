@@ -42,7 +42,7 @@ const updateUI = async () => {
       decodedAccessToken = "AT is an Opauqe Token"
       }
       
-      document.getElementById("idToken-data").innerText = JSON.stringify(
+      document.getElementById("idToken-data").value = JSON.stringify(
         id_token,
         null,
         2
