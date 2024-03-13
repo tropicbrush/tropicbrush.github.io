@@ -2,524 +2,461 @@
 <html lang="en" data-bs-theme="auto">
 
 <head>
-    <script src="/public/assets/js/color-modes.js"></script>
+   <script src="/public/assets/js/color-modes.js"></script>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Hugo 0.122.0">
-    <title>CIAM Playground</title>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta name="description" content="">
+   <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+   <meta name="generator" content="Hugo 0.122.0">
+   <title>CIAM Playground</title>
 
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/checkout/">
-
-
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
-
-    <link href="/public/assets/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <style>
-        .bd-placeholder-img {
-            font-size: 1.125rem;
-            text-anchor: middle;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            user-select: none;
-        }
-
-        @media (min-width: 768px) {
-            .bd-placeholder-img-lg {
-                font-size: 3.5rem;
-            }
-        }
-
-        .b-example-divider {
-            width: 100%;
-            height: 3rem;
-            background-color: rgba(0, 0, 0, .1);
-            border: solid rgba(0, 0, 0, .15);
-            border-width: 1px 0;
-            box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
-        }
-
-        .b-example-vr {
-            flex-shrink: 0;
-            width: 1.5rem;
-            height: 100vh;
-        }
-
-        .bi {
-            vertical-align: -.125em;
-            fill: currentColor;
-        }
-
-        .nav-scroller {
-            position: relative;
-            z-index: 2;
-            height: 2.75rem;
-            overflow-y: hidden;
-        }
-
-        .nav-scroller .nav {
-            display: flex;
-            flex-wrap: nowrap;
-            padding-bottom: 1rem;
-            margin-top: -1px;
-            overflow-x: auto;
-            text-align: center;
-            white-space: nowrap;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        .btn-bd-primary {
-            --bd-violet-bg: #712cf9;
-            --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
-
-            --bs-btn-font-weight: 600;
-            --bs-btn-color: var(--bs-white);
-            --bs-btn-bg: var(--bd-violet-bg);
-            --bs-btn-border-color: var(--bd-violet-bg);
-            --bs-btn-hover-color: var(--bs-white);
-            --bs-btn-hover-bg: #6528e0;
-            --bs-btn-hover-border-color: #6528e0;
-            --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
-            --bs-btn-active-color: var(--bs-btn-hover-color);
-            --bs-btn-active-bg: #5a23c8;
-            --bs-btn-active-border-color: #5a23c8;
-        }
-
-        .bd-mode-toggle {
-            z-index: 1500;
-        }
-
-        .bd-mode-toggle .dropdown-menu .active .bi {
-            display: block !important;
-        }
-    </style>
+   <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/checkout/">
 
 
-    <!-- Custom styles for this template -->
-    <link href="checkout.css" rel="stylesheet">
+
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+
+   <link href="/public/assets/dist/css/bootstrap.min.css" rel="stylesheet">
+
+   <style>
+      .bd-placeholder-img {
+         font-size: 1.125rem;
+         text-anchor: middle;
+         -webkit-user-select: none;
+         -moz-user-select: none;
+         user-select: none;
+      }
+
+      @media (min-width: 768px) {
+         .bd-placeholder-img-lg {
+            font-size: 3.5rem;
+         }
+      }
+
+      .b-example-divider {
+         width: 100%;
+         height: 3rem;
+         background-color: rgba(0, 0, 0, .1);
+         border: solid rgba(0, 0, 0, .15);
+         border-width: 1px 0;
+         box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+      }
+
+      .b-example-vr {
+         flex-shrink: 0;
+         width: 1.5rem;
+         height: 100vh;
+      }
+
+      .bi {
+         vertical-align: -.125em;
+         fill: currentColor;
+      }
+
+      .nav-scroller {
+         position: relative;
+         z-index: 2;
+         height: 2.75rem;
+         overflow-y: hidden;
+      }
+
+      .nav-scroller .nav {
+         display: flex;
+         flex-wrap: nowrap;
+         padding-bottom: 1rem;
+         margin-top: -1px;
+         overflow-x: auto;
+         text-align: center;
+         white-space: nowrap;
+         -webkit-overflow-scrolling: touch;
+      }
+
+      .btn-bd-primary {
+         --bd-violet-bg: #712cf9;
+         --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
+
+         --bs-btn-font-weight: 600;
+         --bs-btn-color: var(--bs-white);
+         --bs-btn-bg: var(--bd-violet-bg);
+         --bs-btn-border-color: var(--bd-violet-bg);
+         --bs-btn-hover-color: var(--bs-white);
+         --bs-btn-hover-bg: #6528e0;
+         --bs-btn-hover-border-color: #6528e0;
+         --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
+         --bs-btn-active-color: var(--bs-btn-hover-color);
+         --bs-btn-active-bg: #5a23c8;
+         --bs-btn-active-border-color: #5a23c8;
+      }
+
+      .bd-mode-toggle {
+         z-index: 1500;
+      }
+
+      .bd-mode-toggle .dropdown-menu .active .bi {
+         display: block !important;
+      }
+   </style>
+
+
+   <!-- Custom styles for this template -->
+   <link href="checkout.css" rel="stylesheet">
 </head>
 
 <body class="bg-body-tertiary">
-    <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
-        <symbol id="check2" viewBox="0 0 16 16">
-            <path
-                d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
-        </symbol>
-        <symbol id="circle-half" viewBox="0 0 16 16">
-            <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z" />
-        </symbol>
-        <symbol id="moon-stars-fill" viewBox="0 0 16 16">
-            <path
-                d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z" />
-            <path
-                d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z" />
-        </symbol>
-        <symbol id="sun-fill" viewBox="0 0 16 16">
-            <path
-                d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z" />
-        </symbol>
-    </svg>
+   <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+      <symbol id="check2" viewBox="0 0 16 16">
+         <path
+            d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
+      </symbol>
+      <symbol id="circle-half" viewBox="0 0 16 16">
+         <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z" />
+      </symbol>
+      <symbol id="moon-stars-fill" viewBox="0 0 16 16">
+         <path
+            d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z" />
+         <path
+            d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z" />
+      </symbol>
+      <symbol id="sun-fill" viewBox="0 0 16 16">
+         <path
+            d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z" />
+      </symbol>
+   </svg>
 
-    <div class="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle">
-        <button class="btn btn-bd-primary py-2 dropdown-toggle d-flex align-items-center" id="bd-theme" type="button"
-            aria-expanded="false" data-bs-toggle="dropdown" aria-label="Toggle theme (auto)">
-            <svg class="bi my-1 theme-icon-active" width="1em" height="1em">
-                <use href="#circle-half"></use>
-            </svg>
-            <span class="visually-hidden" id="bd-theme-text">Toggle theme</span>
-        </button>
-        <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="bd-theme-text">
-            <li>
-                <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="light"
-                    aria-pressed="false">
-                    <svg class="bi me-2 opacity-50" width="1em" height="1em">
-                        <use href="#sun-fill"></use>
-                    </svg>
-                    Light
-                    <svg class="bi ms-auto d-none" width="1em" height="1em">
-                        <use href="#check2"></use>
-                    </svg>
-                </button>
-            </li>
-            <li>
-                <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark"
-                    aria-pressed="false">
-                    <svg class="bi me-2 opacity-50" width="1em" height="1em">
-                        <use href="#moon-stars-fill"></use>
-                    </svg>
-                    Dark
-                    <svg class="bi ms-auto d-none" width="1em" height="1em">
-                        <use href="#check2"></use>
-                    </svg>
-                </button>
-            </li>
-            <li>
-                <button type="button" class="dropdown-item d-flex align-items-center active" data-bs-theme-value="auto"
-                    aria-pressed="true">
-                    <svg class="bi me-2 opacity-50" width="1em" height="1em">
-                        <use href="#circle-half"></use>
-                    </svg>
-                    Auto
-                    <svg class="bi ms-auto d-none" width="1em" height="1em">
-                        <use href="#check2"></use>
-                    </svg>
-                </button>
-            </li>
-        </ul>
-    </div>
+   <div class="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle">
+      <button class="btn btn-bd-primary py-2 dropdown-toggle d-flex align-items-center" id="bd-theme" type="button"
+         aria-expanded="false" data-bs-toggle="dropdown" aria-label="Toggle theme (auto)">
+         <svg class="bi my-1 theme-icon-active" width="1em" height="1em">
+            <use href="#circle-half"></use>
+         </svg>
+         <span class="visually-hidden" id="bd-theme-text">Toggle theme</span>
+      </button>
+      <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="bd-theme-text">
+         <li>
+            <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="light"
+               aria-pressed="false">
+               <svg class="bi me-2 opacity-50" width="1em" height="1em">
+                  <use href="#sun-fill"></use>
+               </svg>
+               Light
+               <svg class="bi ms-auto d-none" width="1em" height="1em">
+                  <use href="#check2"></use>
+               </svg>
+            </button>
+         </li>
+         <li>
+            <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark"
+               aria-pressed="false">
+               <svg class="bi me-2 opacity-50" width="1em" height="1em">
+                  <use href="#moon-stars-fill"></use>
+               </svg>
+               Dark
+               <svg class="bi ms-auto d-none" width="1em" height="1em">
+                  <use href="#check2"></use>
+               </svg>
+            </button>
+         </li>
+         <li>
+            <button type="button" class="dropdown-item d-flex align-items-center active" data-bs-theme-value="auto"
+               aria-pressed="true">
+               <svg class="bi me-2 opacity-50" width="1em" height="1em">
+                  <use href="#circle-half"></use>
+               </svg>
+               Auto
+               <svg class="bi ms-auto d-none" width="1em" height="1em">
+                  <use href="#check2"></use>
+               </svg>
+            </button>
+         </li>
+      </ul>
+   </div>
 
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">CIAM Playground</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+   <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+      <div class="container-fluid">
+         <a class="navbar-brand" href="#">CIAM Playground</a>
+         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+            aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarCollapse">
+         </button>
+         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav me-auto mb-2 mb-md-0">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Okta CIC(Auth0)</a>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="./product/auth0/authCodeFlowPKCEPublic.html">Auth Code Flow with PKCE</a></li>
-                    <li><a class="dropdown-item" href="./product/auth0/privateKeyJwt.html">Auth Code Flow with Private JWT</a></li>
-                    <li><a class="dropdown-item" href="./product/auth0/ropg.html">Resource Owner Password Grant</a></li>
-                </ul>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Auth Code Flow with PKCE</a></li>
-                  <li><a class="dropdown-item" href="#">Auth Code Flow with Private JWT</a></li>
-                  <li><a class="dropdown-item" href="#">Resource Owner Password Grant</a></li>
-                </ul>
-              </li>
+               <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="#">Home</a>
+               </li>
+               <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Okta
+                     CIC(Auth0)</a>
+                  <ul class="dropdown-menu">
+                     <li><a class="dropdown-item" href="./product/auth0/authCodeFlowPKCEPublic.html">Auth Code Flow with
+                           PKCE</a></li>
+                     <li><a class="dropdown-item" href="./product/auth0/privateKeyJwt.html">Auth Code Flow with Private
+                           JWT</a></li>
+                     <li><a class="dropdown-item" href="./product/auth0/ropg.html">Resource Owner Password Grant</a>
+                     </li>
+                  </ul>
+               </li>
+               <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                     aria-expanded="false">Dropdown</a>
+                  <ul class="dropdown-menu">
+                     <li><a class="dropdown-item" href="#">Auth Code Flow with PKCE</a></li>
+                     <li><a class="dropdown-item" href="#">Auth Code Flow with Private JWT</a></li>
+                     <li><a class="dropdown-item" href="#">Resource Owner Password Grant</a></li>
+                  </ul>
+               </li>
             </ul>
             <form class="d-flex" role="search">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit">Search</button>
+               <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+               <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
-          </div>
-        </div>
-      </nav>
-    
-    <div class="container">
-        <main>
-            <p class="lead"> </p>
-            <div class="py-5 text-center">
-                <h2>Authorization Code Flow With PKCE For Public Client</h2>
-                <!-- <p class="lead">Test.</p> -->
-            </div>
-            <div id="content-home" class="page">
+         </div>
+      </div>
+   </nav>
+
+   <div class="container">
+      <main>
+         <p class="lead"> </p>
+         <div class="py-5 text-center">
+            <h2>Authorization Code Flow With PKCE For Public Client</h2>
+            <!-- <p class="lead">Test.</p> -->
+         </div>
+         <div id="content-home" class="page">
             <div class="row g-5">
 
-                <div class="col-md-7 col-lg-8">
-                    <h4 class="mb-3">Auth0 Client</h4>
-                    <form id="auth0-form" class="needs-validation" novalidate>
-                        <div class="row g-3">
-                            <div class="col-sm-4">
-                                <label for="domain" class="form-label">Auth0 Tenant Domain</label>
-                                <input type="text" class="form-control" name="domain" id="domain" placeholder="Auth0 Domain"
-                                    value="tropicbrush.us.auth0.com" required>
-                                <div class="invalid-feedback">
-                                    Valid Auth0 domain is required.
-                                </div>
-                            </div>
-                            <div class="col-sm-4">
-                                <label for="clientId" class="form-label">Auth0 Client ID</label>
-                                <input type="text" class="form-control" name="clientId" id="clientId" placeholder="Auth0 Client Id"
-                                    value="e9HS1RUqY0i5UGa99W9BwpSxlSaPk9xU" required>
-                                <div class="invalid-feedback">
-                                    Valid Auth0 Client ID is required.
-                                </div>
-                            </div>
-                            <div class="form-check">
-                                <input type="checkbox" class="form-check-input" id="advancedSettings">
-                                <label class="form-check-label" for="advancedSettings">Advanced settings..</label>
-                            </div>
-                            <div class="advanced-options">
-                                <div class="row g-3">
-                                    <hr class="my-4">
-
-                                    <div class="col-md-5">
-                                        <label for="audience" class="form-label">Audience</label>
-                                        <input type="text" class="form-control" id="audience" name="audience"
-                                            placeholder="API Identifier in Auth0">
-                                    </div>
-                                    <div class="col-md-5">
-                                        <label for="scopes" class="form-label">Scopes</label>
-                                        <input type="text" class="form-control" id="scopes" name="scopes"
-                                            placeholder="openid email profile">
-                                    </div>
-
-
-
-                                    <div class="col-md-5">
-                                        <label for="connection" class="form-label">Connection</label>
-                                        <input type="text" class="form-control" id="connection" name="connection"
-                                            placeholder="Connection name in Auth0">
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label for="useRefreshTokens" class="form-label">Use Refresh Tokens</label>
-                                        <select class="form-select" id="useRefreshTokens" name="useRefreshTokens">
-                                            <option value="">Select an option</option>
-                                            <option value="true">true</option>
-                                            <option value="false">false</option>
-                                        </select>
-                                    </div>
-
-                                    <div class="col-md-5">
-                                        <label for="organization" class="form-label">organization</label>
-                                        <input type="text" class="form-control" id="organization" name="organization"
-                                            placeholder="Enter Auth0 organization name">
-                                    </div>
-
-                                    <div class="col-md-5">
-                                        <label for="invitation" class="form-label">Invitation</label>
-                                        <input type="text" class="form-control" id="invitation" name="invitation"
-                                            placeholder="Organization Invitation ticket">
-                                    </div>
-
-                                    <div class="col-md-5">
-                                        <label for="display" class="form-label">Display</label>
-                                        <select class="form-select" id="display" name="display">
-                                            <option value="">Select an option</option>
-                                            <option value="page">page</option>
-                                            <option value="popup">popup</option>
-                                            <option value="touch">touch</option>
-                                            <option value="touch">wap</option>
-                                        </select>
-                                    </div>
-
-                                    <div class="col-md-5">
-                                        <label for="login_hint" class="form-label">login_hint</label>
-                                        <input type="text" class="form-control" id="login_hint"  name="login_hint"
-                                            placeholder="user email">
-                                    </div>
-
-
-
-
-
-                                    <div class="col-md-5">
-                                        <label for="prompt" class="form-label">Prompt</label>
-                                        <select class="form-select" id="prompt" name="prompt">
-                                            <option value="">Select an option</option>
-                                            <option value="login">login</option>
-                                            <option value="none">none</option>
-                                            <option value="touch">consent</option>
-                                            <option value="touch">select_account</option>
-                                        </select>
-                                    </div>
-
-                                    <div class="col-md-5">
-                                        <label for="screen_hint" class="form-label">screen_hint</label>
-                                        <select class="form-select" id="screen_hint" name="screen_hint">
-                                            <option value="">Select an option</option>
-                                            <option value="login">login</option>
-                                            <option value="signup">signup</option>
-                                        </select>
-                                    </div>
-
-                                    <div class="col-md-5">
-                                        <label for="max_age" class="form-label">max_age</label>
-                                        <input type="text" class="form-control" id="max_age" name="max_age"
-                                            placeholder="0 would force user to reauthenticate">
-                                    </div>
-
-
-
-                                    <div class="col-md-5">
-                                        <label for="ui_locales" class="form-label">ui_locales</label>
-                                        <input type="text" class="form-control" id="ui_locales" name="ui_locales" placeholder="es">
-                                    </div>
-
-                                    <div class="additional-fields"></div>
-                                    <div class="col-md-3">
-                                        <button id="addFieldButton"
-                                            class="btn btn-secondary d-inline-flex align-items-center" type="button">
-                                            Add custom fields
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                            <hr class="my-4">
-
-                            <div class="col-md-3 auth-hide">
-                                <button id="initBtn" class="btn btn-primary d-inline-flex align-items-center"
-                                    type="submit">
-                                    Initialize Auth0 Client
-                                </button>
-                            </div>
-                            <div class="col-md-3 auth-hide">
-                                <button id="qsLoginBtn" class="btn btn-primary d-inline-flex align-items-center"
-                                    onclick="login()" disabled>
-                                    Log in
-                                </button>
-
-                            </div>
-                            <div class="col-md-3 auth-show visually-hidden">
-                                <button id="profile-btn" href="/profile"
-                                    class="btn btn-primary d-inline-flex align-items-center">
-                                    Profile
-                                </button>
-                            </div>
-                            <div class="col-md-3 auth-show visually-hidden">
-                                <button id="qsLogoutBtn"
-                                    class="btn btn-primary d-inline-flex align-items-center"
-                                    onclick="logout()">
-                                    Log Out
-                                </button>
-                            </div>
+               <div class="col-md-7 col-lg-8">
+                  <h4 class="mb-3">Auth0 Client</h4>
+                  <form id="auth0-form" class="needs-validation" novalidate>
+                     <div class="row g-3">
+                        <div class="col-sm-4">
+                           <label for="domain" class="form-label">Auth0 Tenant Domain</label>
+                           <input type="text" class="form-control" name="domain" id="domain" placeholder="Auth0 Domain"
+                              value="tropicbrush.us.auth0.com" required>
+                           <div class="invalid-feedback">
+                              Valid Auth0 domain is required.
+                           </div>
                         </div>
-                    </form>
-                </div>
-            </div>
-            </div>
+                        <div class="col-sm-4">
+                           <label for="clientId" class="form-label">Auth0 Client ID</label>
+                           <input type="text" class="form-control" name="clientId" id="clientId"
+                              placeholder="Auth0 Client Id" value="e9HS1RUqY0i5UGa99W9BwpSxlSaPk9xU" required>
+                           <div class="invalid-feedback">
+                              Valid Auth0 Client ID is required.
+                           </div>
+                        </div>
+                        <div class="form-check">
+                           <input type="checkbox" class="form-check-input" id="advancedSettings">
+                           <label class="form-check-label" for="advancedSettings">Advanced settings..</label>
+                        </div>
+                        <div class="advanced-options">
+                           <div class="row g-3">
+                              <hr class="my-4">
 
-            <div class="container">
-               <div class="row g-2">
-                 <div class="col-6">
-<!--                   <label for="profile-data" class="form-label">ui_locales</label>
-                   <div id="profile-data-div"  class="p-3 border bg-light">
-                     <div id="profile-data" class="badge bg-primary text-wrap" style="width: 20rem;">
-      
-                      </div>
-                   </div> -->
-			 <label for="profile-data"><b>User Profile Data</b></label>
-                    <textarea id="profile-data" name="profile-data" rows="5" cols="50">
-                     
-                   </textarea>
-                 </div>
-                 <div class="col-6">
-			 <label for="idToken-data"><b>idToken-data</b></label>
-                    <textarea id="idToken-data" name="idToken-data" rows="5" cols="50">
-                     
-                   </textarea>
-			 
-<!--                   <label for="idToken-data" class="form-label">idToken-data</label>
-                   <div id="idToken-data-div" class="p-3 border bg-light">
-                     <div id="idToken-data" class="badge bg-primary text-wrap" style="width: 20rem;">
-      
+                              <div class="col-md-5">
+                                 <label for="audience" class="form-label">Audience</label>
+                                 <input type="text" class="form-control" id="audience" name="audience"
+                                    placeholder="API Identifier in Auth0">
+                              </div>
+                              <div class="col-md-5">
+                                 <label for="scopes" class="form-label">Scopes</label>
+                                 <input type="text" class="form-control" id="scopes" name="scopes"
+                                    placeholder="openid email profile">
+                              </div>
+
+
+
+                              <div class="col-md-5">
+                                 <label for="connection" class="form-label">Connection</label>
+                                 <input type="text" class="form-control" id="connection" name="connection"
+                                    placeholder="Connection name in Auth0">
+                              </div>
+                              <div class="col-md-4">
+                                 <label for="useRefreshTokens" class="form-label">Use Refresh Tokens</label>
+                                 <select class="form-select" id="useRefreshTokens" name="useRefreshTokens">
+                                    <option value="">Select an option</option>
+                                    <option value="true">true</option>
+                                    <option value="false">false</option>
+                                 </select>
+                              </div>
+
+                              <div class="col-md-5">
+                                 <label for="organization" class="form-label">organization</label>
+                                 <input type="text" class="form-control" id="organization" name="organization"
+                                    placeholder="Enter Auth0 organization name">
+                              </div>
+
+                              <div class="col-md-5">
+                                 <label for="invitation" class="form-label">Invitation</label>
+                                 <input type="text" class="form-control" id="invitation" name="invitation"
+                                    placeholder="Organization Invitation ticket">
+                              </div>
+
+                              <div class="col-md-5">
+                                 <label for="display" class="form-label">Display</label>
+                                 <select class="form-select" id="display" name="display">
+                                    <option value="">Select an option</option>
+                                    <option value="page">page</option>
+                                    <option value="popup">popup</option>
+                                    <option value="touch">touch</option>
+                                    <option value="touch">wap</option>
+                                 </select>
+                              </div>
+
+                              <div class="col-md-5">
+                                 <label for="login_hint" class="form-label">login_hint</label>
+                                 <input type="text" class="form-control" id="login_hint" name="login_hint"
+                                    placeholder="user email">
+                              </div>
+
+
+
+
+
+                              <div class="col-md-5">
+                                 <label for="prompt" class="form-label">Prompt</label>
+                                 <select class="form-select" id="prompt" name="prompt">
+                                    <option value="">Select an option</option>
+                                    <option value="login">login</option>
+                                    <option value="none">none</option>
+                                    <option value="touch">consent</option>
+                                    <option value="touch">select_account</option>
+                                 </select>
+                              </div>
+
+                              <div class="col-md-5">
+                                 <label for="screen_hint" class="form-label">screen_hint</label>
+                                 <select class="form-select" id="screen_hint" name="screen_hint">
+                                    <option value="">Select an option</option>
+                                    <option value="login">login</option>
+                                    <option value="signup">signup</option>
+                                 </select>
+                              </div>
+
+                              <div class="col-md-5">
+                                 <label for="max_age" class="form-label">max_age</label>
+                                 <input type="text" class="form-control" id="max_age" name="max_age"
+                                    placeholder="0 would force user to reauthenticate">
+                              </div>
+
+
+
+                              <div class="col-md-5">
+                                 <label for="ui_locales" class="form-label">ui_locales</label>
+                                 <input type="text" class="form-control" id="ui_locales" name="ui_locales"
+                                    placeholder="es">
+                              </div>
+
+                              <div class="additional-fields"></div>
+                              <div class="col-md-3">
+                                 <button id="addFieldButton" class="btn btn-secondary d-inline-flex align-items-center"
+                                    type="button">
+                                    Add custom fields
+                                 </button>
+                              </div>
+                           </div>
+                        </div>
+                        <hr class="my-4">
+
+                        <div class="col-md-3 auth-hide">
+                           <button id="initBtn" class="btn btn-primary d-inline-flex align-items-center" type="submit">
+                              Initialize Auth0 Client
+                           </button>
+                        </div>
+                        <div class="col-md-3 auth-hide">
+                           <button id="qsLoginBtn" class="btn btn-primary d-inline-flex align-items-center"
+                              onclick="login()" disabled>
+                              Log in
+                           </button>
+
+                        </div>
+                        <div class="col-md-3 auth-show visually-hidden">
+                           <button id="profile-btn" href="/profile"
+                              class="btn btn-primary d-inline-flex align-items-center">
+                              Profile
+                           </button>
+                        </div>
+                        <div class="col-md-3 auth-show visually-hidden">
+                           <button id="qsLogoutBtn" class="btn btn-primary d-inline-flex align-items-center"
+                              onclick="logout()">
+                              Log Out
+                           </button>
+                        </div>
                      </div>
-                   </div> -->
-                 </div>
-                 <div class="col-6">
-                  <label for="idToken-decoded-data" class="form-label">idToken-decoded-data</label>
-                   <div id="idToken-decoded-data" class="p-3 border bg-light text-wrap"></div>
-                 </div>
-                 <div class="col-6">
-                   <label for="accessToken-decoded-data" class="form-label">accessToken-decoded-data</label>
-                   <div id="accessToken-decoded-data" class="p-3 border bg-light text-wrap"></div>
-                 </div>
+                  </form>
                </div>
-             </div>
-
-
-
-            <div class="row g-3 auth-show visually-hidden">
-                
-<!--                     <label for="profile-data"><b>User Profile Data</b></label>
-                    <textarea id="profile-data" name="profile-data" rows="5" cols="50">
-                     
-                   </textarea> -->
-                    <!-- <pre class="rounded">
-
-                <code id="profile-data" class="json"></code></pre> -->
-            
             </div>
+         </div>
 
+         <div class="container auth-show visually-hidden">
+            <div class="row g-2">
+               <div class="col-6">
+                  <label for="profile-data"><b>User Profile</b></label>
+                  <textarea id="profile-data" name="profile-data" rows="5" cols="50">
 
-            <div class="row g-3 auth-show visually-hidden" id="content-profile">
-                <div class="container">
-                    <div class="form-options">
+                   </textarea>
+               </div>
+               <div class="col-6">
+                  <label for="idToken-data"><b>ID Token</b></label>
+                  <textarea id="idToken-data" name="idToken-data" rows="5" cols="50">
 
-                        <div class="row">
-                            <img alt="User's profile picture"
-                                class="rounded-circle img-fluid profile-image mb-3 mb-md-0" />
-                        </div>
-                        <div class="col-md">
-                            <h2 class="user-name"></h2>
-                            <p class="lead text-muted user-email"></p>
-                        </div>
+                   </textarea>
+               </div>
+               <div class="col-6">
+                  <label for="idToken-decoded-data"><b>ID Token (Decoded)</b></label>
+                  <textarea id="idToken-decoded-data" name="idToken-decoded-data" rows="10" cols="50">
 
-                        <div class="row">
-                            <label for="profile-data"><b>User Profile Data</b></label>
-                            <pre class="rounded">
-                        <code id="profile-data" class="json"></code></pre>
-                        </div>
-                    </div>
-                    <div class="form-options">
+                   </textarea>
 
-                        <div class="row">
-                            <label for="idToken-data"><b>ID Token</b></label>
-                            <pre class="rounded">
-                        <code id="idToken-data" class="json"></code></pre>
-                        </div>
+               </div>
+               <div class="col-6">
+                  <label for="accessToken-decoded-data"><b>Access Token (Decoded)</b></label>
+                  <textarea id="accessToken-decoded-data" name="accessToken-decoded-data" rows="10" cols="50">
 
-                        <div class="row">
-                            <label for="idToken-decoded-data"><b>Decoded ID Token Data</b></label>
-                            <pre class="rounded">
-                        <code id="idToken-decoded-data" class="json"></code></pre>
-                        </div>
-                    </div>
-                    <div class="form-options">
-                        <div class="row">
-                            <label for="accessToken-data"><b>Access Token</b></label>
-                            <pre class="rounded">
-                        <code id="accessToken-data" class="json"></code></pre>
-                        </div>
+                  </textarea>
+               </div>
+               <div class="col-6">
+                  <label for="accessToken-data"><b>Access Token</b></label>
+                  <textarea id="accessToken-data" name="accessToken-data" rows="10" cols="50">
 
-
-                        <div class="row">
-                            <label for="accessToken-decoded-data"><b>Decoded Access Token</b></label>
-                            <pre class="rounded">
-                            <code id="accessToken-decoded-data" class="json"></code></pre>
-                        </div>
-
-                    </div>
-                </div>
+                  </textarea>
+               </div>
             </div>
-    </div>
-    </main>
+         </div>
+   </div>
+   </main>
 
-    <footer class="my-5 pt-5 text-body-secondary text-center text-small">
-        <p class="mb-1">&copy; 2017–2024 Company Name</p>
-        <ul class="list-inline">
-            <li class="list-inline-item"><a href="#">Privacy</a></li>
-            <li class="list-inline-item"><a href="#">Terms</a></li>
-            <li class="list-inline-item"><a href="#">Support</a></li>
-        </ul>
-    </footer>
-    </div>
-    <script src="/public/assets/dist/js/bootstrap.bundle.min.js"></script>
+   <footer class="my-5 pt-5 text-body-secondary text-center text-small">
+      <p class="mb-1">&copy; 2017–2024 Company Name</p>
+      <ul class="list-inline">
+         <li class="list-inline-item"><a href="#">Privacy</a></li>
+         <li class="list-inline-item"><a href="#">Terms</a></li>
+         <li class="list-inline-item"><a href="#">Support</a></li>
+      </ul>
+   </footer>
+   </div>
+   <script src="/public/assets/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 <script>
-    let fieldCounter = 1;
-    document.addEventListener('DOMContentLoaded', function () {
-        const checkbox = document.getElementById('advancedSettings');
-        const advancedOptions = document.querySelector('.advanced-options');
+   let fieldCounter = 1;
+   document.addEventListener('DOMContentLoaded', function () {
+      const checkbox = document.getElementById('advancedSettings');
+      const advancedOptions = document.querySelector('.advanced-options');
 
-        // Initially hide advanced options
-        advancedOptions.style.display = 'none';
+      // Initially hide advanced options
+      advancedOptions.style.display = 'none';
 
-        // Toggle visibility of advanced options when checkbox is clicked
-        checkbox.addEventListener('change', function () {
-            advancedOptions.style.display = checkbox.checked ? 'block' : 'none';
-        });
+      // Toggle visibility of advanced options when checkbox is clicked
+      checkbox.addEventListener('change', function () {
+         advancedOptions.style.display = checkbox.checked ? 'block' : 'none';
+      });
 
 
-        function createField() {
-            const container = document.querySelector('.additional-fields');
-            const newRow = document.createElement('div');
-            newRow.classList.add('row');
-            newRow.innerHTML = `
+      function createField() {
+         const container = document.querySelector('.additional-fields');
+         const newRow = document.createElement('div');
+         newRow.classList.add('row');
+         newRow.innerHTML = `
             <div class="row g-3">
             <div class="col-md-5">
                 <label  for="key${fieldCounter}">Key</label>
@@ -531,131 +468,131 @@
                 </div>
             </div>
             `;
-            container.appendChild(newRow);
-            fieldCounter++;
-        }
+         container.appendChild(newRow);
+         fieldCounter++;
+      }
 
-        // Event listener for the add field button
-        const addFieldButton = document.getElementById('addFieldButton');
-        addFieldButton.addEventListener('click', createField);
+      // Event listener for the add field button
+      const addFieldButton = document.getElementById('addFieldButton');
+      addFieldButton.addEventListener('click', createField);
 
-    });
+   });
 
-    let currentDomain = sessionStorage.getItem('auth0_domain');
-    let currentClient = sessionStorage.getItem('auth0_client_id');
+   let currentDomain = sessionStorage.getItem('auth0_domain');
+   let currentClient = sessionStorage.getItem('auth0_client_id');
 
-    let useRefreshTokens = sessionStorage.getItem('useRefreshTokens');
-    let scopes = sessionStorage.getItem('scopes');
-    let audience = sessionStorage.getItem('audience');
-    let connection = sessionStorage.getItem('connection');
-    let display = sessionStorage.getItem('display');
-    let invitation = sessionStorage.getItem('invitation');
-    let login_hint = sessionStorage.getItem('login_hint');
-    let max_age = sessionStorage.getItem('max_age');
-    let organization = sessionStorage.getItem('organization');
-    let prompt = sessionStorage.getItem('prompt');
-    let screen_hint = sessionStorage.getItem('screen_hint');
-    let ui_locales = sessionStorage.getItem('ui_locales');
-
-
-    const domainValueInput = document.getElementById('domain');
-    const clientIdValueInput = document.getElementById('clientId');
-
-    domainValueInput.value = currentDomain || 'tropicbrush.us.auth0.com';
-    clientIdValueInput.value = currentClient || 'e9HS1RUqY0i5UGa99W9BwpSxlSaPk9xU';
-    const auth0Form = document.getElementById('auth0-form');
-    console.log("auth0Form", auth0Form)
-
-    auth0Form.addEventListener('submit', async (event) => {
-        event.preventDefault();
+   let useRefreshTokens = sessionStorage.getItem('useRefreshTokens');
+   let scopes = sessionStorage.getItem('scopes');
+   let audience = sessionStorage.getItem('audience');
+   let connection = sessionStorage.getItem('connection');
+   let display = sessionStorage.getItem('display');
+   let invitation = sessionStorage.getItem('invitation');
+   let login_hint = sessionStorage.getItem('login_hint');
+   let max_age = sessionStorage.getItem('max_age');
+   let organization = sessionStorage.getItem('organization');
+   let prompt = sessionStorage.getItem('prompt');
+   let screen_hint = sessionStorage.getItem('screen_hint');
+   let ui_locales = sessionStorage.getItem('ui_locales');
 
 
-        const formData = new FormData(auth0Form);
-        console.log("formData", formData)
+   const domainValueInput = document.getElementById('domain');
+   const clientIdValueInput = document.getElementById('clientId');
 
-        const domain = formData.get('domain');
-        const clientId = formData.get('clientId');
+   domainValueInput.value = currentDomain || 'tropicbrush.us.auth0.com';
+   clientIdValueInput.value = currentClient || 'e9HS1RUqY0i5UGa99W9BwpSxlSaPk9xU';
+   const auth0Form = document.getElementById('auth0-form');
+   console.log("auth0Form", auth0Form)
 
-        const useRefreshTokens = formData.get('useRefreshTokens');
-        const scopes = formData.get('scopes');
-        const audience = formData.get('audience');
-        const connection = formData.get('connection');
-        const display = formData.get('display');
-        const invitation = formData.get('invitation');
-        const login_hint = formData.get('login_hint');
-        const max_age = formData.get('max_age');
-        const organization = formData.get('organization');
-        const prompt = formData.get('prompt');
-        const screen_hint = formData.get('screen_hint');
-        const ui_locales = formData.get('ui_locales');
-
-        const additionalFields = {};
-
-        for (let i = 1; i < fieldCounter; i++) {
-            const key = formData.get(`key${i}`);
-            const value = formData.get(`value${i}`);
-            console.log("key :", key)
-            console.log("value :", value)
-            additionalFields[key] = value;
-            sessionStorage.setItem("cust_field_" + key, value);
-            console.log("sessionStorage response :", sessionStorage.getItem("cust_field_" + key))
-        }
+   auth0Form.addEventListener('submit', async (event) => {
+      event.preventDefault();
 
 
+      const formData = new FormData(auth0Form);
+      console.log("formData", formData)
 
-        sessionStorage.setItem('auth0_domain', domain);
-        sessionStorage.setItem('auth0_client_id', clientId);
+      const domain = formData.get('domain');
+      const clientId = formData.get('clientId');
 
-        sessionStorage.setItem('useRefreshTokens', useRefreshTokens);
-        sessionStorage.setItem('scopes', scopes);
-        sessionStorage.setItem('audience', audience);
-        sessionStorage.setItem('connection', connection);
-        sessionStorage.setItem('display', display);
-        sessionStorage.setItem('invitation', invitation);
-        sessionStorage.setItem('login_hint', login_hint);
-        sessionStorage.setItem('max_age', max_age);
-        sessionStorage.setItem('organization', organization);
-        sessionStorage.setItem('prompt', prompt);
-        sessionStorage.setItem('screen_hint', screen_hint);
-        sessionStorage.setItem('ui_locales', ui_locales);
+      const useRefreshTokens = formData.get('useRefreshTokens');
+      const scopes = formData.get('scopes');
+      const audience = formData.get('audience');
+      const connection = formData.get('connection');
+      const display = formData.get('display');
+      const invitation = formData.get('invitation');
+      const login_hint = formData.get('login_hint');
+      const max_age = formData.get('max_age');
+      const organization = formData.get('organization');
+      const prompt = formData.get('prompt');
+      const screen_hint = formData.get('screen_hint');
+      const ui_locales = formData.get('ui_locales');
+
+      const additionalFields = {};
+
+      for (let i = 1; i < fieldCounter; i++) {
+         const key = formData.get(`key${i}`);
+         const value = formData.get(`value${i}`);
+         console.log("key :", key)
+         console.log("value :", value)
+         additionalFields[key] = value;
+         sessionStorage.setItem("cust_field_" + key, value);
+         console.log("sessionStorage response :", sessionStorage.getItem("cust_field_" + key))
+      }
 
 
-        // initializeAuth0Client(domain, clientId);
-        await configureClient();
-        document.getElementById("qsLoginBtn").removeAttribute("disabled");
-        document.getElementById("profile-btn").removeAttribute("disabled");
 
-    });
+      sessionStorage.setItem('auth0_domain', domain);
+      sessionStorage.setItem('auth0_client_id', clientId);
+
+      sessionStorage.setItem('useRefreshTokens', useRefreshTokens);
+      sessionStorage.setItem('scopes', scopes);
+      sessionStorage.setItem('audience', audience);
+      sessionStorage.setItem('connection', connection);
+      sessionStorage.setItem('display', display);
+      sessionStorage.setItem('invitation', invitation);
+      sessionStorage.setItem('login_hint', login_hint);
+      sessionStorage.setItem('max_age', max_age);
+      sessionStorage.setItem('organization', organization);
+      sessionStorage.setItem('prompt', prompt);
+      sessionStorage.setItem('screen_hint', screen_hint);
+      sessionStorage.setItem('ui_locales', ui_locales);
+
+
+      // initializeAuth0Client(domain, clientId);
+      await configureClient();
+      document.getElementById("qsLoginBtn").removeAttribute("disabled");
+      document.getElementById("profile-btn").removeAttribute("disabled");
+
+   });
 </script>
 <script src="https://cdn.auth0.com/js/auth0-spa-js/2.0/auth0-spa-js.production.js"></script>
 <script src="/public/js/ui.js"></script>
 <script src="/public/js/app.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jwt-decode@4.0.0/build/cjs/index.min.js"></script>
 <script>
-    // Function to open the popup
-    function openPopup() {
-        document.getElementById('popup').style.display = 'block';
-    }
+   // Function to open the popup
+   function openPopup() {
+      document.getElementById('popup').style.display = 'block';
+   }
 
-    // Function to close the popup
-    function closePopup() {
-        document.getElementById('popup').style.display = 'none';
-    }
-		   </script>
+   // Function to close the popup
+   function closePopup() {
+      document.getElementById('popup').style.display = 'none';
+   }
+</script>
 <script>
-    function openPopupAndLogin() {
-        // Prepare the URL for the popup window
-        var popupUrl = "https://tropicbrush.github.com";
+   function openPopupAndLogin() {
+      // Prepare the URL for the popup window
+      var popupUrl = "https://tropicbrush.github.com";
 
-        // Open a popup window
-        var popupWindow = window.open(popupUrl, "LoginPopup", "width=600,height=400");
+      // Open a popup window
+      var popupWindow = window.open(popupUrl, "LoginPopup", "width=600,height=400");
 
-        // Function to execute after the popup window loads
-        popupWindow.onload = function() {
-            // Execute the login function in the popup window
-            popupWindow.login();
-        };
-    }
+      // Function to execute after the popup window loads
+      popupWindow.onload = function () {
+         // Execute the login function in the popup window
+         popupWindow.login();
+      };
+   }
 </script>
 
 
