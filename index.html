@@ -36,7 +36,7 @@
 
       .b-example-divider {
          width: 100%;
-         height: 3rem;
+         height: .5rem;
          background-color: rgba(0, 0, 0, .1);
          border: solid rgba(0, 0, 0, .15);
          border-width: 1px 0;
@@ -214,206 +214,215 @@
       </div>
    </nav>
 
-   <div class="container">
-      <main>
-         <p class="lead"> </p>
-         <div class="py-5 text-center">
-            <h2>Authorization Code Flow With PKCE For Public Client</h2>
-            <!-- <p class="lead">Test.</p> -->
-         </div>
-         <div id="content-home" class="page">
-            <div class="row g-5">
+   <!-- <div class="container"> -->
+      <!-- <main> -->
+      <p class="lead"> </p>
+      <div class="py-5 text-center">
+         <h2>Authorization Code Flow With PKCE For Public Client</h2>
+         <!-- <p class="lead">Test.</p> -->
+      </div>
+      <div class="b-example-divider"></div>
+      <br>
+      <div id="content-home" class="container page">
+         <div class="row g-5">
 
-               <div class="col-md-7 col-lg-8">
-                  <h4 class="mb-3">Auth0 Client</h4>
-                  <form id="auth0-form" class="needs-validation" novalidate>
-                     <div class="row g-3">
-                        <div class="col-sm-4">
-                           <label for="domain" class="form-label">Auth0 Tenant Domain</label>
-                           <input type="text" class="form-control" name="domain" id="domain" placeholder="Auth0 Domain"
-                              value="tropicbrush.us.auth0.com" required>
-                           <div class="invalid-feedback">
-                              Valid Auth0 domain is required.
-                           </div>
-                        </div>
-                        <div class="col-sm-4">
-                           <label for="clientId" class="form-label">Auth0 Client ID</label>
-                           <input type="text" class="form-control" name="clientId" id="clientId"
-                              placeholder="Auth0 Client Id" value="e9HS1RUqY0i5UGa99W9BwpSxlSaPk9xU" required>
-                           <div class="invalid-feedback">
-                              Valid Auth0 Client ID is required.
-                           </div>
-                        </div>
-                        <div class="form-check">
-                           <input type="checkbox" class="form-check-input" id="advancedSettings">
-                           <label class="form-check-label" for="advancedSettings">Advanced settings..</label>
-                        </div>
-                        <div class="advanced-options">
-                           <div class="row g-3">
-                              <hr class="my-4">
-
-                              <div class="col-md-5">
-                                 <label for="audience" class="form-label">Audience</label>
-                                 <input type="text" class="form-control" id="audience" name="audience"
-                                    placeholder="API Identifier in Auth0">
-                              </div>
-                              <div class="col-md-5">
-                                 <label for="scopes" class="form-label">Scopes</label>
-                                 <input type="text" class="form-control" id="scopes" name="scopes"
-                                    placeholder="openid email profile">
-                              </div>
-
-
-
-                              <div class="col-md-5">
-                                 <label for="connection" class="form-label">Connection</label>
-                                 <input type="text" class="form-control" id="connection" name="connection"
-                                    placeholder="Connection name in Auth0">
-                              </div>
-                              <div class="col-md-4">
-                                 <label for="useRefreshTokens" class="form-label">Use Refresh Tokens</label>
-                                 <select class="form-select" id="useRefreshTokens" name="useRefreshTokens">
-                                    <option value="">Select an option</option>
-                                    <option value="true">true</option>
-                                    <option value="false">false</option>
-                                 </select>
-                              </div>
-
-                              <div class="col-md-5">
-                                 <label for="organization" class="form-label">organization</label>
-                                 <input type="text" class="form-control" id="organization" name="organization"
-                                    placeholder="Enter Auth0 organization name">
-                              </div>
-
-                              <div class="col-md-5">
-                                 <label for="invitation" class="form-label">Invitation</label>
-                                 <input type="text" class="form-control" id="invitation" name="invitation"
-                                    placeholder="Organization Invitation ticket">
-                              </div>
-
-                              <div class="col-md-5">
-                                 <label for="display" class="form-label">Display</label>
-                                 <select class="form-select" id="display" name="display">
-                                    <option value="">Select an option</option>
-                                    <option value="page">page</option>
-                                    <option value="popup">popup</option>
-                                    <option value="touch">touch</option>
-                                    <option value="touch">wap</option>
-                                 </select>
-                              </div>
-
-                              <div class="col-md-5">
-                                 <label for="login_hint" class="form-label">login_hint</label>
-                                 <input type="text" class="form-control" id="login_hint" name="login_hint"
-                                    placeholder="user email">
-                              </div>
-
-
-
-
-
-                              <div class="col-md-5">
-                                 <label for="prompt" class="form-label">Prompt</label>
-                                 <select class="form-select" id="prompt" name="prompt">
-                                    <option value="">Select an option</option>
-                                    <option value="login">login</option>
-                                    <option value="none">none</option>
-                                    <option value="touch">consent</option>
-                                    <option value="touch">select_account</option>
-                                 </select>
-                              </div>
-
-                              <div class="col-md-5">
-                                 <label for="screen_hint" class="form-label">screen_hint</label>
-                                 <select class="form-select" id="screen_hint" name="screen_hint">
-                                    <option value="">Select an option</option>
-                                    <option value="login">login</option>
-                                    <option value="signup">signup</option>
-                                 </select>
-                              </div>
-
-                              <div class="col-md-5">
-                                 <label for="max_age" class="form-label">max_age</label>
-                                 <input type="text" class="form-control" id="max_age" name="max_age"
-                                    placeholder="0 would force user to reauthenticate">
-                              </div>
-
-
-
-                              <div class="col-md-5">
-                                 <label for="ui_locales" class="form-label">ui_locales</label>
-                                 <input type="text" class="form-control" id="ui_locales" name="ui_locales"
-                                    placeholder="es">
-                              </div>
-
-                              <div class="additional-fields"></div>
-                              <div class="col-md-3">
-                                 <button id="addFieldButton" class="btn btn-secondary d-inline-flex align-items-center"
-                                    type="button">
-                                    Add custom fields
-                                 </button>
-                              </div>
-                           </div>
-                        </div>
-                        <hr class="my-4">
-
-                        <div class="col-md-3 auth-hide">
-                           <button id="initBtn" class="btn btn-primary d-inline-flex align-items-center" type="submit">
-                              Initialize Auth0 Client
-                           </button>
-                        </div>
-                        <div class="col-md-3 auth-hide">
-                           <button id="qsLoginBtn" class="btn btn-primary d-inline-flex align-items-center"
-                              onclick="login()" disabled>
-                              Log in
-                           </button>
-
-                        </div>
-                        <div class="col-md-3 auth-show visually-hidden">
-                           <button id="profile-btn" href="/profile"
-                              class="btn btn-primary d-inline-flex align-items-center">
-                              Profile
-                           </button>
-                        </div>
-                        <div class="col-md-3 auth-show visually-hidden">
-                           <button id="qsLogoutBtn" class="btn btn-primary d-inline-flex align-items-center"
-                              onclick="logout()">
-                              Log Out
-                           </button>
+            <div class="col-md-7 col-lg-8">
+               <h4 class="mb-3">Auth0 Client</h4>
+               <form id="auth0-form" class="needs-validation" novalidate>
+                  <div class="row g-3">
+                     <div class="col-sm-4">
+                        <label for="domain" class="form-label">Auth0 Tenant Domain</label>
+                        <input type="text" class="form-control" name="domain" id="domain" placeholder="Auth0 Domain"
+                           value="tropicbrush.us.auth0.com" required>
+                        <div class="invalid-feedback">
+                           Valid Auth0 domain is required.
                         </div>
                      </div>
-                  </form>
-               </div>
-            </div>
-         </div>
+                     <div class="col-sm-4">
+                        <label for="clientId" class="form-label">Auth0 Client ID</label>
+                        <input type="text" class="form-control" name="clientId" id="clientId"
+                           placeholder="Auth0 Client Id" value="e9HS1RUqY0i5UGa99W9BwpSxlSaPk9xU" required>
+                        <div class="invalid-feedback">
+                           Valid Auth0 Client ID is required.
+                        </div>
+                     </div>
+                     <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="advancedSettings">
+                        <label class="form-check-label" for="advancedSettings">Advanced settings..</label>
+                     </div>
+                     <div class="advanced-options">
+                        <div class="row g-3">
+                           <hr class="my-4">
 
-         <div class="container auth-show visually-hidden">
-            <div class="row g-2">
-               <!-- <div class="col-6"> -->
-                  <label for="profile-data"><b>User Profile</b></label>
-                  <textarea id="profile-data" name="profile-data" rows="10" cols="50"></textarea>  
-               <!-- </div> -->
-              
-               <div class="col-6">
-                  <label for="idToken-decoded-data"><b>ID Token (Decoded)</b></label>
-                  <textarea id="idToken-decoded-data" name="idToken-decoded-data" rows="10" cols="50"></textarea>
-               </div>
-               <div class="col-6">
-                  <label for="idToken-data"><b>ID Token</b></label>
-                  <textarea id="idToken-data" name="idToken-data" rows="10" cols="50"></textarea>
-               </div>
-               <div class="col-6">
-                  <label for="accessToken-decoded-data"><b>Access Token (Decoded)</b></label>
-                  <textarea id="accessToken-decoded-data" name="accessToken-decoded-data" rows="10" cols="50"></textarea>
-               </div>
-               <div class="col-6">
-                  <label for="accessToken-data"><b>Access Token</b></label>
-                  <textarea id="accessToken-data" name="accessToken-data" rows="10" cols="50"></textarea>
-               </div>
+                           <div class="col-md-5">
+                              <label for="audience" class="form-label">Audience</label>
+                              <input type="text" class="form-control" id="audience" name="audience"
+                                 placeholder="API Identifier in Auth0">
+                           </div>
+                           <div class="col-md-5">
+                              <label for="scopes" class="form-label">Scopes</label>
+                              <input type="text" class="form-control" id="scopes" name="scopes"
+                                 placeholder="openid email profile">
+                           </div>
+
+
+
+                           <div class="col-md-5">
+                              <label for="connection" class="form-label">Connection</label>
+                              <input type="text" class="form-control" id="connection" name="connection"
+                                 placeholder="Connection name in Auth0">
+                           </div>
+                           <div class="col-md-4">
+                              <label for="useRefreshTokens" class="form-label">Use Refresh Tokens</label>
+                              <select class="form-select" id="useRefreshTokens" name="useRefreshTokens">
+                                 <option value="">Select an option</option>
+                                 <option value="true">true</option>
+                                 <option value="false">false</option>
+                              </select>
+                           </div>
+
+                           <div class="col-md-5">
+                              <label for="organization" class="form-label">organization</label>
+                              <input type="text" class="form-control" id="organization" name="organization"
+                                 placeholder="Enter Auth0 organization name">
+                           </div>
+
+                           <div class="col-md-5">
+                              <label for="invitation" class="form-label">Invitation</label>
+                              <input type="text" class="form-control" id="invitation" name="invitation"
+                                 placeholder="Organization Invitation ticket">
+                           </div>
+
+                           <div class="col-md-5">
+                              <label for="display" class="form-label">Display</label>
+                              <select class="form-select" id="display" name="display">
+                                 <option value="">Select an option</option>
+                                 <option value="page">page</option>
+                                 <option value="popup">popup</option>
+                                 <option value="touch">touch</option>
+                                 <option value="touch">wap</option>
+                              </select>
+                           </div>
+
+                           <div class="col-md-5">
+                              <label for="login_hint" class="form-label">login_hint</label>
+                              <input type="text" class="form-control" id="login_hint" name="login_hint"
+                                 placeholder="user email">
+                           </div>
+
+
+
+
+
+                           <div class="col-md-5">
+                              <label for="prompt" class="form-label">Prompt</label>
+                              <select class="form-select" id="prompt" name="prompt">
+                                 <option value="">Select an option</option>
+                                 <option value="login">login</option>
+                                 <option value="none">none</option>
+                                 <option value="touch">consent</option>
+                                 <option value="touch">select_account</option>
+                              </select>
+                           </div>
+
+                           <div class="col-md-5">
+                              <label for="screen_hint" class="form-label">screen_hint</label>
+                              <select class="form-select" id="screen_hint" name="screen_hint">
+                                 <option value="">Select an option</option>
+                                 <option value="login">login</option>
+                                 <option value="signup">signup</option>
+                              </select>
+                           </div>
+
+                           <div class="col-md-5">
+                              <label for="max_age" class="form-label">max_age</label>
+                              <input type="text" class="form-control" id="max_age" name="max_age"
+                                 placeholder="0 would force user to reauthenticate">
+                           </div>
+
+
+
+                           <div class="col-md-5">
+                              <label for="ui_locales" class="form-label">ui_locales</label>
+                              <input type="text" class="form-control" id="ui_locales" name="ui_locales"
+                                 placeholder="es">
+                           </div>
+
+                           <div class="additional-fields"></div>
+                           <div class="col-md-3">
+                              <button id="addFieldButton" class="btn btn-secondary d-inline-flex align-items-center"
+                                 type="button">
+                                 Add custom fields
+                              </button>
+                           </div>
+                        </div>
+                     </div>
+                     <hr class="my-4">
+
+                     <div class="col-md-3 auth-hide">
+                        <button id="initBtn" class="btn btn-primary d-inline-flex align-items-center" type="submit">
+                           Initialize Auth0 Client
+                        </button>
+                     </div>
+                     <div class="col-md-3 auth-hide">
+                        <button id="qsLoginBtn" class="btn btn-primary d-inline-flex align-items-center"
+                           onclick="login()" disabled>
+                           Log in
+                        </button>
+
+                     </div>
+                     <!-- <div class="col-md-3 auth-show visually-hidden">
+                        <button id="profile-btn" href="/profile"
+                           class="btn btn-primary d-inline-flex align-items-center">
+                           Profile
+                        </button>
+                     </div> -->
+                     <div class="col-md-3 auth-show visually-hidden">
+                        <button id="qsLogoutBtn" class="btn btn-primary d-inline-flex align-items-center"
+                           onclick="logout()">
+                           Log Out
+                        </button>
+                     </div>
+                  </div>
+               </form>
             </div>
          </div>
-   </div>
-   </main>
+      </div>
+      <br>
+      <div class="b-example-divider"></div>
+      <br>
+      <div class="container auth-show visually-hidden">
+         <div class="row gy-3">
+            <div class="col-sm-5">
+               <label for="profile-data" class="form-label"><b>User Profile Data</b></label>
+               <pre><code  id="profile-data" name="profile-data"  class="json"></code></pre>
+            </div>
+            <div> </div>
+            <div class="col-sm-5">
+               <label for="idToken-decoded-data" class="form-label"><b>ID Token (Decoded)</b></label>
+
+               <pre><code id="idToken-decoded-data" name="idToken-decoded-data"  class="json"></code></pre>
+               <!-- <textarea id="idToken-decoded-data" name="idToken-decoded-data" rows="10" cols="50"></textarea> -->
+            </div>
+
+            <div class="col-sm-5">
+               <label for="idToken-data" class="form-label"><b>ID Token data</b></label>
+               <textarea id="idToken-data" name="idToken-data" rows="10" cols="50"></textarea>
+            </div>
+
+            <div class="col-sm-5">
+               <label for="accessToken-decoded-data" class="form-label"><b>Access Token (Decoded)</b></label>
+               <pre><code id="accessToken-decoded-data" name="accessToken-decoded-data" ></code></pre>
+            </div>
+            <div class="col-md-5">
+               <label for="accessToken-data" class="form-label"><b>Access Token</b></label>
+               <textarea id="accessToken-data" name="accessToken-data" rows="10" cols="50"></textarea>
+            </div>
+         </div>
+      </div>
+      <div class="b-example-divider"></div>
+   <!-- </div> -->
+   <!-- </main> -->
 
    <footer class="my-5 pt-5 text-body-secondary text-center text-small">
       <p class="mb-1">&copy; 2017–2024 Company Name</p>
@@ -550,7 +559,7 @@
       // initializeAuth0Client(domain, clientId);
       await configureClient();
       document.getElementById("qsLoginBtn").removeAttribute("disabled");
-      document.getElementById("profile-btn").removeAttribute("disabled");
+      // document.getElementById("profile-btn").removeAttribute("disabled");
 
    });
 </script>
@@ -558,6 +567,16 @@
 <script src="/public/js/ui.js"></script>
 <script src="/public/js/app.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jwt-decode@4.0.0/build/cjs/index.min.js"></script>
+<!-- Include Prism.js for syntax highlighting -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+
+<script>
+   // Initialize Prism.js for syntax highlighting
+   Prism.highlightAll();
+</script>
+
 <script>
    // Function to open the popup
    function openPopup() {

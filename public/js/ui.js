@@ -1,3 +1,44 @@
+const router = {
+  "/": () => showContent("content-home"),
+  "/profile": () =>
+    requireAuth(() => showContent("content-profile"), "/profile"),
+  "/login": () => login()
+};
+
+const eachElement = (selector, fn) => {
+  for (let e of document.querySelectorAll(selector)) {
+    fn(e);
+  }
+};
+
+/**
+ * Tries to display a content panel that is referenced
+ * by the specified route URL. These are matched using the
+ * router, defined above.
+ * @param {*} url The route URL
+ */
+const showContentFromUrl = (url) => {
+  if (router[url]) {
+    router[url]();
+    return true;
+  }
+
+  return false;
+};
+
+const isRouteLink = (element) =>
+  element.tagName === "A" && element.classList.contains("route-link");
+
+/**
+ * Displays a content panel specified by the given element id.
+ * All the panels that participate in this flow should have the 'page' class applied,
+ * so that it can be correctly hidden before the requested content is shown.
+ * @param {*} id The id of the content to show
+ */
+const showContent = (id) => {
+  eachElement(".page", (p) => p.classList.add("hidden"));
+  document.getElementById(id).classList.remove("hidden");
+};
 
 /**
  * Updates the user interface
@@ -42,11 +83,12 @@ const updateUI = async () => {
       decodedAccessToken = "AT is an Opauqe Token"
       }
       
-      document.getElementById("idToken-data").innerText = JSON.stringify(
-        id_token,
-        null,
-        2
-      );
+      // document.getElementById("idToken-data").innerText = JSON.stringify(
+      //   id_token,
+      //   null,
+      //   2
+      // );
+      document.getElementById("idToken-data").innerText =id_token
       // document.getElementById("1234").innerText = JSON.stringify(
       //         id_token,
       //         null,
@@ -65,11 +107,12 @@ const updateUI = async () => {
         2
       );
 
-      document.getElementById("accessToken-data").innerText = JSON.stringify(
-        accessToken,
-        null,
-        2
-      );
+      document.getElementById("accessToken-data").innerText = accessToken;
+      // document.getElementById("accessToken-data").innerText = JSON.stringify(
+      //   accessToken,
+      //   null,
+      //   2
+      // );
 
 
 
@@ -78,6 +121,7 @@ const updateUI = async () => {
         null,
         2
       );
+      
 
       document.querySelectorAll("pre code").forEach(hljs.highlightBlock);
 
