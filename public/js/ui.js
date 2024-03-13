@@ -42,7 +42,7 @@ const updateUI = async () => {
       decodedAccessToken = "AT is an Opauqe Token"
       }
       
-      document.getElementById("idToken-data").value = JSON.stringify(
+      document.getElementById("idToken-data").innerText = JSON.stringify(
         id_token,
         null,
         2
@@ -73,7 +73,7 @@ const updateUI = async () => {
 
 
 
-      document.getElementById("profile-data").value = JSON.stringify(
+      document.getElementById("profile-data").innerText = JSON.stringify(
         user,
         null,
         2
